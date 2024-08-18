@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Card,
@@ -12,6 +12,8 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/system";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 
 // Styled component for the CardMedia to handle the image zoom effect
 const ZoomCardMedia = styled(CardMedia)(({ theme }) => ({
@@ -21,36 +23,16 @@ const ZoomCardMedia = styled(CardMedia)(({ theme }) => ({
   },
 }));
 
-const services = [
-  {
-    image:
-      "https://media.istockphoto.com/id/1044399860/photo/ganga-arthi-in-the-holy-city-of-rishikesh-in-uttarakhand-india-to-worship-river-ganga-ganges.jpg?s=612x612&w=0&k=20&c=699WoUWUOKCVzRWOG1mT1dMD7kqQWsQ76-37a_ws5BA=",
-    title: "Ganga Aarti Event Planning",
-    description:
-      "Make your Ganga Aarti event unforgettable with our expert planning service. At Ganga Aarti Event, we specialize in creating meaningful experiences along the sacred Ganges River. Whether it's a wedding, a corporate event, birthday party or a private gathering, our dedicated team is here to bring your vision to life. We pay attention to every detail, ensuring that your event is exceptional and filled with cultural and spiritual significance. With a deep understanding of the cultural and spiritual importance of the Ganga Aarti, we craft events that resonate with profound meaning and reverence. Let us guide you in creating a truly transformative and memorable Ganga Aarti event that reflects the essence of this timeless tradition.",
-  },
-  {
-    image:
-      "https://media.istockphoto.com/id/1044399860/photo/ganga-arthi-in-the-holy-city-of-rishikesh-in-uttarakhand-india-to-worship-river-ganga-ganges.jpg?s=612x612&w=0&k=20&c=699WoUWUOKCVzRWOG1mT1dMD7kqQWsQ76-37a_ws5BA=",
-    title: "Ganga Aarti Event Planning",
-    description:
-      "Make your Ganga Aarti event unforgettable with our expert planning service. At Ganga Aarti Event, we specialize in creating meaningful experiences along the sacred Ganges River. Whether it's a wedding, a corporate event, birthday party or a private gathering, our dedicated team is here to bring your vision to life. We pay attention to every detail, ensuring that your event is exceptional and filled with cultural and spiritual significance. With a deep understanding of the cultural and spiritual importance of the Ganga Aarti, we craft events that resonate with profound meaning and reverence. Let us guide you in creating a truly transformative and memorable Ganga Aarti event that reflects the essence of this timeless tradition.",
-  },
-  {
-    image:
-      "https://media.istockphoto.com/id/1044399860/photo/ganga-arthi-in-the-holy-city-of-rishikesh-in-uttarakhand-india-to-worship-river-ganga-ganges.jpg?s=612x612&w=0&k=20&c=699WoUWUOKCVzRWOG1mT1dMD7kqQWsQ76-37a_ws5BA=",
-    title: "Ganga Aarti Event Planning",
-    description:
-      "Make your Ganga Aarti event unforgettable with our expert planning service. At Ganga Aarti Event, we specialize in creating meaningful experiences along the sacred Ganges River. Whether it's a wedding, a corporate event, birthday party or a private gathering, our dedicated team is here to bring your vision to life. We pay attention to every detail, ensuring that your event is exceptional and filled with cultural and spiritual significance. With a deep understanding of the cultural and spiritual importance of the Ganga Aarti, we craft events that resonate with profound meaning and reverence. Let us guide you in creating a truly transformative and memorable Ganga Aarti event that reflects the essence of this timeless tradition.",
-  },
-  // Add more services as needed
-];
-
 const ServiceCard = ({ service }) => {
   const [expanded, setExpanded] = useState(false);
+  const router = useRouter(); // Initialize useRouter
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
+  };
+
+  const handleBookNow = () => {
+    router.push("/booking"); // Navigate to the booking page
   };
 
   return (
@@ -64,13 +46,14 @@ const ServiceCard = ({ service }) => {
     >
       <ZoomCardMedia
         component="img"
-        image={service.image}
-        alt={service.title}
+        image={service.photo} // Updated to use photo from API response
+        alt={service.service_name}
         sx={{ height: 200 }} // Increased image height
       />
       <CardContent>
         <Typography variant="h6" component="div" gutterBottom>
-          {service.title}
+          {service.service_name}{" "}
+          {/* Updated to use service_name from API response */}
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {expanded
@@ -102,6 +85,7 @@ const ServiceCard = ({ service }) => {
         <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
           <Button
             variant="contained"
+            onClick={handleBookNow}
             sx={{
               backgroundColor: "green !important",
               "&:hover": {
@@ -118,6 +102,23 @@ const ServiceCard = ({ service }) => {
 };
 
 const ServiceCards = () => {
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await axios.get(
+          "https://mmngrm2h3i.execute-api.ap-south-1.amazonaws.com/gangaArti/get_service"
+        );
+        setServices(response.data["body-json"]["body"]["Items"]);
+      } catch (error) {
+        console.error("Error fetching services:", error);
+      }
+    };
+
+    fetchServices();
+  }, []);
+
   return (
     <Box sx={{ mx: "auto", maxWidth: "1200px", p: 3 }} id="services-section">
       <Box sx={{ textAlign: "center", mb: 4 }}>

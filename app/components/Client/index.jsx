@@ -1,16 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
-import {
-  Box,
-  Card,
-  CardContent,
-  Typography,
-  Avatar,
-  Grid,
-} from "@mui/material";
+import { Box, Card, CardContent, Typography, Avatar } from "@mui/material";
 import { styled } from "@mui/system";
+import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -20,38 +14,6 @@ const CenteredAvatar = styled(Avatar)(({ theme }) => ({
   height: 80,
   margin: "0 auto",
 }));
-
-const clients = [
-  {
-    name: "John Doe",
-    profession: "Software Engineer",
-    message:
-      "This service exceeded my expectations. The attention to detail and professionalism were remarkable.",
-    image: "https://i.pravatar.cc/150?img=1",
-  },
-  {
-    name: "Jane Smith",
-    profession: "Graphic Designer",
-    message:
-      "A fantastic experience from start to finish. Highly recommend to anyone looking for top-notch service.",
-    image: "https://i.pravatar.cc/150?img=2",
-  },
-  {
-    name: "Alice Johnson",
-    profession: "Marketing Specialist",
-    message:
-      "Professional and reliable. The service delivered exactly what was promised and more.",
-    image: "https://i.pravatar.cc/150?img=3",
-  },
-  {
-    name: "Bob Brown",
-    profession: "Project Manager",
-    message:
-      "An exceptional team with great communication. They made the whole process seamless and enjoyable.",
-    image: "https://i.pravatar.cc/150?img=4",
-  },
-  // Add more clients as needed
-];
 
 const ClientCard = ({ client }) => {
   return (
@@ -65,7 +27,7 @@ const ClientCard = ({ client }) => {
       }}
     >
       <CardContent>
-        <CenteredAvatar src={client.image} alt={client.name} />
+        <CenteredAvatar src={client.photo} alt={client.name} />
         <Typography variant="h6" component="div" sx={{ mt: 2 }}>
           {client.name}
         </Typography>
@@ -81,6 +43,24 @@ const ClientCard = ({ client }) => {
 };
 
 const OurClients = () => {
+  const [clients, setClients] = useState([]);
+
+  useEffect(() => {
+    // Fetch client data from the API
+    const fetchClients = async () => {
+      try {
+        const response = await axios.get(
+          "https://mmngrm2h3i.execute-api.ap-south-1.amazonaws.com/gangaArti/get_ourClient"
+        );
+        setClients(response.data["body-json"]["body"]["Items"]);
+      } catch (error) {
+        console.error("Error fetching client data:", error);
+      }
+    };
+
+    fetchClients();
+  }, []);
+
   const settings = {
     dots: true,
     infinite: true,

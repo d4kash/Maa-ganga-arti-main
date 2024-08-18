@@ -18,7 +18,7 @@ const Gallery: React.FC = () => {
      const router = useRouter();
 
   const handleRedirect = () => {
-     router.push('/allGallery');
+     router.push('/gallery');
   };
 
   const images = [

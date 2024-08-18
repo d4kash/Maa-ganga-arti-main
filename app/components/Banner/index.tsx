@@ -40,7 +40,7 @@ const Banner = () => {
 
     const handleBookNowClick = () => {
         if (routerReady) {
-            router.push('/BookingCard');
+            router.push('/booking');
         }
     };
 

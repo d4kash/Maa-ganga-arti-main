@@ -1,59 +1,82 @@
-"use client"
-import Image from 'next/image';
+import React from "react";
+import {
+  Box,
+  Container,
+  Typography,
+  Grid,
+  Card,
+  CardContent,
+} from "@mui/material";
  
-import { ChevronRightIcon } from '@heroicons/react/24/outline';
-import { Fade } from "react-awesome-reveal";
-import Pujaimage from "../../Assets/gangamaa.jpg"
 
-interface cardDataType {
-    imgSrc: string;
-    heading: string;
-    subheading: string;
-    link: string;
-}
+const AboutUs = () => {
+  return (
+    <Box sx={{ backgroundColor: "#f4f4f4", py: 8 }}>
+          <Container>
+              <div className="text-center">
+                   <h2 className='text-pink text-lg font-normal mb-3 tracking-widest uppercase ls-51'>About Ganga ArtiS</h2>
+                  
+              </div>
+        
+              
+                           
+                   
+        <Grid container spacing={4} alignItems="center">
+          <Grid item xs={12} md={6}>
+            <Card
+              sx={{
+                boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+                borderRadius: "12px",
+                overflow: "hidden",
+              }}
+            >
+              <img
+                src="https://media.istockphoto.com/id/1241318411/photo/divine-ganga-aarti-yagna-at-rishikesh.jpg?s=612x612&w=0&k=20&c=6kyI1QsjTSVMlcv7jews6kKzPndDet7ItLs6G-gUkaA="
+                alt="Ganga Arti"
+                style={{ width: "100%", height: "auto" }}
+              />
+            </Card>
+          </Grid>
 
-const Work = () => {
-    return (
-        <div>
-            <div className='mx-auto max-w-7xl py-40 px-6' id="about-section">
-                <div className='text-center mb-14'>
-                    <Fade direction={'up'} delay={400} cascade damping={1e-1} triggerOnce={true}>
-                        <h3 className='text-pink text-lg font-normal mb-3 ls-51 uppercase'>Features</h3>
-                    </Fade>
-                    <Fade direction={'up'} delay={800} cascade damping={1e-1} triggerOnce={true}>
-                        <p className='text-3xl lg:text-5xl font-semibold text-lightgrey'>Get a many of interesting <br /> features.</p>
-                    </Fade>
-                </div>
+          <Grid item xs={12} md={6}>
+            <Card
+              sx={{
+                padding: 3,
+                backgroundColor: "white",
+                boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+                borderRadius: "12px",
+              }}
+            >
+              <CardContent>
+                <Typography variant="h5" sx={{ fontWeight: "bold", mb: 2 }}>
+                  Experience the Spiritual Essence of Ganga Arti
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{ lineHeight: 1.8, color: "#555" }}
+                >
+                  Ganga Arti is a centuries-old Hindu ritual dedicated to
+                  Goddess Ganga, the deity symbolizing the river Ganges. Each
+                  evening, as dusk descends, priests clad in traditional attire
+                  gather on the riverbanks. With oil lamps, flowers, incense,
+                  and sacred chants, they perform a mesmerizing ceremony that
+                  invokes blessings, purifies the atmosphere, and pays homage to
+                  the river that sustains millions of lives.
+                  <br />
+                  <br />
+                  Immerse yourself in the divine ambiance of Ganga Arti, right
+                  in your own locality. At Ganga Arti Booking, we bring the
+                  spiritual essence of this ancient ritual to your doorstep,
+                  offering a unique opportunity to witness and participate in a
+                  cherished tradition without traveling afar.
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
+  );
+};
 
-                <div className='flex flex-col lg:flex-row gap-y-20 gap-x-10 mt-32 items-center'>
-                    <Fade direction={'up'} delay={1000} cascade damping={1e-1} triggerOnce={true}>
-                        <div className='flex-1 flex justify-center lg:justify-end'>
-                            <Image src={Pujaimage} alt="Puja Event" layout='intrinsic' width={1500} height={1300} className='rounded-xl'/>
-                        </div>
-                        <div className='flex-1 text-center lg:text-left'>
-                            <h3 className='text-3xl font-semibold mb-5'>We Help Simplify Your Event Management and Planning Process</h3>
-                            <p className='text-lg font-normal text-black text-opacity-50 mb-10'>
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde aliquam consequuntur recusandae hic corrupti a repellendus, delectus sit omnis dolorum cumque in molestiae corporis quod nostrum, ad, vitae enim harum atque magni?
-                            </p>
-                             <p className='text-lg font-normal text-black text-opacity-50 mb-10'>
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde aliquam consequuntur recusandae hic corrupti a repellendus, delectus sit omnis dolorum cumque in molestiae corporis quod nostrum, ad, vitae enim harum atque magni?
-                            </p>
-                             <p className='text-lg font-normal text-black text-opacity-50 mb-10'>
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde aliquam consequuntur recusandae hic corrupti a repellendus, delectus sit omnis dolorum cumque in molestiae corporis quod nostrum, ad, vitae enim harum atque magni?
-                            </p>
-                            <div className='text-center'>
-                               
-                                <button> <a className='bg-pink text-white py-2 px-4 rounded-lg inline-flex items-center'>
-                                        Book now 
-                                        <ChevronRightIcon className='ml-2 h-5 w-5' />
-                                    </a></button>
-                            </div>
-                        </div>
-                    </Fade>
-                </div>
-            </div>
-        </div>
-    )
-}
-
-export default Work;
+export default AboutUs;

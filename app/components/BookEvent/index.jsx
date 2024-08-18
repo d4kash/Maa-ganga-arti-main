@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 
 import Arti from "../../Assets/Arti deepak.jpg";
+
 import {
   Box,
   Grid,
