@@ -1,0 +1,50 @@
+/* Container for wave animations */
+.wave-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Wave animation setup */
+.wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 100px; /* Height of the wave */
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0.5;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  transform: rotate(0deg);
+  z-index: 1;
+}
+
+/* First wave animation */
+.wave1 {
+  animation: wave-animation 10s infinite linear;
+}
+
+/* Second wave animation, with slight offset */
+.wave2 {
+  animation: wave-animation 12s infinite linear;
+  bottom: 10px;
+  opacity: 0.6;
+}
+
+/* Keyframes for the wave animation */
+@keyframes wave-animation {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

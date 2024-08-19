@@ -18,7 +18,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import Image from "next/image";
-import qrcode from "../Assets/qrcode.png";
+// import qrcode from "/assets/qrcode.png";
 
 const BookingForm = () => {
   const [formData, setFormData] = useState({
@@ -315,7 +315,12 @@ const BookingForm = () => {
             >
               {/* Replace with actual QR code */}
               {/* <Typography>QR Code Placeholder</Typography> */}
-              <Image src={qrcode} alt="Banner Image" />
+              <Image
+                src="/assets/qrcode.png"
+                width={80}
+                height={100}
+                alt="Banner Image"
+              />
             </Box>
             <Typography variant="caption" color="error" align="center">
               * Note: Please complete the payment and provide the Transaction

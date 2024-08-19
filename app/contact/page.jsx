@@ -83,6 +83,8 @@ const ContactForm = () => {
                         name="name"
                         variant="outlined"
                         required
+                        autoComplete="name"
+                        helperText="Please enter your full name"
                         sx={{
                           "& .MuiOutlinedInput-root": {
                             "& fieldset": {
@@ -106,6 +108,8 @@ const ContactForm = () => {
                         type="email"
                         variant="outlined"
                         required
+                        autoComplete="email"
+                        helperText="Enter a valid email address"
                         sx={{
                           "& .MuiOutlinedInput-root": {
                             "& fieldset": {
@@ -129,6 +133,8 @@ const ContactForm = () => {
                         type="tel"
                         variant="outlined"
                         required
+                        autoComplete="tel"
+                        helperText="Start with 6, 7, 8, or 9. Must be 10 digits."
                         inputProps={{
                           pattern: "[6-9]{1}[0-9]{9}",
                           title:
@@ -156,6 +162,8 @@ const ContactForm = () => {
                         name="address"
                         variant="outlined"
                         required
+                        autoComplete="street-address"
+                        helperText="Enter your current address"
                         sx={{
                           "& .MuiOutlinedInput-root": {
                             "& fieldset": {
@@ -180,6 +188,8 @@ const ContactForm = () => {
                         rows={4}
                         variant="outlined"
                         required
+                        autoComplete="off"
+                        helperText="Provide details of your inquiry"
                         sx={{
                           "& .MuiOutlinedInput-root": {
                             "& fieldset": {
@@ -247,8 +257,7 @@ const ContactForm = () => {
                     <LocationOnIcon />
                   </IconButton>
                   <Typography variant="body1" sx={{ ml: 1 }}>
-                    Sangam, B1/148, C-1-R, Assi, Varanasi, Uttar Pradesh -
-                    221005
+                    केदारेश्वर मंदिर, केदारघाट, सोनारपुर (वाराणसी),
                   </Typography>
                 </Box>
                 <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
@@ -256,7 +265,7 @@ const ContactForm = () => {
                     <PhoneIcon />
                   </IconButton>
                   <Typography variant="body1" sx={{ ml: 1 }}>
-                    +91 7999629086
+                    +91 7079362685
                   </Typography>
                 </Box>
                 <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
@@ -264,18 +273,28 @@ const ContactForm = () => {
                     <EmailIcon />
                   </IconButton>
                   <Typography variant="body1" sx={{ ml: 1 }}>
-                    info@gangaaartievent.com
+                    thegangaaarti05@gmail.com
                   </Typography>
                 </Box>
                 <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d2965.0824050173574!2d-93.63905729999999!3d41.998507000000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sWebFilings%2C+University+Boulevard%2C+Ames%2C+IA!5e0!3m2!1sen!2sus!4v1390839289319"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3606.9161254791434!2d83.00571348198405!3d25.307021919987836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398e31e1e80eccd5%3A0xcfb1b4de69b2bf24!2sDashashwamegh%20ghat%2C%20Uttar%20Pradesh%20221001!5e0!3m2!1sen!2sin!4v1724067440898!5m2!1sen!2sin"
                     width="100%"
                     height="200"
                     frameBorder="0"
                     style={{ border: 0 }}
                     aria-hidden="false"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
                   ></iframe>
+                  {/* <iframe
+                    src="<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3606.9161254791434!2d83.00571348198405!3d25.307021919987836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398e31e1e80eccd5%3A0xcfb1b4de69b2bf24!2sDashashwamegh%20ghat%2C%20Uttar%20Pradesh%20221001!5e0!3m2!1sen!2sin!4v1724067440898!5m2!1sen!2sin"
+                    width="100%"
+                    height="200"
+                    frameBorder="0"
+                    style={{ border: 0 }}
+                    aria-hidden="false"
+                  ></iframe> */}
                 </Box>
               </Fade>
             </Grid>

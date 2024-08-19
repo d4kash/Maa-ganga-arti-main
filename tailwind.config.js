@@ -1,30 +1,38 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
 
-      // Or if using `src` directory:
-      "./src/**/*.{js,ts,jsx,tsx}",
+    // Or if using `src` directory:
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    colors: {
-      transparent: "transparent",
-      current: "currentColor",
-      white: "#ffffff",
-      black: "#000000",
-      lightgrey: "#444245",
-      grey: 'rgba(0, 0, 0, 0.55)',
-      lightpink: '#F8F7F7',
-      pink: '#DF6751',
-      bgpink: 'rgba(223, 103, 81, 0.15)',
-      darkpink: '#FEEDEA',
-      lightblack : '#333333',
-      textbl: "#363636",
-      footerlinks: 'rgba(54, 54, 54, 0.9)',
-      bordertop: 'rgba(105, 120, 131, 0.16)',
-      darkgrey: 'rgba(44, 9, 11, 0.8)'
+    extend: {
+      colors: {
+        ...defaultTheme.colors,  // Merge default colors
+        transparent: "transparent",
+        current: "currentColor",
+        white: "#ffffff",
+        black: "#000000",
+        lightgrey: "#444245",
+        grey: 'rgba(0, 0, 0, 0.55)',
+        lightpink: '#F8F7F7',
+        pink: '#DF6751',
+        bgpink: 'rgba(223, 103, 81, 0.15)',
+        darkpink: '#FEEDEA',
+        lightblack : '#333333',
+        textbl: "#363636",
+        footerlinks: 'rgba(54, 54, 54, 0.9)',
+        bordertop: 'rgba(105, 120, 131, 0.16)',
+        darkgrey: 'rgba(44, 9, 11, 0.8)',
+      },
+    },
+    fontFamily: {
+      hindi: ['Noto Sans Devanagari', 'sans-serif'],
     },
     fontSize: {
       xs: ["0.75rem", { lineHeight: "1rem" }],
@@ -41,7 +49,6 @@ module.exports = {
       "8xl": ["6rem", { lineHeight: "1" }],
       "9xl": ["8rem", { lineHeight: "1" }],
     },
-    extend: {},
   },
   plugins: [],
 };

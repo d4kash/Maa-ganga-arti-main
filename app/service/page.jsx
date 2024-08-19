@@ -127,7 +127,10 @@ const ServiceCard = ({ service }) => {
 
 const ServiceCards = () => {
   return (
-    <Box sx={{ mx: "auto", maxWidth: "1200px", p: 3 }} id="services-section">
+    <Box
+      sx={{ backgroundColor: "#f4f4f4", mx: "auto", maxWidth: "1200px", p: 3 }}
+      id="services-section"
+    >
       <Box sx={{ textAlign: "center", mb: 4 }}>
         <Typography
           gutterBottom

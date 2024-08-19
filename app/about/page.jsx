@@ -7,6 +7,7 @@ import {
   Card,
   CardContent,
 } from "@mui/material";
+import AartiSteps from "../components/Banner/aarti_steps";
 
 const AboutUs = () => {
   return (
@@ -21,33 +22,41 @@ const AboutUs = () => {
           About Ganga Arti
         </Typography>
 
-        <Grid container spacing={4} alignItems="center">
+        <Grid container spacing={4} alignItems="stretch">
+          {/* Image Card */}
           <Grid item xs={12} md={6}>
             <Card
               sx={{
+                display: "flex",
+                flexDirection: "column",
                 boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
                 borderRadius: "12px",
                 overflow: "hidden",
+                height: "100%", // Ensures the card takes up the full height of its container
               }}
             >
               <img
                 src="https://media.istockphoto.com/id/1241318411/photo/divine-ganga-aarti-yagna-at-rishikesh.jpg?s=612x612&w=0&k=20&c=6kyI1QsjTSVMlcv7jews6kKzPndDet7ItLs6G-gUkaA="
                 alt="Ganga Arti"
-                style={{ width: "100%", height: "auto" }}
+                style={{ width: "100%", height: "auto", objectFit: "cover" }}
               />
             </Card>
           </Grid>
 
+          {/* Text Card */}
           <Grid item xs={12} md={6}>
             <Card
               sx={{
+                display: "flex",
+                flexDirection: "column",
                 padding: 3,
                 backgroundColor: "white",
                 boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
                 borderRadius: "12px",
+                height: "100%", // Ensures the card takes up the full height of its container
               }}
             >
-              <CardContent>
+              <CardContent sx={{ flexGrow: 1 }}>
                 <Typography variant="h5" sx={{ fontWeight: "bold", mb: 2 }}>
                   Experience the Spiritual Essence of Ganga Arti
                 </Typography>
@@ -75,6 +84,7 @@ const AboutUs = () => {
           </Grid>
         </Grid>
       </Container>
+      <AartiSteps />
     </Box>
   );
 };

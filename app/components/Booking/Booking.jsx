@@ -51,9 +51,33 @@ const ServiceCard = ({ service }) => {
         sx={{ height: 200 }} // Increased image height
       />
       <CardContent>
-        <Typography variant="h6" component="div" gutterBottom>
+        <div className="max-w-sm mx-auto bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 ease-in-out">
+          {/* <img
+            className="w-full h-48 object-cover object-center"
+            src={service.photo}
+            alt={service.service_name}
+          /> */}
+          <div className="p-4">
+            <h2 className="text-2xl font-semibold text-gray-800">
+              {service.service_name}{" "}
+            </h2>
+            <p className="mt-2 text-gray-600">
+              {service.description}
+              {"..."}
+            </p>
+            <div className="mt-4 flex items-center justify-between">
+              <span className="text-lg font-bold text-green-500"></span>
+              <button
+                onClick={handleBookNow}
+                className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 focus:outline-none focus:bg-green-600"
+              >
+                Book Now
+              </button>
+            </div>
+          </div>
+        </div>
+        {/* <Typography variant="h6" component="div" gutterBottom>
           {service.service_name}{" "}
-          {/* Updated to use service_name from API response */}
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {expanded
@@ -94,8 +118,8 @@ const ServiceCard = ({ service }) => {
             }}
           >
             Book Now
-          </Button>
-        </Box>
+          </Button> */}
+        {/* </Box> */}
       </CardContent>
     </Card>
   );
@@ -129,16 +153,16 @@ const ServiceCards = () => {
           Explore Our Services
         </Typography>
       </Box>
-      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3 }}>
-        {services.map((service, index) => (
-          <Box
-            key={index}
-            sx={{ flex: "1 1 calc(33.333% - 1rem)", boxSizing: "border-box" }}
-          >
-            <ServiceCard service={service} />
-          </Box>
-        ))}
-      </Box>
+      {/* <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3 }}> */}
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center p-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+          {services.map((service, index) => (
+            <ServiceCard key={index} service={service} />
+          ))}
+        </div>
+      </div>
+
+      {/* </Box> */}
     </Box>
   );
 };
