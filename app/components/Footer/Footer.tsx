@@ -48,8 +48,7 @@ const products: ProductType[] = [
     section: "Contact info",
     link: [
       "केदारेश्वर मंदिर,",
-      "केदारघाट,",
-      "सोनारपुर (वाराणसी)",
+      "केदारघाट, सोनारपुर (वाराणसी)",
       "thegangaaarti05@gmail.com",
     ],
   },
@@ -125,14 +124,26 @@ const footer = () => {
         </h4>
         <div className="flex gap-5 mt-5 md:mt-0 justify-center md:justify-start">
           <h4 className="text-darkgrey text-sm font-normal">
-            <Link href="/" target="_blank">
+            <Link href="/privacy" target="_blank">
               Privacy policy
             </Link>
           </h4>
           <div className="h-5 bg-bordertop w-0.5"></div>
           <h4 className="text-darkgrey text-sm font-normal">
-            <Link href="/" target="_blank">
+            <Link href="/termcondn" target="_blank">
               Terms & conditions
+            </Link>
+          </h4>
+          <div className="h-5 bg-bordertop w-0.5"></div>
+          <h4 className="text-darkgrey text-sm font-normal">
+            <Link href="/cancellation" target="_blank">
+              Cancellation and Refund
+            </Link>
+          </h4>
+          <div className="h-5 bg-bordertop w-0.5"></div>
+          <h4 className="text-darkgrey text-sm font-normal">
+            <Link href="/shippingdelivery" target="_blank">
+              Shipping and Delivery
             </Link>
           </h4>
         </div>

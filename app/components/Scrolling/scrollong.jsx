@@ -19,11 +19,11 @@ const ScrollingText = styled(Box)(({ theme }) => ({
   whiteSpace: "nowrap",
   overflow: "hidden",
   position: "relative",
-  animation: `${scrollLeftToRight} 40s linear infinite`,
+  animation: `${scrollLeftToRight} 50s linear infinite`,
   width: "400%", // Make the width twice the container width
   display: "flex",
   alignItems: "center",
-  padding: "10px 0",
+  // padding: "10px 0",
 }));
 
 const ScrollPage = () => {
@@ -41,13 +41,14 @@ const ScrollPage = () => {
       <Box
         sx={{
           width: "100%",
+          height: "10%",
           maxWidth: "1200px",
           position: "relative",
           overflow: "hidden", // Ensure that the overflow is hidden on the container
         }}
       >
         <ScrollingText>
-          <Typography variant="h6" component="div">
+          <Typography variant="h4" component="div" sx={{ color: "#D20707" }}>
             Helpline no : 7079362685| For booking query call : 7870406788,
             8340116521 (08:00 Am to 10:00 PM) Whats app number : 7870406788|
           </Typography>

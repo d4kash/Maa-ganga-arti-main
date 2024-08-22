@@ -64,7 +64,7 @@ const Banner = () => {
   }
 
   return (
-    <div className="relative h-screen flex items-center justify-center p-8 overflow-hidden bg-gradient-to-r from-green-300 via-blue-300 to-indigo-300 z-10">
+    <div className="relative h-min flex items-center justify-center p-8 overflow-hidden bg-gradient-to-r from-green-300 via-blue-300 to-indigo-300 z-10">
       {/* <RiverWithBankAndRocks /> */}
 
       {/* Floating Leaf */}
