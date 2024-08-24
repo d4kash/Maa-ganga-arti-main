@@ -7,20 +7,17 @@ import {
   Card,
   CardContent,
 } from "@mui/material";
- 
 
 const AboutUs = () => {
   return (
     <Box sx={{ backgroundColor: "#f4f4f4", py: 8 }}>
-          <Container>
-              <div className="text-center">
-                   <h2 className='text-pink text-lg font-normal mb-3 tracking-widest uppercase ls-51'>About Ganga ArtiS</h2>
-                  
-              </div>
-        
-              
-                           
-                   
+      <Container>
+        <div className="text-center">
+          <h2 className="text-pink text-lg font-normal mb-3 tracking-widest uppercase ls-51">
+            About Wedding Ganga Arti
+          </h2>
+        </div>
+
         <Grid container spacing={4} alignItems="center">
           <Grid item xs={12} md={6}>
             <Card
@@ -31,7 +28,7 @@ const AboutUs = () => {
               }}
             >
               <img
-                src="https://media.istockphoto.com/id/1241318411/photo/divine-ganga-aarti-yagna-at-rishikesh.jpg?s=612x612&w=0&k=20&c=6kyI1QsjTSVMlcv7jews6kKzPndDet7ItLs6G-gUkaA="
+                src="assets/ceremony2.webp"
                 alt="Ganga Arti"
                 style={{ width: "100%", height: "auto" }}
               />
@@ -49,7 +46,7 @@ const AboutUs = () => {
             >
               <CardContent>
                 <Typography variant="h5" sx={{ fontWeight: "bold", mb: 2 }}>
-                  Experience the Spiritual Essence of Ganga Arti
+                  Experience the Spiritual Essence of wedding Ganga Arti
                 </Typography>
                 <Typography
                   variant="body1"

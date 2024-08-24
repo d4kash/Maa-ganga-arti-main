@@ -24,25 +24,59 @@ const ZoomCardMedia = styled(CardMedia)(({ theme }) => ({
 
 const services = [
   {
-    image:
-      "https://media.istockphoto.com/id/1044399860/photo/ganga-arthi-in-the-holy-city-of-rishikesh-in-uttarakhand-india-to-worship-river-ganga-ganges.jpg?s=612x612&w=0&k=20&c=699WoUWUOKCVzRWOG1mT1dMD7kqQWsQ76-37a_ws5BA=",
-    title: "Ganga Aarti Event Planning",
-    description:
-      "Make your Ganga Aarti event unforgettable with our expert planning service. At Ganga Aarti Event, we specialize in creating meaningful experiences along the sacred Ganges River. Whether it's a wedding, a corporate event, birthday party or a private gathering, our dedicated team is here to bring your vision to life. We pay attention to every detail, ensuring that your event is exceptional and filled with cultural and spiritual significance. With a deep understanding of the cultural and spiritual importance of the Ganga Aarti, we craft events that resonate with profound meaning and reverence. Let us guide you in creating a truly transformative and memorable Ganga Aarti event that reflects the essence of this timeless tradition.",
+    image: "assets/jhar_arti.png",
+    title: "विवाह गंगा आरती",
+    description: `विवाह गंगा आरती विवरण:
+
+विवाह गंगा आरती एक अनोखी और आध्यात्मिक सेवा है, जिसका उद्देश्य जयमाला समारोह के समय पवित्र गंगा नदी की दिव्य ऊर्जा को शामिल करना है। यह विशेष सेवा पारंपरिक हिंदू गंगा आरती को प्रेम और मिलन के उत्सव के साथ मिलाकर दूल्हा-दुल्हन और उनके परिवारों के लिए एक अविस्मरणीय अनुभव बनाती है।
+
+जब दूल्हा-दुल्हन एक-दूसरे को माला पहनाते हैं, जो जीवन साथी के रूप में एक-दूसरे की स्वीकृति का प्रतीक है, उसी समय पवित्र गंगा आरती की रस्म अदा की जाती है। मंत्रों के मधुर उच्चारण, तेल के दीपकों की जगमगाहट और धूप की सुगंध से भरा यह वातावरण जोड़े को शांति, समृद्धि और अनन्त सुख का आशीर्वाद देता है।
+
+यह सेवा न केवल विवाह समारोह के आध्यात्मिक महत्व को बढ़ाती है, बल्कि यह सांस्कृतिक अनुभव भी प्रदान करती है, जोड़े और उनके प्रियजनों को गंगा नदी के आध्यात्मिक सार से जोड़ती है, भले ही वे गंगा से मीलों दूर हों। विवाह गंगा आरती जयमाला समारोह में एक गहन और पवित्र आयाम जोड़ती है, जिससे यह क्षण हमेशा के लिए यादगार बन जाता है।`,
   },
   {
-    image:
-      "https://media.istockphoto.com/id/1044399860/photo/ganga-arthi-in-the-holy-city-of-rishikesh-in-uttarakhand-india-to-worship-river-ganga-ganges.jpg?s=612x612&w=0&k=20&c=699WoUWUOKCVzRWOG1mT1dMD7kqQWsQ76-37a_ws5BA=",
-    title: "Ganga Aarti Event Planning",
-    description:
-      "Make your Ganga Aarti event unforgettable with our expert planning service. At Ganga Aarti Event, we specialize in creating meaningful experiences along the sacred Ganges River. Whether it's a wedding, a corporate event, birthday party or a private gathering, our dedicated team is here to bring your vision to life. We pay attention to every detail, ensuring that your event is exceptional and filled with cultural and spiritual significance. With a deep understanding of the cultural and spiritual importance of the Ganga Aarti, we craft events that resonate with profound meaning and reverence. Let us guide you in creating a truly transformative and memorable Ganga Aarti event that reflects the essence of this timeless tradition.",
+    image: "assets/jhar_arti.png",
+    title: "सगाई गंगा आरती",
+    description: `सगाई गंगा आरती विवरण:
+
+सगाई गंगा आरती एक विशेष और आध्यात्मिक सेवा है, जो सगाई समारोह के दौरान पवित्र गंगा नदी की दिव्यता को शामिल करने के लिए बनाई गई है। यह सेवा पारंपरिक हिंदू गंगा आरती को सगाई के महत्वपूर्ण क्षण के साथ मिलाकर, जोड़े और उनके परिवारों के लिए एक अविस्मरणीय अनुभव प्रदान करती है।
+
+जब दूल्हा और दुल्हन सगाई की अंगूठी का आदान-प्रदान करते हैं, जो उनके जीवन के एक नए अध्याय की शुरुआत का प्रतीक है, उसी समय गंगा आरती की पवित्र रस्म अदा की जाती है। मंत्रों के मधुर उच्चारण, दीपों की उज्ज्वल रौशनी, और धूप की सुगंधित लहरों से यह वातावरण गूंज उठता है, जोड़े को शांति, प्रेम, और समृद्धि का आशीर्वाद मिलता है।
+
+यह सेवा सगाई के समारोह को एक गहन और आध्यात्मिक अनुभव में बदल देती है, जो गंगा नदी की पवित्रता से जुड़ा होता है। चाहे गंगा से कितनी ही दूरी पर क्यों न हों, यह गंगा आरती सेवा जोड़े और उनके प्रियजनों को पवित्र गंगा के दिव्य आशीर्वाद का अनुभव कराती है। सगाई गंगा आरती समारोह में एक पवित्र और यादगार क्षण जोड़ती है, जो हमेशा के लिए यादगार बन जाता है।`,
   },
   {
-    image:
-      "https://media.istockphoto.com/id/1044399860/photo/ganga-arthi-in-the-holy-city-of-rishikesh-in-uttarakhand-india-to-worship-river-ganga-ganges.jpg?s=612x612&w=0&k=20&c=699WoUWUOKCVzRWOG1mT1dMD7kqQWsQ76-37a_ws5BA=",
-    title: "Ganga Aarti Event Planning",
-    description:
-      "Make your Ganga Aarti event unforgettable with our expert planning service. At Ganga Aarti Event, we specialize in creating meaningful experiences along the sacred Ganges River. Whether it's a wedding, a corporate event, birthday party or a private gathering, our dedicated team is here to bring your vision to life. We pay attention to every detail, ensuring that your event is exceptional and filled with cultural and spiritual significance. With a deep understanding of the cultural and spiritual importance of the Ganga Aarti, we craft events that resonate with profound meaning and reverence. Let us guide you in creating a truly transformative and memorable Ganga Aarti event that reflects the essence of this timeless tradition.",
+    image: "assets/naag_arti.png",
+    title: "विवाह वर्षगांठ गंगा आरती",
+    description: `विवाह वर्षगांठ गंगा आरती विवरण:
+
+विवाह वर्षगांठ गंगा आरती एक विशेष और आध्यात्मिक सेवा है, जो विवाह के इस महत्वपूर्ण अवसर पर पवित्र गंगा नदी की दिव्यता को शामिल करने के लिए बनाई गई है। यह सेवा पारंपरिक हिंदू गंगा आरती को विवाह की वर्षगांठ के साथ मिलाकर, दंपति और उनके परिवारों के लिए एक अविस्मरणीय अनुभव प्रदान करती है।
+
+जब दंपति अपनी वर्षगांठ का जश्न मना रहे होते हैं, जो उनके जीवन के एक और साल की सफलता और प्रेम का प्रतीक है, उसी समय गंगा आरती की पवित्र रस्म अदा की जाती है। मंत्रों के मधुर उच्चारण, दीपों की उज्ज्वल रौशनी, और धूप की सुगंध से भरा यह वातावरण दंपति को शांति, प्रेम, और समृद्धि का आशीर्वाद देता है।
+
+यह सेवा विवाह वर्षगांठ को एक गहन और आध्यात्मिक अनुभव में बदल देती है, जो गंगा नदी की पवित्रता से जुड़ी होती है। चाहे गंगा से कितनी ही दूरी पर क्यों न हों, यह गंगा आरती सेवा दंपति और उनके प्रियजनों को पवित्र गंगा के दिव्य आशीर्वाद का अनुभव कराती है। विवाह वर्षगांठ गंगा आरती समारोह में एक पवित्र और यादगार क्षण जोड़ती है, जो हमेशा के लिए दिलों में बस जाती है।`,
+  },
+  {
+    image: "assets/jhar_arti.png",
+    title: "आध्यात्मिक समारोह गंगा आरती",
+    description: `आध्यात्मिक समारोह गंगा आरती विवरण:
+
+आध्यात्मिक समारोह गंगा आरती एक विशेष और पवित्र सेवा है, जो किसी भी आध्यात्मिक कार्यक्रम के दौरान पवित्र गंगा नदी की दिव्यता को शामिल करने के लिए बनाई गई है। यह सेवा पारंपरिक हिंदू गंगा आरती को आध्यात्मिक आयोजन के साथ मिलाकर, उपस्थित सभी लोगों के लिए एक गहन और दिव्य अनुभव प्रदान करती है।
+
+जब समारोह की पवित्र क्रियाएं संपन्न हो रही होती हैं, गंगा आरती की रस्म उसी समय अदा की जाती है। मंत्रों के मधुर उच्चारण, दीपों की जगमगाहट, और धूप की सुगंध से यह वातावरण भर जाता है, जिससे सभी उपस्थित लोगों को शांति, प्रेम, और आध्यात्मिक उन्नति का आशीर्वाद मिलता है।
+
+यह सेवा किसी भी आध्यात्मिक समारोह को एक गहन और आध्यात्मिक अनुभव में बदल देती है, जो गंगा नदी की पवित्रता और दिव्यता से जुड़ी होती है। चाहे गंगा से कितनी ही दूरी पर क्यों न हों, यह गंगा आरती सेवा सभी उपस्थित लोगों को पवित्र गंगा के दिव्य आशीर्वाद का अनुभव कराती है। आध्यात्मिक समारोह गंगा आरती समारोह में एक पवित्र और यादगार क्षण जोड़ती है, जो सभी के दिलों में हमेशा के लिए बस जाती है।`,
+  },
+  {
+    image: "assets/naag_arti.png",
+    title: "नामकरण संस्कार गंगा आरती",
+    description: `नामकरण संस्कार गंगा आरती विवरण:
+
+नामकरण संस्कार गंगा आरती एक विशेष और पवित्र सेवा है, जो इस महत्वपूर्ण अवसर पर पवित्र गंगा नदी की दिव्यता को शामिल करने के लिए बनाई गई है। यह सेवा पारंपरिक हिंदू गंगा आरती को नामकरण संस्कार के साथ मिलाकर, नवजात शिशु और उसके परिवार के लिए एक अविस्मरणीय और आध्यात्मिक अनुभव प्रदान करती है।
+
+जब शिशु का नामकरण किया जाता है, जो उसके जीवन के सफर की शुरुआत का प्रतीक है, उसी समय गंगा आरती की पवित्र रस्म अदा की जाती है। मंत्रों के मधुर उच्चारण, दीपों की जगमगाहट, और धूप की सुगंध से भरा यह वातावरण शिशु को शांति, सुख, और समृद्धि का आशीर्वाद देता है, और उसके जीवन को पवित्रता से भर देता है।
+
+यह सेवा नामकरण संस्कार को एक गहन और आध्यात्मिक अनुभव में बदल देती है, जो गंगा नदी की पवित्रता से जुड़ी होती है। चाहे गंगा से कितनी ही दूरी पर क्यों न हों, यह गंगा आरती सेवा शिशु और उसके परिवार को पवित्र गंगा के दिव्य आशीर्वाद का अनुभव कराती है। नामकरण संस्कार गंगा आरती इस विशेष दिन को एक पवित्र और यादगार क्षण में बदल देती है, जिसे परिवार हमेशा संजो कर रखता है।`,
   },
 
   // Add more services as needed

@@ -72,7 +72,7 @@ const BookNowPage = () => {
           <Grid item xs={12} sm={6} md={4} key={index}>
             <StyledCard>
               <CardContent>
-                <CenteredAvatar src={member.photo} alt={member.name} />
+                <CenteredAvatar src="assets/arti7.png" alt={member.name} />
                 <Typography variant="h6" component="div" sx={{ mt: 2 }}>
                   Members: {member.member}
                 </Typography>

@@ -144,7 +144,91 @@ const Banner = () => {
       <div className="relative z-10 bg-white rounded-lg shadow-xl p-6 w-full max-w-5xl flex flex-col lg:flex-row items-center">
         {/* Left Side Content */}
         <div className="text-center lg:text-left lg:w-1/2">
+          {/* <header className="text-center mb-8"> */}
           <motion.h1
+            className="text-3xl md:text-4xl font-bold text-indigo-700 mb-4"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            जीवन के हर शुभ अवसर पर, पवित्र गंगा आरती का आशीर्वाद।
+          </motion.h1>
+          {/* <motion.p
+              className="text-lg md:text-xl text-gray-700"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              विवाह, नामकरण, सगाई, वर्षगांठ या आध्यात्मिक अनुष्ठान—हर क्षण को
+              बनाएं दिव्य और मंगलमय।
+            </motion.p> */}
+          {/* </header> */}
+          <motion.section
+            className="w-full max-w-4xl bg-white shadow-md rounded-lg p-2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+          >
+            <ul className="space-y-4">
+              <motion.li
+                className="text-base font-medium text-gray-700 bg-blue-100 py-2 px-4 rounded-lg"
+                whileHover={{ scale: 1.05 }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <h3 className="text-xl font-semibold text-blue-500">
+                  विवाह समारोह में गंगा आरती
+                </h3>
+              </motion.li>
+              <motion.li
+                className="text-base font-medium text-gray-700 bg-blue-100 py-2 px-4 rounded-lg"
+                whileHover={{ scale: 1.05 }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <h3 className="text-xl font-semibold text-blue-500">
+                  नामकरण समारोह में गंगा आरती
+                </h3>
+              </motion.li>
+              <motion.li
+                className="text-base font-medium text-gray-700 bg-blue-100 py-2 px-4 rounded-lg"
+                whileHover={{ scale: 1.05 }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <h3 className="text-xl font-semibold text-blue-500">
+                  सगाई समारोह में गंगा आरती
+                </h3>
+              </motion.li>
+              <motion.li
+                className="text-base font-medium text-gray-700 bg-blue-100 py-2 px-4 rounded-lg"
+                whileHover={{ scale: 1.05 }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <h3 className="text-xl font-semibold text-blue-500">
+                  वर्षगांठ समारोह में गंगा आरती
+                </h3>
+              </motion.li>
+              <motion.li
+                className="text-base font-medium text-gray-700 bg-blue-100 py-2 px-4 rounded-lg"
+                whileHover={{ scale: 1.05 }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <h3 className="text-xl font-semibold text-blue-500">
+                  आध्यात्मिक अनुष्ठान में गंगा आरती
+                </h3>
+              </motion.li>
+            </ul>
+          </motion.section>
+
+          {/* <motion.h1
             className="text-6xl font-bold text-indigo-800 mb-4"
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -161,7 +245,7 @@ const Banner = () => {
             गांगे वारि मनोहारि मुरारि चरणच्युतम्।
             <br />
             त्रिपुरारिशिरश्चारि पापहारि पुनातु माम्।
-          </motion.p>
+          </motion.p> */}
           {/* <FlowerShower flowerImages={flowerImages} /> */}
           {/* Third Leaf */}
           <motion.img
@@ -186,7 +270,7 @@ const Banner = () => {
         {/* Right Side Image */}
         <div className="lg:w-1/2 mt-8 lg:mt-0 lg:ml-8">
           <motion.img
-            src="/assets/banaras_bank.png"
+            src="/assets/jayamala_with_aarti.webp"
             alt="Temple"
             className="w-full rounded-lg shadow-lg"
             initial={{ scale: 0.8, opacity: 0 }}

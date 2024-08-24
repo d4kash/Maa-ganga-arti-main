@@ -1,24 +1,24 @@
+"use client";
+
 import { Disclosure } from "@headlessui/react";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import Drawer from "./Drawer";
-import Signindialog from "./Signindialog";
 import Image from "next/image";
-// import logo from "/assets/logo_ganga_arti.png";
+import { usePathname } from "next/navigation"; // Using the usePathname hook
 
 interface NavigationItem {
   name: string;
   href: string;
-  current: boolean;
 }
 
 const navigation: NavigationItem[] = [
-  { name: "Home", href: "/", current: true },
-  { name: "About us", href: "/about", current: false },
-  { name: "Contact us", href: "/contact", current: false },
-  { name: "Gallery", href: "/gallery", current: false },
-  { name: "Services", href: "/service", current: false },
+  { name: "Home", href: "/" },
+  { name: "About us", href: "/about" },
+  { name: "Contact us", href: "/contact" },
+  { name: "Gallery", href: "/gallery" },
+  { name: "Services", href: "/service" },
 ];
 
 function classNames(...classes: string[]) {
@@ -26,7 +26,8 @@ function classNames(...classes: string[]) {
 }
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const pathname = usePathname(); // Get the current pathname
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <Disclosure
@@ -46,12 +47,6 @@ const Navbar = () => {
                     width={148}
                     height={148}
                   />
-                  {/* <Link
-                    href="/"
-                    className="text-xl sm:text-2xl font-semibold text-gray-800 ml-3"
-                  >
-                    Shree Narayan Ganga Aarti
-                  </Link> */}
                 </div>
                 {/* LINKS */}
                 <div className="hidden lg:flex space-x-6">
@@ -60,12 +55,12 @@ const Navbar = () => {
                       key={item.name}
                       href={item.href}
                       className={classNames(
-                        item.current
+                        pathname === item.href
                           ? "text-gray-900 font-medium border-b-2 border-gray-900"
                           : "text-gray-600 hover:text-gray-900 hover:border-b-2 hover:border-gray-900",
                         "px-3 py-2 rounded-md text-base transition-all duration-300"
                       )}
-                      aria-current={item.current ? "page" : undefined}
+                      aria-current={pathname === item.href ? "page" : undefined}
                     >
                       {item.name}
                     </Link>
@@ -88,7 +83,12 @@ const Navbar = () => {
                     <Link
                       key={item.name}
                       href={item.href}
-                      className="block px-4 py-2 text-gray-800 hover:bg-gray-100 rounded-md"
+                      className={classNames(
+                        pathname === item.href
+                          ? "text-gray-900 font-medium"
+                          : "text-gray-800 hover:bg-gray-100",
+                        "block px-4 py-2 rounded-md"
+                      )}
                       onClick={() => setIsOpen(false)}
                     >
                       {item.name}

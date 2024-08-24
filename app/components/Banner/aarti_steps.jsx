@@ -14,31 +14,31 @@ const steps = [
     id: 2,
     title: "शंख नाद",
     description: "शुद्धिकरण के लिए",
-    image: "assets/arti_image.jpg",
+    image: "assets/sankh_arti.png",
   },
   {
     id: 3,
     title: "अगरबत्ती आरती",
     description: "आराधना की शुरुआत",
-    image: "assets/arti_image.jpg",
+    image: "assets/agarbati_arti.png",
   },
   {
     id: 4,
     title: "धूपम आरती",
     description: "धूप से आरती",
-    image: "assets/arti_image.jpg",
+    image: "assets/arti_step2.jpg",
   },
   {
     id: 5,
     title: "नाग आरती",
     description: "विशेष पूजा",
-    image: "assets/arti_image.jpg",
+    image: "assets/naag_arti.png",
   },
   {
     id: 6,
     title: "झार आरती",
     description: "परंपरागत आरती",
-    image: "assets/arti_image.jpg",
+    image: "assets/jhar_arti.png",
   },
   {
     id: 7,
@@ -50,7 +50,7 @@ const steps = [
 
 const AartiSteps = () => {
   return (
-    <Box sx={{ backgroundColor: "#f4f4f4", py: 8 }}>
+    <Box sx={{ backgroundColor: "#f4f4f4", py: 2 }}>
       <div className="py-12 px-4 sm:px-8 lg:px-16">
         <h1 className="text-5xl text-center font-bold mb-12 text-yellow-700 font-hindi">
           गंगा आरती के चरण
@@ -76,7 +76,7 @@ const AartiSteps = () => {
                     boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.3)",
                   }}
                 />
-                <h2 className="text-2xl sm:text-3xl font-semibold text-gray-800 font-hindi mb-2">
+                <h2 className="text-2xl sm:text-3xl font-semibold text-indigo-500 font-hindi mb-2">
                   {step.title}
                 </h2>
                 <p className="text-lg sm:text-xl text-gray-600 font-hindi">

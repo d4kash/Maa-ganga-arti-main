@@ -49,7 +49,7 @@ const Gallery: React.FC = () => {
 
   return (
     <div>
-      <div className="mx-auto max-w-2xl lg:max-w-7xl sm:py-4 lg:px-8 mt-20 md:pt-24">
+      <div className="mx-auto max-w-2xl lg:max-w-7xl sm:py-4 lg:px-8 mt-20 md:pt-20">
         <div className="text-center">
           <Fade
             direction={"up"}

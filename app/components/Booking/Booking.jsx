@@ -154,7 +154,7 @@ const ServiceCards = () => {
         </Typography>
       </Box>
       {/* <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3 }}> */}
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center p-5">
+      <div className="h-min flex items-center justify-center p-2">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
           {services.map((service, index) => (
             <ServiceCard key={index} service={service} />

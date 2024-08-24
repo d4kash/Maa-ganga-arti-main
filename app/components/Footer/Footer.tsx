@@ -6,6 +6,7 @@ interface ProductType {
   id: number;
   section: string;
   link: string[];
+  navigationLink: string[];
 }
 
 interface socialLinks {
@@ -37,11 +38,13 @@ const products: ProductType[] = [
     id: 1,
     section: "Company",
     link: ["Home", "About us", "Gallery", "Services"],
+    navigationLink: ["/", "/about", "/gallery", "/service"],
   },
   {
     id: 2,
     section: "Contact",
     link: ["Help/FAQ", "Contact Us"],
+    navigationLink: ["/", "/contact"],
   },
   {
     id: 3,
@@ -51,6 +54,7 @@ const products: ProductType[] = [
       "केदारघाट, सोनारपुर (वाराणसी)",
       "thegangaaarti05@gmail.com",
     ],
+    navigationLink: [],
   },
 ];
 
@@ -104,7 +108,7 @@ const footer = () => {
               {product.link.map((link: string, index: number) => (
                 <li key={index} className="mb-5">
                   <Link
-                    href="/"
+                    href={product.navigationLink[index] || "#"}
                     className="text-footerlinks text-base font-normal mb-6 space-links"
                   >
                     {link}
@@ -124,27 +128,19 @@ const footer = () => {
         </h4>
         <div className="flex gap-5 mt-5 md:mt-0 justify-center md:justify-start">
           <h4 className="text-darkgrey text-sm font-normal">
-            <Link href="/privacy" target="_blank">
-              Privacy policy
-            </Link>
+            <Link href="/privacy">Privacy policy</Link>
           </h4>
           <div className="h-5 bg-bordertop w-0.5"></div>
           <h4 className="text-darkgrey text-sm font-normal">
-            <Link href="/termcondn" target="_blank">
-              Terms & conditions
-            </Link>
+            <Link href="/termcondn">Terms & conditions</Link>
           </h4>
           <div className="h-5 bg-bordertop w-0.5"></div>
           <h4 className="text-darkgrey text-sm font-normal">
-            <Link href="/cancellation" target="_blank">
-              Cancellation and Refund
-            </Link>
+            <Link href="/cancellation">Cancellation and Refund</Link>
           </h4>
           <div className="h-5 bg-bordertop w-0.5"></div>
           <h4 className="text-darkgrey text-sm font-normal">
-            <Link href="/shippingdelivery" target="_blank">
-              Shipping and Delivery
-            </Link>
+            <Link href="/shippingdelivery">Shipping and Delivery</Link>
           </h4>
         </div>
       </div>

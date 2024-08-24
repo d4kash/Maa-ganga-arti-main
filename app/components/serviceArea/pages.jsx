@@ -3,18 +3,18 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const ServiceAreas = () => {
-  const areas = ["Jharkhand", "West Bengal", "Uttar Pradesh", "Bihar"];
+  const areas = ["Jharkhand", "West\nBengal", "Uttar Pradesh", "Bihar"];
 
   // Points for the snake-like curved dotted line
   const points = [
-    { x: 15, y: 40, label: "Jharkhand" },
-    { x: 35, y: 20, label: "West Bengal" },
-    { x: 55, y: 40, label: "Uttar Pradesh" },
+    { x: 14, y: 45, label: "Jharkhand" },
+    { x: 35, y: 19, label: "West\nBengal" },
+    { x: 61, y: 60, label: "Uttar\nPradesh" },
     { x: 75, y: 20, label: "Bihar" },
   ];
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center min-h-screen p-4 bg-gradient-to-r from-indigo-200 to-indigo-400">
+    <div className="flex flex-col md:flex-row items-center justify-center min-h-min p-4 bg-gradient-to-r from-indigo-200 to-indigo-400">
       {/* Left side: Service Areas */}
       <div className="w-full md:w-1/2 p-4">
         <h2 className="text-xl font-semibold text-gray-800 text-center md:text-left mb-3">
@@ -48,7 +48,7 @@ const ServiceAreas = () => {
         >
           {/* Snake-like Curved Dotted Line */}
           <motion.path
-            d="M14 45 C 25 6, 50 4, 50 40 S 90 60, 80 30"
+            d="M14 45 C 22 4, 50 4, 50 40 S 90 60, 80 30"
             fill="none"
             stroke="black"
             strokeWidth="2"
