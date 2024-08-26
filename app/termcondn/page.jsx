@@ -2,9 +2,9 @@ import React from "react";
 
 const TermsAndConditions = () => {
   return (
-    <div className="terms-and-conditions">
+    <div className="terms-and-conditions p-6">
       <h1>Terms and Conditions</h1>
-      <p>Last updated: [Insert Date]</p>
+      <p>Last updated: [26-08-2024]</p>
 
       <h2>1. Introduction</h2>
       <p>
@@ -49,7 +49,15 @@ const TermsAndConditions = () => {
         Purchase; and that (ii) the information you supply to us is true,
         correct, and complete.
       </p>
+      <br />
+      <div>
+        <h2>
+          <strong>Billing Information</strong>
+        </h2>
+        <p>Billing Label: sushant</p>
+      </div>
 
+      <br />
       <h2>4. Links to Other Websites</h2>
       <p>
         Our Website may contain links to third-party websites or services that

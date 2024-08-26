@@ -2,7 +2,7 @@ import React from "react";
 
 const CancellationRefundPolicy = () => {
   return (
-    <div className="policy-container">
+    <div className="policy-container p-6">
       <h1>Cancellation and Refund Policy</h1>
       <p>
         Welcome to Shree Narayan Ganga Aarti! We value your trust and strive to
