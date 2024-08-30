@@ -36,7 +36,7 @@ const AboutUs = () => {
               }}
             >
               <img
-                src="https://media.istockphoto.com/id/1241318411/photo/divine-ganga-aarti-yagna-at-rishikesh.jpg?s=612x612&w=0&k=20&c=6kyI1QsjTSVMlcv7jews6kKzPndDet7ItLs6G-gUkaA="
+                src="/assets/jayamala_with_aarti.webp"
                 alt="Ganga Arti"
                 style={{ width: "100%", height: "auto", objectFit: "cover" }}
               />

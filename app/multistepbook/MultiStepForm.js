@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 const formVariants = {
   initial: { opacity: 0, y: 50 },
@@ -16,163 +17,232 @@ const buttonVariants = {
 };
 
 const MultiStepForm = () => {
-  const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState({});
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [formattedDate, setFormattedDate] = useState("");
+  const [isRazorpayLoaded, setIsRazorpayLoaded] = useState(false); // New state
 
-  const nextStep = () => setStep((prev) => prev + 1);
-  const prevStep = () => setStep((prev) => prev - 1);
+  useEffect(() => {
+    // Load Razorpay script
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.onload = () => setIsRazorpayLoaded(true);
+    script.onerror = () => console.error("Failed to load Razorpay script");
+    document.body.appendChild(script);
+  }, []);
+
+  useEffect(() => {
+    // Extract the date from the query parameters
+    const queryParams = new URLSearchParams(window.location.search);
+    const dateParam = queryParams.get("date");
+
+    if (dateParam) {
+      // Parse the date string
+      const date = new Date(dateParam);
+      
+      // Check if the date is valid
+      if (!isNaN(date.getTime())) {
+        // Convert the date to "DD/MM/YYYY" format
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = date.getFullYear();
+        const formatted = `${day}/${month}/${year}`;
+
+        setFormattedDate(formatted);
+        setSelectedDate(date.toISOString().split("T")[0]); // Format as "YYYY-MM-DD" for backend
+      } else {
+        console.error("Invalid date format");
+      }
+    }
+  }, []);
+
+  const onSubmit = async (data) => {
+    const payload = {
+      event_name: "विवाह गंगा आरती",
+      name: data.name,
+      phone_number: data.phone,
+      alter_number: data.alterPhone || "", // Optional field
+      email: data.email,
+      address: data.address,
+      pincode: data.pincode,
+      description: data.description || "", // Optional field
+      event_date: formattedDate, // Send the original date format to the backend
+      members: data.numberOfPersons,
+      land_mark: data.landmark || "", // Optional field
+      state: data.state,
+      district: data.district,
+    };
+
+    try {
+      const response = await axios.post(
+        "https://mmngrm2h3i.execute-api.ap-south-1.amazonaws.com/gangaArti/bookingEvent",
+        JSON.stringify(payload)
+      );
+
+      console.log("Form submitted successfully:", response.data);
+      await initiateRazorpay(response.data["body-json"]["order_id"]["id"], response.data["body-json"]["order_id"]["amount"], response.data["body-json"]["booking_id"])
+      alert("Booking confirmed!");
+    } catch (error) {
+      if (error.response) {
+        console.error("Error response:", error.response.data);
+        alert(`Error: ${error.response.data.message}`);
+      } else if (error.request) {
+        console.error("Error request:", error.request);
+        alert("No response received. Please try again.");
+      } else {
+        console.error("Error message:", error.message);
+        alert("An error occurred. Please try again.");
+      }
+    }
+  };
+
+  const initiateRazorpay = (orderId, amount, bookingId) => {
+    const options = {
+      key: "rzp_live_9Lu8TsqBpSuohl", // Replace with your Razorpay key
+      amount: amount, // Amount in the smallest currency unit (e.g., paise for INR)
+      currency: "INR",
+      name: "Shree Narayan Ganga Aarti",
+      description: "Booking Payment",
+      order_id: orderId,
+      handler: async function (response) {
+        // Log the Razorpay response
+        console.log("Razorpay Response:", response);
+        
+        // Extracting data from Razorpay response
+        const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = response;
+  
+        // Create the payload for verification
+        const verificationPayload = {
+          booking_id: bookingId, // Replace with actual booking ID
+          razorpay_order_id,
+          razorpay_payment_id,
+          razorpay_signature,
+        };
+  
+        try {
+          // Verify payment with the backend API
+          const verificationResponse = await axios.put(
+            "https://mmngrm2h3i.execute-api.ap-south-1.amazonaws.com/gangaArti/payment_verification",
+            verificationPayload
+          );
+  
+          if (verificationResponse.status === 200) {
+            alert("Payment verified successfully");
+            // Handle successful payment verification logic here
+            console.log("Payment verified:", verificationResponse.data);
+          } else {
+            alert("Payment verification failed");
+            console.error("Verification failed:", verificationResponse.data);
+          }
+        } catch (error) {
+          alert("Error verifying payment. Please try again.");
+          console.error("Verification error:", error.response ? error.response.data : error.message);
+        }
+      },
+      prefill: {
+        name: formData.name,
+        email: formData.email,
+        contact: formData.phone,
+      },
+      notes: {
+        address: formData.address,
+      },
+      theme: {
+        color: "#F37254",
+      },
+    };
+  
+    const rzp = new window.Razorpay(options);
+    rzp.open();
+  };
+  
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   return (
     <div className="max-w-lg mx-auto p-6 bg-white shadow-xl rounded-lg mt-10 md:mt-20 min-h-[500px]">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={step}
-          variants={formVariants}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-          className="space-y-6 relative"
-        >
-          {step === 1 && <Step1 nextStep={nextStep} />}
-          {step === 2 && <Step2 nextStep={nextStep} prevStep={prevStep} />}
-          {step === 3 && <Step3 prevStep={prevStep} />}
-        </motion.div>
-      </AnimatePresence>
-    </div>
-  );
-};
-
-const Step1 = ({ nextStep }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const [isFocused, setIsFocused] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(null);
-
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const date = urlParams.get("date");
-    setSelectedDate(date);
-  }, []);
-
-  const onSubmit = (data) => {
-    console.log(data);
-    nextStep();
-  };
-
-  return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col justify-between min-h-[400px]"
-    >
-      {/* Display selected date with title and animation */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="text-center mb-4"
+      <motion.form
+        onSubmit={handleSubmit(onSubmit)}
+        variants={formVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        className="space-y-6 relative"
       >
-        <h3 className="text-xl font-semibold text-gray-800 mb-2">
-          Selected Date for Booking
-        </h3>
-        {selectedDate && (
-          <div className="text-lg font-medium text-gray-700">
-            {selectedDate}
-          </div>
+        {/* Display formatted date */}
+        <div className="text-lg font-semibold text-gray-700">
+          Event Date: {formattedDate}
+        </div>
+
+        {/* Name */}
+        <input
+          type="text"
+          {...register("name", { required: "Name is required." })}
+          className={`border p-3 w-full rounded-md ${
+            errors.name ? "border-red-500" : "border-gray-300"
+          }`}
+          placeholder="Enter your name"
+        />
+        {errors.name && (
+          <span className="text-red-500 text-sm">{errors.name.message}</span>
         )}
-      </motion.div>
 
-      {/* Form content */}
-      <div className="flex-grow space-y-6">
-        <h2 className="text-2xl font-bold text-center">
-          Number of Persons Required
-        </h2>
-        <motion.div
-          initial={{ scale: 1 }}
-          animate={{ scale: isFocused ? 1.05 : 1 }}
-          transition={{ duration: 0.2 }}
-        >
-          <select
-            {...register("numberOfPersons", {
-              required: "This field is required.",
-            })}
-            className={`border p-3 w-full rounded-md transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 ${
-              errors.numberOfPersons
-                ? "border-red-500 focus:ring-red-500"
-                : "border-gray-300 focus:ring-blue-500"
-            } ${isFocused ? "shadow-lg" : ""}`}
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
-            defaultValue=""
-          >
-            <option value="" disabled>
-              Select number of persons
-            </option>
-            {[2, 4, 6, 8, 10, 12].map((number) => (
-              <option key={number} value={number}>
-                {number}
-              </option>
-            ))}
-          </select>
-        </motion.div>
-        {errors.numberOfPersons && (
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
-            className="text-red-500 text-sm"
-          >
-            {errors.numberOfPersons.message}
-          </motion.span>
+        {/* Phone Number */}
+        <input
+          type="text"
+          {...register("phone", {
+            required: "Phone number is required.",
+            pattern: {
+              value: /^[0-9]{10}$/,
+              message: "Phone number must be 10 digits.",
+            },
+          })}
+          className={`border p-3 w-full rounded-md ${
+            errors.phone ? "border-red-500" : "border-gray-300"
+          }`}
+          placeholder="Enter your phone number"
+        />
+        {errors.phone && (
+          <span className="text-red-500 text-sm">{errors.phone.message}</span>
         )}
-      </div>
 
-      {/* Next button positioned at the bottom */}
-      <motion.button
-        type="submit"
-        className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg shadow-lg transition duration-200 mt-6"
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        Next
-      </motion.button>
-    </form>
-  );
-};
+        {/* Alternate Phone Number */}
+        <input
+          type="text"
+          {...register("alterPhone", {
+            pattern: {
+              value: /^[0-9]{10}$/,
+              message: "Alternate phone number must be 10 digits.",
+            },
+          })}
+          className="border p-3 w-full rounded-md border-gray-300"
+          placeholder="Enter alternate phone number (optional)"
+        />
 
-const Step2 = ({ nextStep, prevStep }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+        {/* Email */}
+        <input
+          type="email"
+          {...register("email", {
+            required: "Email is required.",
+            pattern: {
+              value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
+              message: "Invalid email address.",
+            },
+          })}
+          className={`border p-3 w-full rounded-md ${
+            errors.email ? "border-red-500" : "border-gray-300"
+          }`}
+          placeholder="Enter your email"
+        />
+        {errors.email && (
+          <span className="text-red-500 text-sm">{errors.email.message}</span>
+        )}
 
-  const onSubmit = (data) => {
-    console.log(data);
-    nextStep();
-  };
-
-  return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col justify-between min-h-[400px]"
-    >
-      {/* Back button positioned at the top left */}
-      <motion.button
-        type="button"
-        onClick={prevStep}
-        className="absolute top-4 left-4 text-gray-500 hover:text-gray-700 transition duration-200"
-        variants={buttonVariants}
-        whileHover="hover"
-        whileTap="tap"
-      >
-        ← Back
-      </motion.button>
-
-      {/* Form content */}
-      <div className="flex-grow space-y-6 mt-6 pt-4">
-        <h2 className="text-2xl font-bold text-center">Address Information</h2>
+        {/* Address */}
         <input
           type="text"
           {...register("address", {
@@ -182,7 +252,7 @@ const Step2 = ({ nextStep, prevStep }) => {
               message: "Address must be at least 10 characters.",
             },
           })}
-          className={`border p-3 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+          className={`border p-3 w-full rounded-md ${
             errors.address ? "border-red-500" : "border-gray-300"
           }`}
           placeholder="Enter your address"
@@ -190,12 +260,59 @@ const Step2 = ({ nextStep, prevStep }) => {
         {errors.address && (
           <span className="text-red-500 text-sm">{errors.address.message}</span>
         )}
+
+        {/* Pincode */}
         <input
           type="text"
-          {...register("district", {
-            required: "District is required.",
+          {...register("pincode", {
+            required: "Pincode is required.",
+            pattern: {
+              value: /^[0-9]{6}$/,
+              message: "Pincode must be 6 digits.",
+            },
           })}
-          className={`border p-3 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+          className={`border p-3 w-full rounded-md ${
+            errors.pincode ? "border-red-500" : "border-gray-300"
+          }`}
+          placeholder="Enter your pincode"
+        />
+        {errors.pincode && (
+          <span className="text-red-500 text-sm">{errors.pincode.message}</span>
+        )}
+
+        {/* Description */}
+        <textarea
+          {...register("description")}
+          className="border p-3 w-full rounded-md border-gray-300"
+          placeholder="Enter description (optional)"
+        />
+
+        {/* Landmark */}
+        <input
+          type="text"
+          {...register("landmark")}
+          className="border p-3 w-full rounded-md border-gray-300"
+          placeholder="Enter landmark (optional)"
+        />
+
+        {/* State */}
+        <input
+          type="text"
+          {...register("state", { required: "State is required." })}
+          className={`border p-3 w-full rounded-md ${
+            errors.state ? "border-red-500" : "border-gray-300"
+          }`}
+          placeholder="Enter your state"
+        />
+        {errors.state && (
+          <span className="text-red-500 text-sm">{errors.state.message}</span>
+        )}
+
+        {/* District */}
+        <input
+          type="text"
+          {...register("district", { required: "District is required." })}
+          className={`border p-3 w-full rounded-md ${
             errors.district ? "border-red-500" : "border-gray-300"
           }`}
           placeholder="Enter your district"
@@ -205,131 +322,37 @@ const Step2 = ({ nextStep, prevStep }) => {
             {errors.district.message}
           </span>
         )}
+
+        {/* Number of Members */}
         <input
-          type="text"
-          {...register("pincode", {
-            required: "Pincode is required.",
-            minLength: {
-              value: 6,
-              message: "Pincode must be 6 digits.",
-            },
-            maxLength: {
-              value: 6,
-              message: "Pincode must be 6 digits.",
-            },
+          type="number"
+          {...register("numberOfPersons", {
+            required: "Number of members is required.",
+            min: 1,
           })}
-          className={`border p-3 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-            errors.pincode ? "border-red-500" : "border-gray-300"
+          className={`border p-3 w-full rounded-md ${
+            errors.numberOfPersons ? "border-red-500" : "border-gray-300"
           }`}
-          placeholder="Enter your pincode"
+          placeholder="Enter number of members"
         />
-        {errors.pincode && (
-          <span className="text-red-500 text-sm">{errors.pincode.message}</span>
-        )}
-      </div>
-
-      {/* Next button positioned at the bottom */}
-      <motion.button
-        type="submit"
-        className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg shadow-lg transition duration-200 mt-6"
-        variants={buttonVariants}
-        whileHover="hover"
-        whileTap="tap"
-      >
-        Next
-      </motion.button>
-    </form>
-  );
-};
-
-const Step3 = ({ prevStep }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  const onSubmit = (data) => {
-    console.log("Payment data:", data);
-    alert("Payment Successful!");
-  };
-
-  return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col justify-between min-h-[400px]"
-    >
-      {/* Back button positioned at the top left */}
-      <motion.button
-        type="button"
-        onClick={prevStep}
-        className="absolute top-4 left-4 text-gray-500 hover:text-gray-700 transition duration-200"
-        variants={buttonVariants}
-        whileHover="hover"
-        whileTap="tap"
-      >
-        ← Back
-      </motion.button>
-
-      {/* Form content */}
-      <div className="flex-grow space-y-6 mt-6 pt-4">
-        <h2 className="text-2xl font-bold text-center">Make Payment</h2>
-        <input
-          type="text"
-          {...register("cardNumber", {
-            required: "Card number is required.",
-            minLength: { value: 16, message: "Card number must be 16 digits." },
-            maxLength: { value: 16, message: "Card number must be 16 digits." },
-          })}
-          className={`border p-3 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-            errors.cardNumber ? "border-red-500" : "border-gray-300"
-          }`}
-          placeholder="Card Number"
-        />
-        {errors.cardNumber && (
+        {errors.numberOfPersons && (
           <span className="text-red-500 text-sm">
-            {errors.cardNumber.message}
+            {errors.numberOfPersons.message}
           </span>
         )}
-        <input
-          type="text"
-          {...register("expiry", { required: "Expiry date is required." })}
-          className={`border p-3 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-            errors.expiry ? "border-red-500" : "border-gray-300"
-          }`}
-          placeholder="MM/YY"
-        />
-        {errors.expiry && (
-          <span className="text-red-500 text-sm">{errors.expiry.message}</span>
-        )}
-        <input
-          type="text"
-          {...register("cvv", {
-            required: "CVV is required.",
-            minLength: { value: 3, message: "CVV must be 3 digits." },
-            maxLength: { value: 3, message: "CVV must be 3 digits." },
-          })}
-          className={`border p-3 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-            errors.cvv ? "border-red-500" : "border-gray-300"
-          }`}
-          placeholder="CVV"
-        />
-        {errors.cvv && (
-          <span className="text-red-500 text-sm">{errors.cvv.message}</span>
-        )}
-      </div>
 
-      {/* Submit button positioned at the bottom */}
-      <motion.button
-        type="submit"
-        className="w-full bg-gradient-to-r from-green-500 to-teal-600 text-white px-4 py-2 rounded-lg shadow-lg transition duration-200 mt-6"
-        variants={buttonVariants}
-        whileHover="hover"
-        whileTap="tap"
-      >
-        Submit
-      </motion.button>
-    </form>
+        {/* Submit button */}
+        <motion.button
+          type="submit"
+          className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg shadow-lg transition duration-200 mt-6"
+          variants={buttonVariants}
+          whileHover="hover"
+          whileTap="tap"
+        >
+          Submit
+        </motion.button>
+      </motion.form>
+    </div>
   );
 };
 

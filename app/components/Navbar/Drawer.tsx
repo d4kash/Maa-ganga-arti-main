@@ -25,17 +25,25 @@ const Drawer = ({ children, isOpen, setIsOpen }: DrawerProps) => {
           (isOpen ? "translate-x-0" : "-translate-x-full")
         }
       >
-        <article className="relative w-340px max-w-lg pb-10 flex flex-col space-y-6 h-full">
-          <header className="px-4 py-4 flex items-center justify-between">
-            <div className="flex flex-shrink-0 items-center border-right">
-              {/* <Image src="/images/Logo/Logo.svg" alt="logo" width={36} height={36} /> */}
-              <Link href="/" className="text-2xl font-semibold text-black ml-4">
-                Shree narayan Ganga Arti
+        <article className="relative w-full max-w-md pb-6 flex flex-col space-y-4 h-full bg-white shadow-lg rounded-lg">
+          <header className="px-4 py-4 flex items-center justify-between border-b">
+            <div className="flex items-center space-x-2">
+              <Link
+                href="/"
+                className="text-xl font-semibold text-black flex items-center"
+              >
+                <Image
+                  src="/assets/logo_ganga_arti.png"
+                  alt="logo"
+                  width={30}
+                  height={30}
+                />
+                <span className="ml-2">Shree Narayan Ganga Arti</span>
               </Link>
             </div>
 
             <XMarkIcon
-              className="block h-6 w-6"
+              className="block h-6 w-6 text-black cursor-pointer"
               onClick={() => {
                 setIsOpen(false);
               }}
@@ -45,6 +53,7 @@ const Drawer = ({ children, isOpen, setIsOpen }: DrawerProps) => {
             onClick={() => {
               setIsOpen(false);
             }}
+            className="px-4"
           >
             {children}
           </div>
