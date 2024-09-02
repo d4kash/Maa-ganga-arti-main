@@ -12,44 +12,34 @@ const formVariants = {
 };
 
 const buttonVariants = {
-  hover: { scale: 1.05, boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.5)" },
-  tap: { scale: 0.95 },
+  hover: {
+    scale: 1.05,
+    backgroundColor: "#4f46e5", // Darker shade on hover
+    boxShadow: "0px 0px 10px rgba(79, 70, 229, 0.6)", // Add a subtle shadow on hover
+  },
+  tap: {
+    scale: 0.95,
+    backgroundColor: "#4338ca", // Even darker shade when tapping
+  },
 };
-
 const MultiStepForm = () => {
   const [formData, setFormData] = useState({});
   const [selectedDate, setSelectedDate] = useState(null);
   const [formattedDate, setFormattedDate] = useState("");
-  const [isRazorpayLoaded, setIsRazorpayLoaded] = useState(false); // New state
 
   useEffect(() => {
-    // Load Razorpay script
-    const script = document.createElement("script");
-    script.src = "https://checkout.razorpay.com/v1/checkout.js";
-    script.onload = () => setIsRazorpayLoaded(true);
-    script.onerror = () => console.error("Failed to load Razorpay script");
-    document.body.appendChild(script);
-  }, []);
-
-  useEffect(() => {
-    // Extract the date from the query parameters
     const queryParams = new URLSearchParams(window.location.search);
     const dateParam = queryParams.get("date");
 
     if (dateParam) {
-      // Parse the date string
       const date = new Date(dateParam);
-      
-      // Check if the date is valid
       if (!isNaN(date.getTime())) {
-        // Convert the date to "DD/MM/YYYY" format
-        const day = String(date.getDate()).padStart(2, '0');
-        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, "0");
+        const month = String(date.getMonth() + 1).padStart(2, "0");
         const year = date.getFullYear();
         const formatted = `${day}/${month}/${year}`;
-
         setFormattedDate(formatted);
-        setSelectedDate(date.toISOString().split("T")[0]); // Format as "YYYY-MM-DD" for backend
+        setSelectedDate(date.toISOString().split("T")[0]);
       } else {
         console.error("Invalid date format");
       }
@@ -61,14 +51,14 @@ const MultiStepForm = () => {
       event_name: "विवाह गंगा आरती",
       name: data.name,
       phone_number: data.phone,
-      alter_number: data.alterPhone || "", // Optional field
+      alter_number: data.alterPhone || "",
       email: data.email,
       address: data.address,
       pincode: data.pincode,
-      description: data.description || "", // Optional field
-      event_date: formattedDate, // Send the original date format to the backend
+      description: data.description || "",
+      event_date: formattedDate,
       members: data.numberOfPersons,
-      land_mark: data.landmark || "", // Optional field
+      land_mark: data.landmark || "",
       state: data.state,
       district: data.district,
     };
@@ -80,7 +70,6 @@ const MultiStepForm = () => {
       );
 
       console.log("Form submitted successfully:", response.data);
-      await initiateRazorpay(response.data["body-json"]["order_id"]["id"], response.data["body-json"]["order_id"]["amount"], response.data["body-json"]["booking_id"])
       alert("Booking confirmed!");
     } catch (error) {
       if (error.response) {
@@ -96,67 +85,6 @@ const MultiStepForm = () => {
     }
   };
 
-  const initiateRazorpay = (orderId, amount, bookingId) => {
-    const options = {
-      key: "rzp_live_9Lu8TsqBpSuohl", // Replace with your Razorpay key
-      amount: amount, // Amount in the smallest currency unit (e.g., paise for INR)
-      currency: "INR",
-      name: "Shree Narayan Ganga Aarti",
-      description: "Booking Payment",
-      order_id: orderId,
-      handler: async function (response) {
-        // Log the Razorpay response
-        console.log("Razorpay Response:", response);
-        
-        // Extracting data from Razorpay response
-        const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = response;
-  
-        // Create the payload for verification
-        const verificationPayload = {
-          booking_id: bookingId, // Replace with actual booking ID
-          razorpay_order_id,
-          razorpay_payment_id,
-          razorpay_signature,
-        };
-  
-        try {
-          // Verify payment with the backend API
-          const verificationResponse = await axios.put(
-            "https://mmngrm2h3i.execute-api.ap-south-1.amazonaws.com/gangaArti/payment_verification",
-            verificationPayload
-          );
-  
-          if (verificationResponse.status === 200) {
-            alert("Payment verified successfully");
-            // Handle successful payment verification logic here
-            console.log("Payment verified:", verificationResponse.data);
-          } else {
-            alert("Payment verification failed");
-            console.error("Verification failed:", verificationResponse.data);
-          }
-        } catch (error) {
-          alert("Error verifying payment. Please try again.");
-          console.error("Verification error:", error.response ? error.response.data : error.message);
-        }
-      },
-      prefill: {
-        name: formData.name,
-        email: formData.email,
-        contact: formData.phone,
-      },
-      notes: {
-        address: formData.address,
-      },
-      theme: {
-        color: "#F37254",
-      },
-    };
-  
-    const rzp = new window.Razorpay(options);
-    rzp.open();
-  };
-  
-
   const {
     register,
     handleSubmit,
@@ -164,193 +92,199 @@ const MultiStepForm = () => {
   } = useForm();
 
   return (
-    <div className="max-w-lg mx-auto p-6 bg-white shadow-xl rounded-lg mt-10 md:mt-20 min-h-[500px]">
+    <div className="max-w-2xl mx-auto p-6 bg-white shadow-xl rounded-lg mt-10 md:mt-20">
       <motion.form
         onSubmit={handleSubmit(onSubmit)}
         variants={formVariants}
         initial="initial"
         animate="animate"
         exit="exit"
-        className="space-y-6 relative"
+        className="space-y-6"
       >
-        {/* Display formatted date */}
         <div className="text-lg font-semibold text-gray-700">
           Event Date: {formattedDate}
         </div>
 
-        {/* Name */}
-        <input
-          type="text"
-          {...register("name", { required: "Name is required." })}
-          className={`border p-3 w-full rounded-md ${
-            errors.name ? "border-red-500" : "border-gray-300"
-          }`}
-          placeholder="Enter your name"
-        />
-        {errors.name && (
-          <span className="text-red-500 text-sm">{errors.name.message}</span>
-        )}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <input
+              type="text"
+              {...register("name", { required: "Name is required." })}
+              className={`border p-3 w-full rounded-md ${
+                errors.name ? "border-red-500" : "border-gray-300"
+              }`}
+              placeholder="Enter your name"
+            />
+            {errors.name && (
+              <span className="text-red-500 text-sm">{errors.name.message}</span>
+            )}
+          </div>
 
-        {/* Phone Number */}
-        <input
-          type="text"
-          {...register("phone", {
-            required: "Phone number is required.",
-            pattern: {
-              value: /^[0-9]{10}$/,
-              message: "Phone number must be 10 digits.",
-            },
-          })}
-          className={`border p-3 w-full rounded-md ${
-            errors.phone ? "border-red-500" : "border-gray-300"
-          }`}
-          placeholder="Enter your phone number"
-        />
-        {errors.phone && (
-          <span className="text-red-500 text-sm">{errors.phone.message}</span>
-        )}
+          <div>
+            <input
+              type="text"
+              {...register("phone", {
+                required: "Phone number is required.",
+                pattern: {
+                  value: /^[0-9]{10}$/,
+                  message: "Phone number must be 10 digits.",
+                },
+              })}
+              className={`border p-3 w-full rounded-md ${
+                errors.phone ? "border-red-500" : "border-gray-300"
+              }`}
+              placeholder="Enter your phone number"
+            />
+            {errors.phone && (
+              <span className="text-red-500 text-sm">{errors.phone.message}</span>
+            )}
+          </div>
 
-        {/* Alternate Phone Number */}
-        <input
-          type="text"
-          {...register("alterPhone", {
-            pattern: {
-              value: /^[0-9]{10}$/,
-              message: "Alternate phone number must be 10 digits.",
-            },
-          })}
-          className="border p-3 w-full rounded-md border-gray-300"
-          placeholder="Enter alternate phone number (optional)"
-        />
+          <div>
+            <input
+              type="text"
+              {...register("alterPhone", {
+                pattern: {
+                  value: /^[0-9]{10}$/,
+                  message: "Alternate phone number must be 10 digits.",
+                },
+              })}
+              className="border p-3 w-full rounded-md border-gray-300"
+              placeholder="Enter alternate phone number (optional)"
+            />
+          </div>
 
-        {/* Email */}
-        <input
-          type="email"
-          {...register("email", {
-            required: "Email is required.",
-            pattern: {
-              value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
-              message: "Invalid email address.",
-            },
-          })}
-          className={`border p-3 w-full rounded-md ${
-            errors.email ? "border-red-500" : "border-gray-300"
-          }`}
-          placeholder="Enter your email"
-        />
-        {errors.email && (
-          <span className="text-red-500 text-sm">{errors.email.message}</span>
-        )}
+          <div>
+            <input
+              type="email"
+              {...register("email", {
+                required: "Email is required.",
+                pattern: {
+                  value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
+                  message: "Invalid email address.",
+                },
+              })}
+              className={`border p-3 w-full rounded-md ${
+                errors.email ? "border-red-500" : "border-gray-300"
+              }`}
+              placeholder="Enter your email"
+            />
+            {errors.email && (
+              <span className="text-red-500 text-sm">{errors.email.message}</span>
+            )}
+          </div>
 
-        {/* Address */}
-        <input
-          type="text"
-          {...register("address", {
-            required: "Address is required.",
-            minLength: {
-              value: 10,
-              message: "Address must be at least 10 characters.",
-            },
-          })}
-          className={`border p-3 w-full rounded-md ${
-            errors.address ? "border-red-500" : "border-gray-300"
-          }`}
-          placeholder="Enter your address"
-        />
-        {errors.address && (
-          <span className="text-red-500 text-sm">{errors.address.message}</span>
-        )}
+          <div>
+            <input
+              type="text"
+              {...register("address", {
+                required: "Address is required.",
+                minLength: {
+                  value: 10,
+                  message: "Address must be at least 10 characters.",
+                },
+              })}
+              className={`border p-3 w-full rounded-md ${
+                errors.address ? "border-red-500" : "border-gray-300"
+              }`}
+              placeholder="Enter your address"
+            />
+            {errors.address && (
+              <span className="text-red-500 text-sm">{errors.address.message}</span>
+            )}
+          </div>
 
-        {/* Pincode */}
-        <input
-          type="text"
-          {...register("pincode", {
-            required: "Pincode is required.",
-            pattern: {
-              value: /^[0-9]{6}$/,
-              message: "Pincode must be 6 digits.",
-            },
-          })}
-          className={`border p-3 w-full rounded-md ${
-            errors.pincode ? "border-red-500" : "border-gray-300"
-          }`}
-          placeholder="Enter your pincode"
-        />
-        {errors.pincode && (
-          <span className="text-red-500 text-sm">{errors.pincode.message}</span>
-        )}
+          <div>
+            <input
+              type="text"
+              {...register("pincode", {
+                required: "Pincode is required.",
+                pattern: {
+                  value: /^[0-9]{6}$/,
+                  message: "Pincode must be 6 digits.",
+                },
+              })}
+              className={`border p-3 w-full rounded-md ${
+                errors.pincode ? "border-red-500" : "border-gray-300"
+              }`}
+              placeholder="Enter your pincode"
+            />
+            {errors.pincode && (
+              <span className="text-red-500 text-sm">{errors.pincode.message}</span>
+            )}
+          </div>
 
-        {/* Description */}
-        <textarea
-          {...register("description")}
-          className="border p-3 w-full rounded-md border-gray-300"
-          placeholder="Enter description (optional)"
-        />
+          <div>
+            <input
+              type="text"
+              {...register("landmark")}
+              className="border p-3 w-full rounded-md border-gray-300"
+              placeholder="Enter landmark (optional)"
+            />
+          </div>
 
-        {/* Landmark */}
-        <input
-          type="text"
-          {...register("landmark")}
-          className="border p-3 w-full rounded-md border-gray-300"
-          placeholder="Enter landmark (optional)"
-        />
+          <div>
+            <input
+              type="text"
+              {...register("state", { required: "State is required." })}
+              className={`border p-3 w-full rounded-md ${
+                errors.state ? "border-red-500" : "border-gray-300"
+              }`}
+              placeholder="Enter your state"
+            />
+            {errors.state && (
+              <span className="text-red-500 text-sm">{errors.state.message}</span>
+            )}
+          </div>
 
-        {/* State */}
-        <input
-          type="text"
-          {...register("state", { required: "State is required." })}
-          className={`border p-3 w-full rounded-md ${
-            errors.state ? "border-red-500" : "border-gray-300"
-          }`}
-          placeholder="Enter your state"
-        />
-        {errors.state && (
-          <span className="text-red-500 text-sm">{errors.state.message}</span>
-        )}
+          <div>
+            <input
+              type="text"
+              {...register("district", { required: "District is required." })}
+              className={`border p-3 w-full rounded-md ${
+                errors.district ? "border-red-500" : "border-gray-300"
+              }`}
+              placeholder="Enter your district"
+            />
+            {errors.district && (
+              <span className="text-red-500 text-sm">
+                {errors.district.message}
+              </span>
+            )}
+          </div>
 
-        {/* District */}
-        <input
-          type="text"
-          {...register("district", { required: "District is required." })}
-          className={`border p-3 w-full rounded-md ${
-            errors.district ? "border-red-500" : "border-gray-300"
-          }`}
-          placeholder="Enter your district"
-        />
-        {errors.district && (
-          <span className="text-red-500 text-sm">
-            {errors.district.message}
-          </span>
-        )}
+          <div>
+            <input
+              type="number"
+              {...register("numberOfPersons", {
+                required: "Number of members is required.",
+                min: 1,
+              })}
+              className={`border p-3 w-full rounded-md ${
+                errors.numberOfPersons ? "border-red-500" : "border-gray-300"
+              }`}
+              placeholder="Enter number of members"
+            />
+            {errors.numberOfPersons && (
+              <span className="text-red-500 text-sm">
+                {errors.numberOfPersons.message}
+              </span>
+            )}
+          </div>
+        </div>
 
-        {/* Number of Members */}
-        <input
-          type="number"
-          {...register("numberOfPersons", {
-            required: "Number of members is required.",
-            min: 1,
-          })}
-          className={`border p-3 w-full rounded-md ${
-            errors.numberOfPersons ? "border-red-500" : "border-gray-300"
-          }`}
-          placeholder="Enter number of members"
-        />
-        {errors.numberOfPersons && (
-          <span className="text-red-500 text-sm">
-            {errors.numberOfPersons.message}
-          </span>
-        )}
-
-        {/* Submit button */}
+        <div className="flex justify-end mt-6">
         <motion.button
-          type="submit"
-          className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg shadow-lg transition duration-200 mt-6"
-          variants={buttonVariants}
-          whileHover="hover"
-          whileTap="tap"
-        >
-          Submit
-        </motion.button>
+      type="submit"
+      className="w-full bg-indigo-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition duration-300"
+      variants={buttonVariants}
+      whileHover="hover"
+      whileTap="tap"
+    >
+      Submit
+    </motion.button>
+
+        </div>
       </motion.form>
     </div>
   );
