@@ -5,6 +5,7 @@ import Gallery from "./components/Gallery";
 import Booking from "./components/Booking/Booking";
 import Scrolling from "./components/Scrolling/scrollong";
 import AartiSteps from "./components/Banner/aarti_steps";
+import Service from "./components/services/services";
 import ServiceAreas from "./components/serviceArea/pages";
 import Link from "next/link";
 
@@ -15,10 +16,11 @@ export default function Home() {
       <Scrolling />
       <AartiSteps />
       <Features />
-      <ServiceAreas />
+      {/* <ServiceAreas /> */}
       {/* <Cook /> */}
       <Expert />
-      <Booking />
+      <Service />
+      {/* <Booking /> */}
       <Gallery />
       {/* <GalleryPage /> */}
 

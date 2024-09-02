@@ -100,13 +100,12 @@ export default function MultipleItems() {
           {postData.map((item, i) => (
             <div key={i}>
               <div className="m-3 p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">
-                <div className="relative mb-4">
+                <div className="relative w-full h-64 mb-4 overflow-hidden rounded-t-lg">
                   <Image
                     src={item["photo"]}
                     alt={item["name"]}
-                    width={362}
-                    height={262}
-                    className="w-full h-64 object-contain rounded-t-lg"
+                    layout="fill"
+                    objectFit="cover"
                   />
                 </div>
                 <h3 className="text-2xl font-semibold text-gray-800">
