@@ -7,21 +7,21 @@ const Service = () => {
     <div className="home-container">
       {/* Hero Section */}
       <motion.section
-        className="hero-section bg-cover bg-center text-center text-white"
+        className="hero-section bg-cover bg-center text-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.5 }}
-        style={{ backgroundImage: "url('/images/ganga-aarti.jpg')" }}
+        style={{ backgroundColor: "#f4f4f4" }}
       >
-        <h1 className="text-4xl md:text-6xl font-bold">
+        <h1 className="text-4xl md:text-6xl text-indigo-700 font-bold">
           Experience the Divine Blessings with Shree Narayan Ganga Aarti
         </h1>
-        <motion.button
+        {/* <motion.button
           whileHover={{ scale: 1.1 }}
           className="mt-8 px-6 py-3 bg-yellow-600 rounded-lg shadow-lg text-lg"
         >
           Book Ganga Aarti Now
-        </motion.button>
+        </motion.button> */}
       </motion.section>
 
       {/* Service Section */}
@@ -102,8 +102,8 @@ const Service = () => {
             whileHover={{ scale: 1.05 }}
           >
             <p>
-              "The Wedding Ganga Aarti was a surreal experience. We felt the
-              divine blessings throughout the ceremony."
+              The Wedding Ganga Aarti was a surreal experience. We felt the
+              divine blessings throughout the ceremony.
             </p>
             <span className="text-gray-600 mt-4 block">- Devotee Name</span>
           </motion.div>
@@ -112,8 +112,8 @@ const Service = () => {
             whileHover={{ scale: 1.05 }}
           >
             <p>
-              "Booking the Namkaran Ganga Aarti was the best decision for our
-              newborn. The spiritual atmosphere was truly enchanting."
+              Booking the Namkaran Ganga Aarti was the best decision for our
+              newborn. The spiritual atmosphere was truly enchanting.
             </p>
             <span className="text-gray-600 mt-4 block">- Devotee Name</span>
           </motion.div>
@@ -136,8 +136,8 @@ const Service = () => {
               </h3>
               <p>
                 To book a Ganga Aarti for your wedding, simply click on the
-                'Book Ganga Aarti Now' button and fill out the necessary
-                details.
+                &apos;Book Ganga Aarti Now&apos; button and fill out the
+                necessary details.
               </p>
             </motion.div>
             <motion.div

@@ -13,9 +13,9 @@ const AboutUs = () => {
     <Box sx={{ backgroundColor: "#f4f4f4", py: 8 }}>
       <Container>
         <div className="text-center">
-          <h2 className="text-pink text-lg font-normal mb-3 tracking-widest uppercase ls-51">
+          <h1 className="text-pink text-2xl md:text-4xl font-normal mb-3 tracking-widest uppercase">
             About Wedding Ganga Arti
-          </h2>
+          </h1>
         </div>
 
         <Grid container spacing={4} alignItems="center">
@@ -52,20 +52,22 @@ const AboutUs = () => {
                   variant="body1"
                   sx={{ lineHeight: 1.8, color: "#555" }}
                 >
-                  Ganga Arti is a centuries-old Hindu ritual dedicated to
-                  Goddess Ganga, the deity symbolizing the river Ganges. Each
-                  evening, as dusk descends, priests clad in traditional attire
-                  gather on the riverbanks. With oil lamps, flowers, incense,
-                  and sacred chants, they perform a mesmerizing ceremony that
-                  invokes blessings, purifies the atmosphere, and pays homage to
-                  the river that sustains millions of lives.
+                  Experience the spiritual essence of Shree Narayan Ganga Aarti
+                  for your sacred ceremonies. Book Ganga Aarti online for
+                  weddings, anniversaries, and more, bringing the divine rituals
+                  right to your doorstep. Perform traditional Ganga Aarti at
+                  home to invoke prosperity and well-being. From Namkaran Ganga
+                  Aarti for new beginnings to Engagement Ganga Aarti for
+                  auspicious starts, and Anniversary Ganga Aarti for eternal
+                  blessings, our services offer you the chance to participate in
+                  these timeless traditions with ease. Ensure that your special
+                  occasions are blessed with the purity and grace of Ganga
+                  Pooja.
                   <br />
-                  <br />
-                  Immerse yourself in the divine ambiance of Ganga Arti, right
-                  in your own locality. At Ganga Arti Booking, we bring the
-                  spiritual essence of this ancient ritual to your doorstep,
-                  offering a unique opportunity to witness and participate in a
-                  cherished tradition without traveling afar.
+                  At Ganga Arti Booking, we bring the spiritual essence of this
+                  ancient ritual to your doorstep, offering a unique opportunity
+                  to witness and participate in a cherished tradition without
+                  traveling afar.
                 </Typography>
               </CardContent>
             </Card>

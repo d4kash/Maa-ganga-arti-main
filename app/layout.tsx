@@ -1,17 +1,22 @@
+"use client";
 import "./globals.css";
 import Navbar from "./components/Navbar/index";
 import Footer from "./components/Footer/Footer";
-
+import { ReactNode } from "react";
+import { AnimatePresence } from "framer-motion";
+import NotFoundErrorBoundary from "./components/NotFoundErrorBoundary";
+// import { appWithTranslation } from "next-i18next";
+import "./i18n";
 // export const metadata = {
 //   title: "Shree narayan Ganga Arti",
 //   description: "please join us for puja",
 // };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+interface RootLayoutProps {
+  children: ReactNode;
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   console.log();
   return (
     <html lang="en">
@@ -66,9 +71,13 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <Navbar />
-        {children}
-        <Footer />
+        <NotFoundErrorBoundary>
+          <AnimatePresence>
+            <Navbar />
+            {children}
+            <Footer />
+          </AnimatePresence>
+        </NotFoundErrorBoundary>
       </body>
     </html>
   );
