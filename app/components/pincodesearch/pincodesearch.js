@@ -69,7 +69,7 @@ const PincodeSearch = () => {
         <h1 className="text-2xl font-bold text-center mb-2">Pincode Availability Checker</h1>
         <p className="text-center text-gray-700 mb-6">
           Enter your pincode and select a date to check availability. If the pincode is unavailable, 
-          we'll ask for your contact information to get in touch.
+          we&apos;ll ask for your contact information to get in touch.
         </p>
 
         {/* Input Row */}
