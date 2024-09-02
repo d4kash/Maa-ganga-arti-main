@@ -1,4 +1,3 @@
-"use client";
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import DatePicker from 'react-datepicker';
@@ -73,23 +72,23 @@ const PincodeSearch = () => {
         </p>
 
         {/* Input Row */}
-        <div className="flex flex-col sm:flex-row items-center gap-3 mb-4">
+        <div className="flex flex-col sm:flex-row items-center gap-3 mb-4 w-full">
           <input 
             type="text" 
             placeholder="Enter Pincode" 
             value={pincode} 
             onChange={(e) => setPincode(e.target.value)} 
-            className="p-3 border border-gray-300 rounded-md text-lg w-full sm:w-1/3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="p-3 border border-gray-300 rounded-md text-lg w-full sm:w-1/4 focus:outline-none focus:ring-2 focus:ring-blue-500"
             aria-label="Enter Pincode"
           />
           <DatePicker 
             selected={date} 
             onChange={(date) => setDate(date)} 
-            className="p-3 border border-gray-300 rounded-md text-lg w-full sm:w-1/3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="p-3 border border-gray-300 rounded-md text-lg w-full sm:w-1/2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             aria-label="Select Date"
           />
           <motion.button
-            className="p-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 w-full sm:w-1/3"
+            className="p-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 w-full sm:w-1/4"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={handleSearch}
