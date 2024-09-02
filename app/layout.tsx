@@ -26,6 +26,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700&display=swap"
         />
         <link rel="icon" type="image/png" href="/assets/favicon.png"></link>
+        <title>Shree narayan ganga aarti</title>
         <meta
           name="description"
           content="Book Ganga Aarti for weddings, naamkaran, saagai, anniversaries, and other auspicious occasions. Experience sacred rituals at home with our personalized event management services."
