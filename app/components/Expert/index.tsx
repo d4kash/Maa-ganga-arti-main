@@ -48,6 +48,15 @@ export default function MultipleItems() {
         },
       },
       {
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
         breakpoint: 800,
         settings: {
           slidesToShow: 2,
@@ -70,7 +79,7 @@ export default function MultipleItems() {
 
   return (
     <div className="py-10 sm:py-20 bg-gray-100">
-      <div className="mx-auto max-w-2xl lg:max-w-7xl sm:py-4 lg:px-8">
+      <div className="mx-auto max-w-xl sm:max-w-2xl lg:max-w-7xl px-4 lg:px-8">
         <div className="text-center mb-10">
           <Fade
             direction={"up"}
@@ -79,7 +88,7 @@ export default function MultipleItems() {
             damping={0.1}
             triggerOnce={true}
           >
-            <h2 className="text-pink-600 text-lg font-medium mb-3 tracking-widest uppercase">
+            <h2 className="text-pink-600 text-sm sm:text-lg font-medium mb-3 tracking-widest uppercase">
               TEAM MEMBERS
             </h2>
           </Fade>
@@ -90,7 +99,7 @@ export default function MultipleItems() {
             damping={0.1}
             triggerOnce={true}
           >
-            <h3 className="text-3xl lg:text-5xl font-semibold text-black">
+            <h3 className="text-2xl sm:text-3xl lg:text-5xl font-semibold text-black">
               Let&apos;s Meet Our Team Members
             </h3>
           </Fade>
@@ -99,19 +108,21 @@ export default function MultipleItems() {
         <Slider {...settings}>
           {postData.map((item, i) => (
             <div key={i}>
-              <div className="m-3 p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">
-                <div className="relative w-full h-64 mb-4 overflow-hidden rounded-t-lg">
+              <div className="m-2 p-4 sm:m-3 sm:p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">
+                <div className="relative w-full h-40 sm:h-64 mb-4 overflow-hidden rounded-t-lg">
                   <Image
                     src={item["photo"]}
                     alt={item["name"]}
                     layout="fill"
                     objectFit="cover"
+                    quality={100} // Ensure high-quality image rendering
+                    className="rounded-t-lg"
                   />
                 </div>
-                <h3 className="text-2xl font-semibold text-gray-800">
+                <h3 className="text-lg sm:text-2xl font-semibold text-gray-800">
                   {item["name"]}
                 </h3>
-                <h4 className="text-lg font-normal text-gray-600 pt-2">
+                <h4 className="text-md sm:text-lg font-normal text-gray-600 pt-2">
                   {item["profession"]}
                 </h4>
               </div>

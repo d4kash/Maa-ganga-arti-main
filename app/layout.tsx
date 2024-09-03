@@ -17,7 +17,6 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  console.log();
   return (
     <html lang="en">
       <head>
