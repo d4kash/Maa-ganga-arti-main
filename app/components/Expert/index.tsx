@@ -48,6 +48,15 @@ export default function MultipleItems() {
         },
       },
       {
+        breakpoint: 1100, // New breakpoint for 900-1100px range
+        settings: {
+          slidesToShow: 2.5, // Show 2.5 slides to prevent the weird look
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
         breakpoint: 900,
         settings: {
           slidesToShow: 2,
@@ -109,12 +118,13 @@ export default function MultipleItems() {
           {postData.map((item, i) => (
             <div key={i}>
               <div className="m-2 p-4 sm:m-3 sm:p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">
-                <div className="relative w-full h-40 sm:h-64 mb-4 overflow-hidden rounded-t-lg">
+                <div className="flex justify-center items-center relative w-full h-40 sm:h-64 mb-4 overflow-hidden rounded-t-lg bg-gray-100">
                   <Image
                     src={item["photo"]}
                     alt={item["name"]}
                     layout="fill"
-                    objectFit="cover"
+                    objectFit="cover" // Ensure the image covers the container fully
+                    objectPosition="center" // Center the image inside the container
                     quality={100} // Ensure high-quality image rendering
                     className="rounded-t-lg"
                   />

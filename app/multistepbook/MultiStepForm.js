@@ -4,7 +4,9 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-
+import { services } from "../../utils/constants";
+import { useTranslation } from "react-i18next";
+// date=Wed%20Sep%2018%202024&service=0&pin=825301&nop=4
 const formVariants = {
   initial: { opacity: 0, y: 50 },
   animate: { opacity: 1, y: 0, transition: { duration: 0.5 } },
@@ -22,15 +24,28 @@ const buttonVariants = {
     backgroundColor: "#4338ca", // Even darker shade when tapping
   },
 };
+
 const MultiStepForm = () => {
-  const [formData, setFormData] = useState({});
-  const [selectedDate, setSelectedDate] = useState(null);
   const [formattedDate, setFormattedDate] = useState("");
+  const [serviceTitle, setServiceTitle] = useState("");
+  const [defaultPincode, setDefaultPincode] = useState("");
+  const [defaultNumberOfPersons, setDefaultNumberOfPersons] = useState("");
+  const { t } = useTranslation();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue, // Function to prefill form values
+  } = useForm();
 
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
     const dateParam = queryParams.get("date");
+    const serviceParam = queryParams.get("service");
+    const pincodeParam = queryParams.get("pin");
+    const nopParam = queryParams.get("nop");
 
+    // Handle date parameter
     if (dateParam) {
       const date = new Date(dateParam);
       if (!isNaN(date.getTime())) {
@@ -39,12 +54,33 @@ const MultiStepForm = () => {
         const year = date.getFullYear();
         const formatted = `${day}/${month}/${year}`;
         setFormattedDate(formatted);
-        setSelectedDate(date.toISOString().split("T")[0]);
       } else {
         console.error("Invalid date format");
       }
     }
-  }, []);
+
+    // Handle service parameter
+    if (serviceParam) {
+      const serviceIndex = parseInt(serviceParam, 10);
+      if (!isNaN(serviceIndex) && services[serviceIndex]) {
+        setServiceTitle(services[serviceIndex].title);
+      } else {
+        console.error("Invalid service index");
+      }
+    }
+
+    // Handle pincode parameter
+    if (pincodeParam) {
+      setDefaultPincode(pincodeParam);
+      setValue("pincode", pincodeParam); // Prefill pincode field
+    }
+
+    // Handle number of persons parameter
+    if (nopParam) {
+      setDefaultNumberOfPersons(nopParam);
+      setValue("numberOfPersons", nopParam); // Prefill number of persons field
+    }
+  }, [setValue]);
 
   const onSubmit = async (data) => {
     const payload = {
@@ -85,12 +121,6 @@ const MultiStepForm = () => {
     }
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white shadow-xl rounded-lg mt-10 md:mt-20">
       <motion.form
@@ -103,6 +133,10 @@ const MultiStepForm = () => {
       >
         <div className="text-lg font-semibold text-gray-700">
           Event Date: {formattedDate}
+        </div>
+
+        <div className="text-lg font-semibold text-gray-700">
+          Service: {t(serviceTitle) || "N/A"}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -208,6 +242,7 @@ const MultiStepForm = () => {
                 errors.pincode ? "border-red-500" : "border-gray-300"
               }`}
               placeholder="Enter your pincode"
+              defaultValue={defaultPincode} // Prefill pincode field
             />
             {errors.pincode && (
               <span className="text-red-500 text-sm">{errors.pincode.message}</span>
@@ -230,8 +265,7 @@ const MultiStepForm = () => {
               className={`border p-3 w-full rounded-md ${
                 errors.state ? "border-red-500" : "border-gray-300"
               }`}
-              placeholder="Enter your state"
-            />
+              />
             {errors.state && (
               <span className="text-red-500 text-sm">{errors.state.message}</span>
             )}
@@ -258,12 +292,16 @@ const MultiStepForm = () => {
               type="number"
               {...register("numberOfPersons", {
                 required: "Number of members is required.",
-                min: 1,
+                min: {
+                  value: 1,
+                  message: "Number of members must be at least 1.",
+                },
               })}
               className={`border p-3 w-full rounded-md ${
                 errors.numberOfPersons ? "border-red-500" : "border-gray-300"
               }`}
               placeholder="Enter number of members"
+              defaultValue={defaultNumberOfPersons} // Prefill number of persons field
             />
             {errors.numberOfPersons && (
               <span className="text-red-500 text-sm">
@@ -274,16 +312,15 @@ const MultiStepForm = () => {
         </div>
 
         <div className="flex justify-end mt-6">
-        <motion.button
-      type="submit"
-      className="w-full bg-indigo-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition duration-300"
-      variants={buttonVariants}
-      whileHover="hover"
-      whileTap="tap"
-    >
-      Submit
-    </motion.button>
-
+          <motion.button
+            type="submit"
+            className="w-full bg-indigo-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition duration-300"
+            variants={buttonVariants}
+            whileHover="hover"
+            whileTap="tap"
+          >
+            Submit
+          </motion.button>
         </div>
       </motion.form>
     </div>
@@ -291,3 +328,4 @@ const MultiStepForm = () => {
 };
 
 export default MultiStepForm;
+

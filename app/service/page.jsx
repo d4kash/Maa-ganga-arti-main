@@ -30,26 +30,31 @@ const ZoomCardMedia = styled(CardMedia)(({ theme }) => ({
 // Sample translation keys in the localization files
 const services = [
   {
+    id: 0,
     image: "assets/jhar_arti.png",
     title: "services.marriageGangaAarti.title",
     description: "services.marriageGangaAarti.description",
   },
   {
+    id: 1,
     image: "assets/jhar_arti.png",
     title: "services.engagementGangaAarti.title",
     description: "services.engagementGangaAarti.description",
   },
   {
+    id: 2,
     image: "assets/naag_arti.png",
     title: "services.anniversaryGangaAarti.title",
     description: "services.anniversaryGangaAarti.description",
   },
   {
+    id: 3,
     image: "assets/jhar_arti.png",
     title: "services.spiritualCeremonyGangaAarti.title",
     description: "services.spiritualCeremonyGangaAarti.description",
   },
   {
+    id: 4,
     image: "assets/naag_arti.png",
     title: "services.namkaranGangaAarti.title",
     description: "services.namkaranGangaAarti.description",
@@ -65,8 +70,18 @@ const ServiceCard = ({ service }) => {
     setExpanded(!expanded);
   };
 
-  const handleBookNow = () => {
-    router.push("/booking");
+  const handleBookNow = (service) => {
+    // router.push("/details");
+    router.push(`/details?id=${service.id}`);
+    // router.push(
+    //   {
+    //     pathname: "/details", // target page
+    //     // query: { id: productData.id }, // Optionally pass query params
+    //   },
+    //   undefined,
+    //   { state: { service } }
+    // ); // Passing the entire product data in state
+    // router.push("/booking");
   };
 
   return (
@@ -117,7 +132,7 @@ const ServiceCard = ({ service }) => {
         <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
           <Button
             variant="contained"
-            onClick={handleBookNow}
+            onClick={() => handleBookNow(service)}
             sx={{
               backgroundColor: "green !important",
               "&:hover": {

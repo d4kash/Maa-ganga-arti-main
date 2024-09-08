@@ -32,7 +32,8 @@ const ServiceCard = ({ service }) => {
   };
 
   const handleBookNow = () => {
-    router.push("/booking"); // Navigate to the booking page
+    // router.push("/booking"); // Navigate to the booking page
+    router.push("/details"); // Navigate to the service detail page
   };
 
   return (
