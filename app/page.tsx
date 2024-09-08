@@ -17,7 +17,7 @@ export default function Home() {
       <Scrolling />
       <AartiSteps />
       <Features />
-      <PincodeSearch />
+      <PincodeSearch serviceIdProp={""} />
       {/* <ServiceAreas /> */}
       {/* <Cook /> */}
       <Expert />
