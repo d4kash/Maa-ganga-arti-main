@@ -124,3 +124,31 @@ export const ceremonySteps = [
      purpose: "The final Aarti is a mark of the completion of the ritual, sealing the divine blessings and ensuring a spiritually fulfilling end.",
    },
  ];
+
+ export function formatAmount(amount) {
+  // Ensure the input is a number or convert it to a number
+  const number = typeof amount === 'string' ? parseFloat(amount) : amount;
+
+  // Return an empty string if the input is not a valid number
+  if (isNaN(number)) return '';
+
+  // Use toLocaleString to format the number with commas
+  const formattedNumber = number.toLocaleString();
+
+  // Prepend the rupee sign and return the formatted amount
+  return `₹ ${formattedNumber}`;
+}
+
+export function formatDiscountPercent(amount) {
+  // Ensure the input is a number or convert it to a number
+  const number = typeof amount === 'string' ? parseFloat(amount) : amount;
+
+  // Return an empty string if the input is not a valid number
+  if (isNaN(number)) return '';
+
+  // Use toLocaleString to format the number with commas
+  const formattedNumber = number*100;
+
+  // Prepend the rupee sign and return the formatted amount
+  return `${formattedNumber}`;
+}

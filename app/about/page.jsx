@@ -58,7 +58,7 @@ const AboutUs = () => {
             >
               <CardContent sx={{ flexGrow: 1 }}>
                 <Typography variant="h5" sx={{ fontWeight: "bold", mb: 2 }}>
-                  Experience the Spiritual Essence of Ganga Arti
+                  World Famous Ganga Aarti Event Now At Your Doorstep
                 </Typography>
                 <Typography
                   variant="body1"

@@ -54,7 +54,7 @@ const BookingForm = () => {
         "https://i55cjn4v9d.execute-api.ap-south-1.amazonaws.com/gangaArti/Booking",
         formData
       );
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       console.error("Error making the booking:", error);
     }

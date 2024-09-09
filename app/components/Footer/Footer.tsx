@@ -52,7 +52,7 @@ const products: ProductType[] = [
     link: [
       "केदारेश्वर मंदिर,",
       "केदारघाट, सोनारपुर (वाराणसी)",
-      "thegangaaarti05@gmail.com",
+      "thegangaarti05@gmail.com",
     ],
     navigationLink: [],
   },

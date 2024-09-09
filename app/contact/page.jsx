@@ -273,7 +273,7 @@ const ContactForm = () => {
                     <EmailIcon />
                   </IconButton>
                   <Typography variant="body1" sx={{ ml: 1 }}>
-                    thegangaaarti05@gmail.com
+                    thegangaarti05@gmail.com
                   </Typography>
                 </Box>
                 <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>

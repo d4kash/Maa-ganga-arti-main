@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
 import Link from "next/link";
+import {formatAmount, formatDiscountPercent} from "../../../utils/constants";
 
 const PincodeSearch = ({ serviceIdProp }) => {
   const [pincode, setPincode] = useState("");
@@ -17,35 +18,35 @@ const PincodeSearch = ({ serviceIdProp }) => {
   const [error, setError] = useState(null);
   const [serviceId, setServiceId] = useState(serviceIdProp || ""); 
 
-  function formatAmount(amount) {
-    // Ensure the input is a number or convert it to a number
-    const number = typeof amount === 'string' ? parseFloat(amount) : amount;
+  // function formatAmount(amount) {
+  //   // Ensure the input is a number or convert it to a number
+  //   const number = typeof amount === 'string' ? parseFloat(amount) : amount;
   
-    // Return an empty string if the input is not a valid number
-    if (isNaN(number)) return '';
+  //   // Return an empty string if the input is not a valid number
+  //   if (isNaN(number)) return '';
   
-    // Use toLocaleString to format the number with commas
-    const formattedNumber = number.toLocaleString();
+  //   // Use toLocaleString to format the number with commas
+  //   const formattedNumber = number.toLocaleString();
   
-    // Prepend the rupee sign and return the formatted amount
-    return `₹ ${formattedNumber}`;
-  }
+  //   // Prepend the rupee sign and return the formatted amount
+  //   return `₹ ${formattedNumber}`;
+  // }
 
-  function formatDiscountPercent(amount) {
-    // Ensure the input is a number or convert it to a number
-    const number = typeof amount === 'string' ? parseFloat(amount) : amount;
+  // function formatDiscountPercent(amount) {
+  //   // Ensure the input is a number or convert it to a number
+  //   const number = typeof amount === 'string' ? parseFloat(amount) : amount;
   
-    // Return an empty string if the input is not a valid number
-    if (isNaN(number)) return '';
+  //   // Return an empty string if the input is not a valid number
+  //   if (isNaN(number)) return '';
   
-    // Use toLocaleString to format the number with commas
-    const formattedNumber = number*100;
+  //   // Use toLocaleString to format the number with commas
+  //   const formattedNumber = number*100;
   
-    // Prepend the rupee sign and return the formatted amount
-    return `${formattedNumber}`;
-  }
+  //   // Prepend the rupee sign and return the formatted amount
+  //   return `${formattedNumber}`;
+  // }
 
-  useState(()=> console.log("pincode serviceId: ", serviceIdProp),[])
+  // // useState(()=> console.log("pincode serviceId: ", serviceIdProp),[])
 
   const handleSearch = async () => {
     setError(null);
@@ -202,7 +203,7 @@ const PincodeSearch = ({ serviceIdProp }) => {
       } hover:bg-gray-100 border-b transition-colors duration-200`}
     >
       <td className="p-4 text-gray-800 text-sm md:text-base">
-        {pandit.numPersons}
+        {pandit.numPersons} pandits
       </td>
       <td className="p-4 text-gray-800 text-sm md:text-base">
         <div className="flex items-center">

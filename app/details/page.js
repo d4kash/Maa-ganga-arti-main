@@ -41,7 +41,7 @@ const ProductPage = () => {
         
       }
       else{
-        console.log('invalid product id');
+        // console.log('invalid product id');
       }
   }, []);
 

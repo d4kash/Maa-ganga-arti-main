@@ -98,7 +98,7 @@ const PrivacyPolicy = () => (
     </p>
     <ul>
       <li>
-        <strong>By Email:</strong> Email: thegangaaarti05@gmail.com
+        <strong>By Email:</strong> Email: thegangaarti05@gmail.com
       </li>
       <li>
         <strong>By Phone:</strong> +91 7079362685

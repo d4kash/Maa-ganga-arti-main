@@ -29,9 +29,9 @@ const ShippingAndDeliveryPolicy = () => {
       <p>
         If you have any questions about your booking or our services, please
         feel free to contact us at
-        <a href="mailto:thegangaaarti05@gmail.com">
+        <a href="mailto:thegangaarti05@gmail.com">
           {" "}
-          thegangaaarti05@gmail.com
+          thegangaarti05@gmail.com
         </a>{" "}
         or call us at
         <a href="tel:+91 7079362685"> +91 7079362685</a>.

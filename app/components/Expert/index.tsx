@@ -18,7 +18,7 @@ export default function MultipleItems() {
           "https://mmngrm2h3i.execute-api.ap-south-1.amazonaws.com/gangaArti/get_ourTeam"
         );
         setPostData(response.data["body-json"]["body"]["Items"]);
-        console.log("Response", response.data["body-json"]["body"]["Items"]);
+        // console.log("Response", response.data["body-json"]["body"]["Items"]);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
