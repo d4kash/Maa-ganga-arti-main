@@ -82,12 +82,12 @@ const PincodeSearch = ({ serviceIdProp }) => {
       if (responseBody.statusCode === 200) {
         setPanditData(responseBody.body);
         setShowTable(true);
-      } else if (responseBody.statusCode === 404) {
+      } else if (responseBody.statusCode === 400) {
         // Show Popup Form
         setPopupData((prev) => ({ ...prev, pincode })); // Pre-fill pincode
         setShowPopup(true);
       } else {
-        setError(responseBody.body || "Unexpected error occurred.");
+        setError(`${responseBody.body} pincode` || "Unexpected error occurred.");
       }
     } catch (error) {
       setError("Error fetching data. Please try again.");
