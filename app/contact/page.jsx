@@ -261,19 +261,47 @@ const ContactForm = () => {
                   </Typography>
                 </Box>
                 <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
-                  <IconButton aria-label="phone" color="primary">
+                  <IconButton
+                    aria-label="phone"
+                    color="primary"
+                    component="a"
+                    href="tel:+917079362685"
+                  >
                     <PhoneIcon />
                   </IconButton>
                   <Typography variant="body1" sx={{ ml: 1 }}>
-                    +91 7079362685
+                    <a
+                      href="tel:+917079362685"
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      +91 7079362685
+                    </a>{" "}
+                    |
+                    <a
+                      href="tel:+917870406788"
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      {" "}
+                      +91 7870406788
+                    </a>
                   </Typography>
                 </Box>
                 <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
-                  <IconButton aria-label="email" color="primary">
+                  <IconButton
+                    aria-label="email"
+                    color="primary"
+                    component="a"
+                    href="mailto:thegangaarti05@gmail.com"
+                  >
                     <EmailIcon />
                   </IconButton>
                   <Typography variant="body1" sx={{ ml: 1 }}>
-                    thegangaarti05@gmail.com
+                    <a
+                      href="mailto:thegangaarti05@gmail.com"
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      thegangaarti05@gmail.com
+                    </a>
                   </Typography>
                 </Box>
                 <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>

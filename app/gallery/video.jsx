@@ -10,19 +10,42 @@ const GangaAartiVideos = ({ videoUrl }) => {
     return match && match[2].length === 11 ? match[2] : null;
   };
 
+  const videoWrapperStyle = {
+    position: "relative",
+    paddingTop: "40px", // Added padding for the top for close button
+    width: "100%",
+    maxWidth: "100%",
+  };
+
+  const videoContainerStyle = {
+    position: "relative",
+    paddingBottom: "56.25%", // 16:9 aspect ratio
+    height: 0,
+    overflow: "hidden",
+    width: "100%",
+  };
+
+  const iframeStyle = {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    border: "none",
+  };
+
   return (
-    <div>
+    <div style={videoWrapperStyle}>
       {videoUrl.includes("youtu.be" || "youtube") ? (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
+          style={videoContainerStyle}
         >
           <iframe
             src={`https://www.youtube.com/embed/${extractYouTubeID(videoUrl)}`}
-            width="100%"
-            height="100%"
-            frameBorder="0"
+            style={iframeStyle}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             title="Selected Video"
@@ -33,15 +56,9 @@ const GangaAartiVideos = ({ videoUrl }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
-          style={{ height: "100%", width: "100%", position: "relative" }}
+          style={videoContainerStyle}
         >
-          <video
-            src={videoUrl}
-            width="100%"
-            height="100%"
-            controls
-            style={{ objectFit: "contain" }}
-          >
+          <video src={videoUrl} style={iframeStyle} controls>
             Your browser does not support the video tag.
           </video>
         </motion.div>

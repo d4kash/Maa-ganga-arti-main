@@ -16,9 +16,10 @@ interface NavigationItem {
 const navigation: NavigationItem[] = [
   { name: "Home", href: "/" },
   { name: "About us", href: "/about" },
-  { name: "Contact us", href: "/contact" },
   { name: "Gallery", href: "/gallery" },
   { name: "Services", href: "/service" },
+  { name: "Book Now", href: "/#book-section" }, // Updated href to include the hash for the section
+  { name: "Contact us", href: "/contact" },
 ];
 
 function classNames(...classes: string[]) {
@@ -41,12 +42,14 @@ const Navbar = () => {
               <div className="flex items-center justify-between w-full">
                 {/* LOGO */}
                 <div className="flex items-center">
-                  <Image
-                    src="/assets/logo_ganga_arti.png"
-                    alt="logo"
-                    width={148}
-                    height={148}
-                  />
+                  <Link key="logoNav" href="/">
+                    <Image
+                      src="/assets/logo_ganga_arti.png"
+                      alt="ganga aarti"
+                      width={148}
+                      height={148}
+                    />
+                  </Link>
                 </div>
                 {/* LINKS */}
                 <div className="hidden lg:flex space-x-6">

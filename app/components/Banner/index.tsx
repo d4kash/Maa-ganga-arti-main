@@ -8,6 +8,7 @@ import { Box, Typography, Button, Grid, Container } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import ImageGallery from "./image_slide";
 // import RiverWithBankAndRocks from "./riverbank";
 // import FlowerShower from "./flowerShower";
 
@@ -41,6 +42,21 @@ const Banner = () => {
   const [isClient, setIsClient] = useState(false);
   const [routerReady, setRouterReady] = useState(false);
   const router = useRouter();
+  const images = [
+    {
+      src: "/assets/jayamala_with_aarti.webp",
+      alt: "Engagement shreenarayan ganga aarti",
+    },
+    {
+      src: "/assets/durga_puja.webp",
+      alt: "durga puja shree narayan ganga aarti",
+    },
+    {
+      src: "/assets/wedding_ai2.webp",
+      alt: "wedding shreenarayan ganga aarti",
+    },
+    // Add more images as needed
+  ];
 
   useEffect(() => {
     setIsClient(true);
@@ -56,6 +72,20 @@ const Banner = () => {
     if (routerReady) {
       router.push("/booking");
     }
+  };
+
+  const gangaAartiList = [
+    { id: 1, title: "विवाह समारोह में गंगा आरती", detailId: 0 },
+    { id: 5, title: "पूजा-अनुष्ठान में गंगा आरती", detailId: 3 },
+    { id: 3, title: "सगाई समारोह में गंगा आरती", detailId: 1 },
+    { id: 2, title: "नामकरण समारोह में गंगा आरती", detailId: 4 },
+    { id: 4, title: "वर्षगांठ समारोह में गंगा आरती", detailId: 2 },
+  ];
+
+  const handleItemClick = (detailId: Number) => {
+    console.log(`Clicked on: ${detailId}`);
+    router.push(`/details?id=${detailId}`);
+    // Add further functionality here, such as navigation or modal display.
   };
 
   if (!isClient) {
@@ -170,61 +200,21 @@ const Banner = () => {
             transition={{ duration: 0.8 }}
           >
             <ul className="space-y-4">
-              <motion.li
-                className="text-base font-medium text-gray-700 bg-blue-100 py-2 px-4 rounded-lg"
-                whileHover={{ scale: 1.05 }}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                <h3 className="text-xl font-semibold text-blue-500">
-                  विवाह समारोह में गंगा आरती
-                </h3>
-              </motion.li>
-              <motion.li
-                className="text-base font-medium text-gray-700 bg-blue-100 py-2 px-4 rounded-lg"
-                whileHover={{ scale: 1.05 }}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                <h3 className="text-xl font-semibold text-blue-500">
-                  नामकरण समारोह में गंगा आरती
-                </h3>
-              </motion.li>
-              <motion.li
-                className="text-base font-medium text-gray-700 bg-blue-100 py-2 px-4 rounded-lg"
-                whileHover={{ scale: 1.05 }}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                <h3 className="text-xl font-semibold text-blue-500">
-                  सगाई समारोह में गंगा आरती
-                </h3>
-              </motion.li>
-              <motion.li
-                className="text-base font-medium text-gray-700 bg-blue-100 py-2 px-4 rounded-lg"
-                whileHover={{ scale: 1.05 }}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                <h3 className="text-xl font-semibold text-blue-500">
-                  वर्षगांठ समारोह में गंगा आरती
-                </h3>
-              </motion.li>
-              <motion.li
-                className="text-base font-medium text-gray-700 bg-blue-100 py-2 px-4 rounded-lg"
-                whileHover={{ scale: 1.05 }}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                <h3 className="text-xl font-semibold text-blue-500">
-                  आध्यात्मिक अनुष्ठान में गंगा आरती
-                </h3>
-              </motion.li>
+              {gangaAartiList.map((item) => (
+                <motion.li
+                  key={item.id}
+                  className="text-base font-medium text-gray-700 bg-blue-100 py-2 px-4 rounded-lg cursor-pointer"
+                  whileHover={{ scale: 1.05 }}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6 }}
+                  onClick={() => handleItemClick(item.detailId)}
+                >
+                  <h3 className="text-xl font-semibold text-blue-500">
+                    {item.title}
+                  </h3>
+                </motion.li>
+              ))}
             </ul>
           </motion.section>
 
@@ -268,16 +258,7 @@ const Banner = () => {
         </div>
 
         {/* Right Side Image */}
-        <div className="lg:w-1/2 mt-8 lg:mt-0 lg:ml-8">
-          <motion.img
-            src="/assets/jayamala_with_aarti.webp"
-            alt="Temple"
-            className="w-full rounded-lg shadow-lg"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-          />
-        </div>
+        <ImageGallery />
       </div>
     </div>
     // <div className="relative bg-gradient-to-r from-green-300 via-blue-300 to-indigo-300 h-screen flex items-center justify-center p-8">

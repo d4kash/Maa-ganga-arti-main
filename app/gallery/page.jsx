@@ -39,7 +39,7 @@ const galleryData = {
       category: "Ganga Aarti Event Wedding",
     },
     {
-      videoUrl: "https://www.youtube.com/watch?v=5X_cMif5qPM",
+      videoUrl: "https://youtu.be/5X_cMif5qPM?si=d3fEfL7_8X3ahk2H",
       category: "Ganga Aarti Video",
     },
     {
@@ -52,10 +52,6 @@ const galleryData = {
     },
     {
       src: "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/WhatsApp+Image+2024-08-18+at+11.04.50+PM.jpeg",
-      category: "Ganga Aarti Event",
-    },
-    {
-      src: "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/WhatsApp+Image+2024-08-18+at+10.26.08+PM.jpeg",
       category: "Ganga Aarti Event",
     },
     {
@@ -90,10 +86,6 @@ const galleryData = {
       category: "Ganga Aarti Event",
     },
     {
-      src: "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/WhatsApp+Image+2024-08-18+at+10.26.08+PM.jpeg",
-      category: "Ganga Aarti Event",
-    },
-    {
       src: "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/WhatsApp+Image+2024-08-18+at+11.04.50+PM+(1).jpeg",
       category: "Ganga Aarti Event",
     },
@@ -119,6 +111,14 @@ const galleryData = {
     },
   ],
   "Ganga Aarti Event Wedding": [
+    {
+      src: "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/wedding_1.jpeg",
+      category: "Ganga Aarti Event Wedding",
+    },
+    {
+      src: "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/wedding_2.jpeg",
+      category: "Ganga Aarti Event Wedding",
+    },
     {
       src: "https://media.istockphoto.com/id/1241318411/photo/divine-ganga-aarti-yagna-at-rishikesh.jpg?s=612x612&w=0&k=20&c=6kyI1QsjTSVMlcv7jews6kKzPndDet7ItLs6G-gUkaA=",
       category: "Ganga Aarti Event Wedding",
@@ -154,6 +154,7 @@ const galleryData = {
 const Gallery = () => {
   const [value, setValue] = useState("All");
   const [open, setOpen] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedMedia, setSelectedMedia] = useState({
     src: "",
     type: "",
@@ -175,6 +176,30 @@ const Gallery = () => {
   const handleClose = () => {
     setOpen(false);
     setSelectedMedia({ src: "", type: "", videoUrl: "" });
+  };
+
+  // Function to handle "Next" image
+  const handleNext = () => {
+    const newIndex = (currentIndex + 1) % galleryData[value].length; // Loop to the first image
+    const nextMedia = galleryData[value][newIndex];
+    setSelectedMedia({
+      ...nextMedia,
+      type: nextMedia.videoUrl ? "video" : "image",
+    });
+    setCurrentIndex(newIndex);
+  };
+
+  // Function to handle "Previous" image
+  const handlePrev = () => {
+    const newIndex =
+      (currentIndex - 1 + galleryData[value].length) %
+      galleryData[value].length; // Loop to the last image
+    const prevMedia = galleryData[value][newIndex];
+    setSelectedMedia({
+      ...prevMedia,
+      type: prevMedia.videoUrl ? "video" : "image",
+    });
+    setCurrentIndex(newIndex);
   };
 
   const handleTabNavigation = (direction) => {
@@ -199,9 +224,25 @@ const Gallery = () => {
   return (
     <>
       <Box sx={{ p: 3 }}>
-        <Typography variant="h4" sx={{ mb: 2, textAlign: "center", mt: 10 }}>
-          Ganga Aarti Event Photo Gallery
-        </Typography>
+        <motion.div
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <Typography
+            variant="h4"
+            sx={{
+              mb: 2,
+              textAlign: "center",
+              mt: 10,
+              color: "#3f51b5", // Add a nice color
+              fontWeight: "bold", // Make the text bold
+              letterSpacing: "0.05em", // Add a bit of letter spacing for a polished look
+            }}
+          >
+            Shree Narayan Ganga Aarti Event Photo Gallery
+          </Typography>
+        </motion.div>
 
         {isMobile && (
           <Box
@@ -255,15 +296,17 @@ const Gallery = () => {
           {galleryData[value].map((item, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <motion.div
+                key={index}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() =>
+                onClick={() => {
                   handleOpen({
                     src: item.src,
                     type: item.videoUrl ? "video" : "image",
                     videoUrl: item.videoUrl,
-                  })
-                }
+                    index: index, // Add the index for navigation
+                  });
+                }}
               >
                 <Card
                   sx={{
@@ -329,6 +372,7 @@ const Gallery = () => {
               overflow: "hidden",
               borderRadius: "8px",
               padding: "16px",
+              zIndex: 10,
             }}
           >
             <IconButton
@@ -338,6 +382,11 @@ const Gallery = () => {
                 top: 10,
                 right: 10,
                 color: "black",
+                backgroundColor: "transparent",
+                "&:hover": {
+                  backgroundColor: "rgba(0, 0, 0, 0.1)", // Subtle hover effect
+                },
+                zIndex: 10,
               }}
             >
               <CloseIcon />
@@ -349,23 +398,6 @@ const Gallery = () => {
                 type="video"
               />
             ) : (
-              // <motion.div
-              //   initial={{ opacity: 0 }}
-              //   animate={{ opacity: 1 }}
-              //   transition={{ duration: 0.5 }}
-              // >
-              //   <iframe
-              //     src={`https://www.youtube.com/embed/${extractYouTubeID(
-              //       selectedMedia.videoUrl
-              //     )}`}
-              //     width="100%"
-              //     height="100%"
-              //     frameBorder="0"
-              //     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              //     allowFullScreen
-              //     title="Selected Video"
-              //   />
-              // </motion.div>
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -378,6 +410,43 @@ const Gallery = () => {
                   layout="fill"
                   objectFit="contain"
                 />
+
+                {/* Next/Previous Navigation Buttons */}
+                <IconButton
+                  onClick={handlePrev}
+                  sx={{
+                    position: "absolute",
+                    top: "50%",
+                    left: 10,
+                    transform: "translateY(-50%)",
+                    color: "white",
+                    backgroundColor: "rgba(0,0,0,0.3)", // Always visible with low opacity
+                    transition: "background-color 0.3s ease",
+                    "&:hover": {
+                      backgroundColor: "rgba(0,0,0,0.7)", // Prominent hover effect
+                    },
+                  }}
+                >
+                  <ArrowBackIosIcon />
+                </IconButton>
+
+                <IconButton
+                  onClick={handleNext}
+                  sx={{
+                    position: "absolute",
+                    top: "50%",
+                    right: 10,
+                    transform: "translateY(-50%)",
+                    color: "white",
+                    backgroundColor: "rgba(0,0,0,0.3)", // Always visible with low opacity
+                    transition: "background-color 0.3s ease",
+                    "&:hover": {
+                      backgroundColor: "rgba(0,0,0,0.7)", // Prominent hover effect
+                    },
+                  }}
+                >
+                  <ArrowForwardIosIcon />
+                </IconButton>
               </motion.div>
             )}
           </motion.div>

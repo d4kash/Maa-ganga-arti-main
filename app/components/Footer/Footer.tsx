@@ -31,6 +31,11 @@ const socialLinks: socialLinks[] = [
     link: "https://x.com/thegangaarti?t=pcdO-QOZUIq982OK9p56yw&s=09",
     width: 14,
   },
+  {
+    imgSrc: "/images/Footer/youtube.svg",
+    link: "https://youtube.com/@narayantiwari1747?si=WbEV__NXstYwLmrG",
+    width: 14,
+  },
 ];
 
 const products: ProductType[] = [
@@ -66,19 +71,22 @@ const footer = () => {
 
         <div className="sm:col-span-6 lg:col-span-5">
           <div className="flex flex-shrink-0 items-center border-right">
-            <Image
-              src="/assets/logo_ganga_arti.png"
-              alt="logo"
-              width={148}
-              height={148}
-            />
+            <Link key="logoNav" href="/">
+              <Image
+                src="/assets/logo_ganga_arti.png"
+                alt="shree narayan ganga aarti"
+                width={148}
+                height={148}
+              />
+            </Link>
             {/* <Link href="/" className="text-2xl font-semibold text-black ml-4">
               Shree Narayan Ganga Aarti
             </Link> */}
           </div>
           <h3 className="text-textbl text-xs font-medium mt-5 mb-4 lg:mb-16">
-            The spiritual atmosphere during the aarti is enhanced <br /> by the
-            glow of oil lamps and the fragrance of incens
+            The spiritual atmosphere during the aarti by <br />
+            <strong> shree narayan ganga aarti</strong> is enhanced by the
+            <br /> glow of oil lamps and the fragrance of incens
           </h3>
           <div className="flex gap-4">
             {socialLinks.map((items, i) => (
@@ -124,7 +132,7 @@ const footer = () => {
 
       <div className="py-10 md:flex items-center justify-between border-t border-t-bordertop">
         <h4 className="text-darkgrey text-sm text-center md:text-start font-normal">
-          @2024 - All Rights Reserved by{" "}
+          @2024 - All Rights Reserved by Shree narayan ganga aarti{" "}
         </h4>
         <div className="flex gap-5 mt-5 md:mt-0 justify-center md:justify-start">
           <h4 className="text-darkgrey text-sm font-normal">

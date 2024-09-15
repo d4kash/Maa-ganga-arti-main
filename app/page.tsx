@@ -9,6 +9,7 @@ import Service from "./components/services/services";
 import PincodeSearch from "./components/pincodesearch/pincodesearch";
 import ServiceAreas from "./components/serviceArea/pages";
 import Link from "next/link";
+import WhyChooseUs from "./components/Banner/why_choose_us";
 
 export default function Home() {
   return (
@@ -17,7 +18,10 @@ export default function Home() {
       <Scrolling />
       <AartiSteps />
       <Features />
-      <PincodeSearch serviceIdProp={""} />
+      <div id="book-section">
+        <PincodeSearch serviceIdProp={""} />
+      </div>
+      <WhyChooseUs />
       {/* <ServiceAreas /> */}
       {/* <Cook /> */}
       <Expert />

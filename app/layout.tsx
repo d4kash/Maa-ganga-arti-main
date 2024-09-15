@@ -7,6 +7,8 @@ import { AnimatePresence } from "framer-motion";
 import NotFoundErrorBoundary from "./components/NotFoundErrorBoundary";
 // import { appWithTranslation } from "next-i18next";
 import "./i18n";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 // export const metadata = {
 //   title: "Shree narayan Ganga Arti",
 //   description: "please join us for puja",

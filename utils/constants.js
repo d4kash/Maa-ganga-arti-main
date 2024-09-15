@@ -152,3 +152,135 @@ export function formatDiscountPercent(amount) {
   // Prepend the rupee sign and return the formatted amount
   return `${formattedNumber}`;
 }
+
+export const faqs = [
+  {
+    "question": "What is Ganga Aarti, and why is it significant?",
+    "answer": "Ganga Aarti is a sacred Hindu ritual that takes place on the banks of the Ganges River. It involves the offering of light and prayers to the holy river, symbolizing the purification of one's mind and soul.",
+    "keywords": ["Ganga Aarti significance", "holy river ritual", "spiritual ceremony", "Hindu rituals"]
+  },
+  {
+    "question": "How can I book a Ganga Aarti event with Shree Narayan Ganga Aarti?",
+    "answer": "To book a Ganga Aarti event, visit our booking page, select your preferred event type and date, fill in the required details, and complete the online payment through our secure gateway.",
+    "keywords": ["Ganga Aarti booking", "book Ganga Aarti", "Ganga Aarti event reservation"]
+  },
+  {
+    "question": "What types of events can be organized during Ganga Aarti?",
+    "answer": "Events like Namkaran, Engagement, Wedding, Durga Puja, and other personal or religious ceremonies can be organized during Ganga Aarti by Shree Narayan Ganga Aarti.",
+    "keywords": ["Ganga Aarti event types", "Namkaran Ganga Aarti", "wedding Ganga Aarti", "Durga Puja Ganga Aarti"]
+  },
+  {
+    "question": "How early should I book my event with Shree Narayan Ganga Aarti?",
+    "answer": "We recommend booking your event at least 2-3 weeks in advance, especially during peak festival seasons or major holidays to ensure availability.",
+    "keywords": ["advance booking Ganga Aarti", "early booking Ganga Aarti", "Ganga Aarti peak season booking"]
+  },
+  {
+    "question": "Is there a limit to the number of guests I can invite?",
+    "answer": "The number of guests depends on the event type and location. Most ceremonies can accommodate a flexible number of guests, and guest details can be specified during the booking process.",
+    "keywords": ["Ganga Aarti guest limit", "event guest number", "Ganga Aarti ceremony guest count"]
+  },
+  {
+    "question": "What is the cancellation policy for an event booking?",
+    "answer": "Cancellations made 7 days in advance receive a full refund. Cancellations within 7 days will get a 50% refund, and no refunds are provided for cancellations made within 24 hours of the event.",
+    "keywords": ["Ganga Aarti cancellation policy", "event cancellation Ganga Aarti", "refund policy Ganga Aarti"]
+  },
+  {
+    "question": "Are customized rituals or special requests available?",
+    "answer": "Yes, Shree Narayan Ganga Aarti can tailor rituals based on your religious or cultural needs. Please mention any specific requests during the booking process to ensure arrangements are made.",
+    "keywords": ["customized Ganga Aarti rituals", "special requests for Ganga Aarti", "personalized Ganga Aarti ceremony"]
+  },
+  {
+    "question": "Do you provide any live streaming options for the events?",
+    "answer": "Yes, live streaming services are available for those unable to attend in person. This can be included as an add-on during your booking.",
+    "keywords": ["Ganga Aarti live stream", "virtual Ganga Aarti", "Ganga Aarti online service"]
+  },
+  {
+    "question": "Can I reschedule my event after booking?",
+    "answer": "Yes, events can be rescheduled up to 3 days before the event date, depending on availability. Additional charges may apply based on the changes.",
+    "keywords": ["reschedule Ganga Aarti", "change booking Ganga Aarti", "modify Ganga Aarti event"]
+  },
+  {
+    "question": "Are photography and videography services available?",
+    "answer": "Yes, Shree Narayan Ganga Aarti offers professional photography and videography services to capture your special moments during the Ganga Aarti ceremony.",
+    "keywords": ["Ganga Aarti photography", "event videography Ganga Aarti", "ceremony photography services"]
+  },
+  {
+    "question": "What should I wear to the Ganga Aarti ceremony?",
+    "answer": "We recommend traditional Indian attire for religious events. Please avoid footwear near the Ganges River as it is considered sacred.",
+    "keywords": ["dress code Ganga Aarti", "what to wear Ganga Aarti", "traditional attire for Ganga Aarti"]
+  },
+  {
+    "question": "Can non-Hindus participate in the Ganga Aarti ceremony?",
+    "answer": "Yes, Ganga Aarti is open to people of all backgrounds. Anyone can participate and enjoy the spiritual atmosphere.",
+    "keywords": ["non-Hindus Ganga Aarti", "participation in Ganga Aarti", "inclusive Ganga Aarti ceremony"]
+  },
+  {
+    "question": "Is there parking available at the Ganga Aarti venue?",
+    "answer": "Parking is available at most of our Ganga Aarti venues. However, availability may vary depending on the location and time of the event.",
+    "keywords": ["Ganga Aarti parking", "venue parking Ganga Aarti", "event parking availability"]
+  },
+  {
+    "question": "Do you offer special packages for multiple events or large gatherings?",
+    "answer": "Yes, Shree Narayan Ganga Aarti offers tailored packages for multiple events, large groups, or multi-day ceremonies. Please contact our team for more details and pricing.",
+    "keywords": ["Ganga Aarti event packages", "large group Ganga Aarti", "multi-day event booking Ganga Aarti"]
+  },
+  {
+    "question": "Can we combine Ganga Aarti with other religious rituals?",
+    "answer": "Yes, you can combine Ganga Aarti with other religious ceremonies such as havans, pujas, and satsangs. Let us know your requirements during the booking process.",
+    "keywords": ["combined rituals Ganga Aarti", "havans and Ganga Aarti", "religious ceremonies Ganga Aarti"]
+  },
+  {
+    "question": "What is the best time to attend Ganga Aarti?",
+    "answer": "The best time to attend Ganga Aarti is usually during the evening, just after sunset. However, timing can vary based on specific events and locations.",
+    "keywords": ["best time for Ganga Aarti", "evening Ganga Aarti", "sunset Ganga Aarti"]
+  },
+  {
+    "question": "How many pandits can be booked for my event?",
+    "answer": "You can book between 1 to 5 pandits for your event, depending on the size and type of ceremony. This can be customized during the booking process to meet your specific needs.",
+    "keywords": ["book pandits Ganga Aarti", "pandits for Ganga Aarti event", "customized pandit booking"]
+  },
+  {
+    "question": "How many slots are available for Ganga Aarti ceremonies each day?",
+    "answer": "Shree Narayan Ganga Aarti offers 3 time slots per day: morning, afternoon, and evening. You can choose your preferred slot based on availability during the booking process.",
+    "keywords": ["Ganga Aarti time slots", "daily Ganga Aarti schedule", "morning evening Ganga Aarti"]
+  }
+];
+
+
+export const testimonials = [
+  {
+    event: "Namkaran Ganga Aarti",
+    feedback: [
+      { user: "User1", rating: 4.5, comment: "It was a very peaceful and divine experience for my child's naming ceremony." },
+      { user: "User2", rating: 5, comment: "Such a serene and spiritual event, unforgettable experience." }
+    ]
+  },
+  {
+    event: "Engagement Ganga Aarti",
+    feedback: [
+      { user: "User3", rating: 4, comment: "A wonderful way to start a new journey, the aarti added a spiritual touch." },
+      { user: "User4", rating: 4.8, comment: "We felt truly blessed, and the ceremony was beautifully conducted." }
+    ]
+  },
+  {
+    event: "Wedding Ganga Aarti",
+    feedback: [
+      { user: "User5", rating: 5, comment: "A divine experience, the perfect start to our married life." },
+      { user: "User6", rating: 4.7, comment: "The spiritual aura was overwhelming, an amazing memory for our wedding." }
+    ]
+  },
+  {
+    event: "Durga Puja Ganga Aarti",
+    feedback: [
+      { user: "User7", rating: 4.9, comment: "A mesmerizing experience, the aarti during Durga Puja was full of energy and devotion." },
+      { user: "User8", rating: 5, comment: "The spiritual vibes during the aarti were unmatched, a divine celebration of Durga Puja." }
+    ]
+  },
+  {
+    event: "Other Special Aarti",
+    feedback: [
+      { user: "User9", rating: 4.6, comment: "Attended a special aarti on the full moon, truly magical experience." },
+      { user: "User10", rating: 5, comment: "The aarti was very well conducted, felt a deep spiritual connection." }
+    ]
+  }
+];
