@@ -78,7 +78,7 @@ const PincodeSearch = ({ serviceIdProp }) => {
       );
 
       const responseBody = response.data["body-json"];
-      console.log("statuscode", responseBody.statusCode)
+      // console.log("statuscode", responseBody.statusCode)
       if (responseBody.statusCode === 200) {
         setPanditData(responseBody.body);
         setShowTable(true);
@@ -257,21 +257,24 @@ const PincodeSearch = ({ serviceIdProp }) => {
 
         {/* Search/Reset Button */}
         <div className="flex flex-col w-full">
-          <label className="mb-1 text-gray-700 invisible">Button</label>
-          <motion.button
-            onClick={showTable ? handleReset : handleSearch}
-            className={`w-full p-3 rounded-lg transition-colors focus:outline-none focus:ring-2 ${
-              showTable
-                ? "bg-red-600 hover:bg-red-700 focus:ring-red-500"
-                : "bg-blue-600 hover:bg-blue-700 focus:ring-blue-500"
-            } text-white`}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            disabled={isLoading}
-          >
-            {showTable ? "Reset" : isLoading ? "Loading..." : "Search"}
-          </motion.button>
-        </div>
+  <label className="mb-1 text-gray-700 invisible">Button</label>
+  <motion.button
+    onClick={showTable ? handleReset : handleSearch}
+    className={`w-full p-3 rounded-lg transition-colors focus:outline-none focus:ring-2 ${
+      showTable
+        ? "bg-red-600 hover:bg-red-700 focus:ring-red-500"
+        : "bg-blue-600 hover:bg-blue-700 focus:ring-blue-500"
+    } text-white ${
+      isLoading ? "opacity-50 cursor-not-allowed" : ""
+    }`} // Add styles for disabled state
+    whileHover={isLoading ? {} : { scale: 1.05 }} // Disable hover effect when loading
+    whileTap={isLoading ? {} : { scale: 0.95 }} // Disable tap effect when loading
+    disabled={isLoading} // Keep the button disabled
+  >
+    {showTable ? "Reset" : isLoading ? "Loading..." : "Search"}
+  </motion.button>
+</div>
+
       </motion.div>
 
       {/* Error Message */}
