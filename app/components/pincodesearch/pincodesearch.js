@@ -238,18 +238,23 @@ const PincodeSearch = ({ serviceIdProp }) => {
         <div className="flex flex-col w-full">
           <label className="mb-1 text-gray-700">Service Type</label>
           <select
-            value={service}
-            onChange={(e) => setService(e.target.value)}
-            className={`w-full p-3 text-gray-700 border ${
-              formErrors.service ? "border-red-500" : "border-gray-300"
-            } rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`}
-          >
-            <option value="" disabled>
-              Select Service Type
-            </option>
-            <option value="wedding">Wedding Event</option>
-            <option value="puja">Puja Event</option>
-          </select>
+  value={service}
+  onChange={(e) => setService(e.target.value)}
+  className={`w-full p-3 text-gray-700 border ${
+    formErrors.service ? "border-red-500" : "border-gray-300"
+  } rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`}
+>
+  <option value="" disabled className="text-gray-500">
+    Select Service Type
+  </option>
+  <option value="wedding" className="text-gray-700 bg-white hover:bg-blue-100">
+    Wedding Event
+  </option>
+  <option value="puja" className="text-gray-700 bg-white hover:bg-blue-100">
+    Puja Event
+  </option>
+</select>
+
           {formErrors.service && (
             <p className="text-red-600 text-sm mt-1">{formErrors.service}</p>
           )}
@@ -293,13 +298,13 @@ const PincodeSearch = ({ serviceIdProp }) => {
               <thead className="bg-blue-100">
                 <tr>
                   <th className="p-4 text-blue-600 font-bold border-b text-sm md:text-base">
-                    No of Pandit
+                    No of Pandit(s)
                   </th>
                   <th className="p-4 text-blue-600 font-bold border-b text-sm md:text-base">
-                    Price
+                    Rate
                   </th>
                   <th className="p-4 text-blue-600 font-bold border-b text-sm md:text-base">
-                    Discount Price
+                    Discount Rate
                   </th>
                   <th className="p-4 text-blue-600 font-bold border-b text-sm md:text-base">
                     Reserve your seat
