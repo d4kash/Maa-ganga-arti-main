@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Grid,
@@ -20,6 +20,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Image from "next/image";
 import GangaAartiVideos from "./video";
 import { motion } from "framer-motion";
+import axios from "axios";
 
 const extractYouTubeID = (url) => {
   const urlObj = new URL(url);
@@ -28,131 +29,10 @@ const extractYouTubeID = (url) => {
   return videoId;
 };
 
-const galleryData = {
-  All: [
-    {
-      src: "https://eastindiantraveller.com/wp-content/uploads/2020/10/fb_img_1602601852796-1.jpg",
-      category: "Ganga Aarti Event",
-    },
-    {
-      src: "https://media.istockphoto.com/id/1241318411/photo/divine-ganga-aarti-yagna-at-rishikesh.jpg?s=612x612&w=0&k=20&c=6kyI1QsjTSVMlcv7jews6kKzPndDet7ItLs6G-gUkaA=",
-      category: "Ganga Aarti Event Wedding",
-    },
-    {
-      videoUrl: "https://youtu.be/5X_cMif5qPM?si=d3fEfL7_8X3ahk2H",
-      category: "Ganga Aarti Video",
-    },
-    {
-      src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGvR5z8MCRoTYCsK58B-IAq9PlKtTj-fnTGw&s",
-      category: "All Other Events",
-    },
-    {
-      src: "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/WhatsApp+Image+2024-08-18+at+11.04.51+PM+(1).jpeg",
-      category: "Ganga Aarti Event",
-    },
-    {
-      src: "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/WhatsApp+Image+2024-08-18+at+11.04.50+PM.jpeg",
-      category: "Ganga Aarti Event",
-    },
-    {
-      src: "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/WhatsApp+Image+2024-08-18+at+10.26.08+PM.jpeg",
-      category: "Ganga Aarti Event",
-    },
-    {
-      src: "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/WhatsApp+Image+2024-08-18+at+11.04.50+PM+(1).jpeg",
-      category: "Ganga Aarti Event",
-    },
-    {
-      src: "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/WhatsApp+Image+2024-08-18+at+10.26.07+PM.jpeg",
-      category: "Ganga Aarti Event",
-    },
-  ],
-  "Ganga Aarti Event": [
-    {
-      src: "https://eastindiantraveller.com/wp-content/uploads/2020/10/fb_img_1602601852796-1.jpg",
-      category: "Ganga Aarti Event",
-    },
-
-    {
-      src: "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/WhatsApp+Image+2024-08-18+at+11.04.51+PM+(1).jpeg",
-      category: "Ganga Aarti Event",
-    },
-    {
-      src: "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/WhatsApp+Image+2024-08-18+at+11.04.50+PM.jpeg",
-      category: "Ganga Aarti Event",
-    },
-    {
-      src: "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/WhatsApp+Image+2024-08-18+at+10.26.08+PM.jpeg",
-      category: "Ganga Aarti Event",
-    },
-    {
-      src: "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/WhatsApp+Image+2024-08-18+at+11.04.50+PM+(1).jpeg",
-      category: "Ganga Aarti Event",
-    },
-    {
-      src: "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/WhatsApp+Image+2024-08-18+at+10.26.07+PM.jpeg",
-      category: "Ganga Aarti Event",
-    },
-    {
-      src: "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/SGCAM_20231121_1304204020.PORTRAIT.jpg",
-      category: "Ganga Aarti Event",
-    },
-    {
-      src: "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/1722426285538.jpg",
-      category: "Ganga Aarti Event",
-    },
-    {
-      src: "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/IMG_20240209_214936.jpg",
-      category: "Ganga Aarti Event",
-    },
-    {
-      src: "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/1722426077921.jpg",
-      category: "Ganga Aarti Event",
-    },
-  ],
-  "Ganga Aarti Event Wedding": [
-    {
-      src: "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/wedding_1.jpeg",
-      category: "Ganga Aarti Event Wedding",
-    },
-    {
-      src: "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/wedding_2.jpeg",
-      category: "Ganga Aarti Event Wedding",
-    },
-    {
-      src: "https://media.istockphoto.com/id/1241318411/photo/divine-ganga-aarti-yagna-at-rishikesh.jpg?s=612x612&w=0&k=20&c=6kyI1QsjTSVMlcv7jews6kKzPndDet7ItLs6G-gUkaA=",
-      category: "Ganga Aarti Event Wedding",
-    },
-    {
-      src: "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/wedding-service.png",
-      category: "Ganga Aarti Event Wedding",
-    },
-    {
-      src: "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/wedding_service2.png",
-      category: "Ganga Aarti Event Wedding",
-    },
-  ],
-  "Ganga Aarti Video": [
-    {
-      videoUrl: "https://youtu.be/5X_cMif5qPM?si=d3fEfL7_8X3ahk2H",
-      category: "Ganga Aarti Video",
-    },
-    {
-      videoUrl:
-        "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/WhatsApp+Video+2024-08-18+at+10.25.07+PM.mp4",
-      category: "Ganga Aarti Video",
-    },
-  ],
-  "All Other Events": [
-    {
-      src: "https://www.tripsavvy.com/thmb/LHJXVkYNzRdpcyn4QryPjnsQxoM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-134642772-591a84865f9b58f4c03a7f2e.jpg",
-      category: "All Other Events",
-    },
-  ],
-};
-
 const Gallery = () => {
-  const [value, setValue] = useState("All");
+  const [value, setValue] = useState("all");
+  const [galleryData, setGalleryData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
   const [open, setOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedMedia, setSelectedMedia] = useState({
@@ -164,8 +44,54 @@ const Gallery = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
+  useEffect(() => {
+    setIsLoading(true);
+    // console.log("galleryData loading state", isLoading);
+    fetchImageData();
+    // console.log("galleryData", galleryData);
+  }, [value]);
+
+  const fetchImageData = async (append = false) => {
+    // console.log("value.toLowerCase(),", value.toLowerCase());
+    setIsLoading(true); // Show loading state while fetching data
+    try {
+      const response = await axios.post(
+        "https://4qd3pylxd4.execute-api.ap-south-1.amazonaws.com/gallery/getImage",
+        {
+          type: value.toLowerCase(),
+        }
+      );
+      const data = response.data["body-json"]["body"];
+      // console.log("gallery data:", data);
+      // Determine the key to update based on 'value'
+      const keyToUpdate = value.toLowerCase();
+
+      // Reset the data for the selected tab (no appending)
+      if (data.length === 0) {
+        // console.log("No data available for this tab");
+      }
+
+      // Update the gallery data for the current tab, whether empty or not
+      setGalleryData((prevData) => ({
+        ...prevData,
+        [value.toLowerCase()]: data,
+      }));
+      setIsLoading(false);
+      // setIsDataLoading(false);
+    } catch (error) {
+      // console.log("Error fetching project list:", error);
+      setIsLoading(false);
+      // setIsDataLoading(false);
+    }
+  };
+
   const handleTabChange = (event, newValue) => {
+    setIsLoading(true);
+    // Update the selected tab
     setValue(newValue);
+
+    // Call API immediately after changing the tab
+    fetchImageData(newValue);
   };
 
   const handleOpen = (media) => {
@@ -221,7 +147,30 @@ const Gallery = () => {
     ? visibleTabs.slice(tabIndex * 2, tabIndex * 2 + 2)
     : visibleTabs;
 
-  return (
+  return isLoading ? (
+    <div className="flex justify-center items-center h-screen">
+      <svg
+        className="animate-spin  h-10 w-10"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <circle
+          className="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          strokeWidth="4"
+        ></circle>
+        <path
+          className="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+        ></path>
+      </svg>
+    </div>
+  ) : (
     <>
       <Box sx={{ p: 3 }}>
         <motion.div
@@ -281,67 +230,99 @@ const Gallery = () => {
             centered
             sx={{ mb: 2 }}
           >
-            <Tab label="All" value="All" />
-            <Tab label="Ganga Aarti Event" value="Ganga Aarti Event" />
+            <Tab label="All" value="all" />
+            <Tab label="Ganga Aarti Event" value="ganga_aarti_event" />
             <Tab
               label="Ganga Aarti Event Wedding"
-              value="Ganga Aarti Event Wedding"
+              value="ganga_aarti_wedding"
             />
-            <Tab label="Ganga Aarti Video" value="Ganga Aarti Video" />
-            <Tab label="All Other Events" value="All Other Events" />
+            <Tab label="Ganga Aarti Video" value="ganga_aarti_video" />
+            <Tab label="All Other Events" value="other" />
           </Tabs>
         )}
 
         <Grid container spacing={2} sx={{ mt: 2 }}>
-          {galleryData[value].map((item, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <motion.div
-                key={index}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => {
-                  handleOpen({
-                    src: item.src,
-                    type: item.videoUrl ? "video" : "image",
-                    videoUrl: item.videoUrl,
-                    index: index, // Add the index for navigation
-                  });
-                }}
-              >
-                <Card
-                  sx={{
-                    cursor: "pointer",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    height: "250px",
+          {galleryData[value] && galleryData[value].length > 0 ? (
+            galleryData[value].map((item, index) => (
+              <Grid item xs={12} sm={6} md={4} key={index}>
+                <motion.div
+                  key={index}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => {
+                    handleOpen({
+                      src: item.src,
+                      type: item.videoUrl ? "video" : "image",
+                      videoUrl: item.videoUrl,
+                      index: index, // Add the index for navigation
+                    });
                   }}
+                  style={{ position: "relative", overflow: "hidden" }} // Position relative for overlay
                 >
-                  {item.videoUrl ? (
-                    <CardMedia
-                      component="img"
-                      height="200"
-                      image={
-                        item.videoUrl.includes("youtu.be" || "youtube")
-                          ? `https://img.youtube.com/vi/${extractYouTubeID(
-                              item.videoUrl
-                            )}/hqdefault.jpg`
-                          : "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/wedding_service2.png"
-                      }
-                      alt="Gallery Video Thumbnail"
-                    />
-                  ) : (
-                    <CardMedia
-                      component="img"
-                      height="200"
-                      image={item.src}
-                      alt="Gallery Image"
-                    />
-                  )}
-                </Card>
-              </motion.div>
-            </Grid>
-          ))}
+                  <Card
+                    sx={{
+                      cursor: "pointer",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      height: "250px",
+                    }}
+                  >
+                    {item.videoUrl ? (
+                      <CardMedia
+                        component="img"
+                        height="200"
+                        image={
+                          item.videoUrl.includes("youtu.be" || "youtube")
+                            ? `https://img.youtube.com/vi/${extractYouTubeID(
+                                item.videoUrl
+                              )}/hqdefault.jpg`
+                            : "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/wedding_service2.png"
+                        }
+                        alt="Gallery Video Thumbnail"
+                      />
+                    ) : (
+                      <CardMedia
+                        component="img"
+                        height="200"
+                        image={item.src}
+                        alt="Gallery Image"
+                      />
+                    )}
+                  </Card>
+
+                  {/* Overlay for media type */}
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      backgroundColor: "rgba(0, 0, 0, 0.5)", // Black transparent overlay
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      opacity: 0,
+                      transition: "opacity 0.3s ease",
+                      "&:hover": {
+                        opacity: 1, // Make it visible on hover
+                      },
+                    }}
+                  >
+                    <Typography
+                      variant="h6"
+                      sx={{ color: "white", textAlign: "center" }}
+                    >
+                      {item.videoUrl ? "Video" : "Image"}
+                    </Typography>
+                  </Box>
+                </motion.div>
+              </Grid>
+            ))
+          ) : (
+            <div>No data for {value} tab</div>
+          )}
         </Grid>
 
         <Modal

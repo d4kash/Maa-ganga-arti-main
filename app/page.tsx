@@ -10,10 +10,12 @@ import PincodeSearch from "./components/pincodesearch/pincodesearch";
 import ServiceAreas from "./components/serviceArea/pages";
 import Link from "next/link";
 import WhyChooseUs from "./components/Banner/why_choose_us";
+import Tour from "./components/tour/page";
 
 export default function Home() {
   return (
     <main>
+      {/* <Tour /> */}
       <Banner />
       <Scrolling />
       <AartiSteps />

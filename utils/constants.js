@@ -251,36 +251,51 @@ export const testimonials = [
   {
     event: "Namkaran Ganga Aarti",
     feedback: [
-      { user: "User1", rating: 4.5, comment: "It was a very peaceful and divine experience for my child's naming ceremony." },
-      { user: "User2", rating: 5, comment: "Such a serene and spiritual event, unforgettable experience." }
+      { user: "Devotee", rating: 4.5, comment: "It was a very peaceful and divine experience for my child's naming ceremony in Hazaribagh." },
+      { user: "Devotee", rating: 5, comment: "Such a serene and spiritual event in Ranchi, it made our day unforgettable." },
+      { user: "Devotee", rating: 4.8, comment: "A beautiful ceremony by the Ganges in Dhanbad, filled with love and blessings." },
+      { user: "Devotee", rating: 4.6, comment: "The aarti was magical, and the ambiance in Chatra was just perfect." },
+      { user: "Devotee", rating: 5, comment: "Our family's joy was amplified during this divine event in Banaras!" }
     ]
   },
   {
     event: "Engagement Ganga Aarti",
     feedback: [
-      { user: "User3", rating: 4, comment: "A wonderful way to start a new journey, the aarti added a spiritual touch." },
-      { user: "User4", rating: 4.8, comment: "We felt truly blessed, and the ceremony was beautifully conducted." }
+      { user: "Devotee", rating: 4, comment: "A wonderful way to start our journey together in Koderma, the aarti added a spiritual touch." },
+      { user: "Devotee", rating: 4.8, comment: "We felt truly blessed in Banaras, and the ceremony was beautifully conducted." },
+      { user: "Devotee", rating: 5, comment: "The atmosphere in Dhanbad during the aarti was truly enchanting." },
+      { user: "Devotee", rating: 4.7, comment: "Our engagement was made extra special by the aarti in Ranchi." },
+      { user: "Devotee", rating: 4.9, comment: "The experience in Hazaribagh was unforgettable, filled with warmth and blessings." }
     ]
   },
   {
     event: "Wedding Ganga Aarti",
     feedback: [
-      { user: "User5", rating: 5, comment: "A divine experience, the perfect start to our married life." },
-      { user: "User6", rating: 4.7, comment: "The spiritual aura was overwhelming, an amazing memory for our wedding." }
+      { user: "Devotee", rating: 5, comment: "A divine experience in Chatra, the perfect start to our married life." },
+      { user: "Devotee", rating: 4.7, comment: "The spiritual aura in Dhanbad was overwhelming, an amazing memory for our wedding." },
+      { user: "Devotee", rating: 5, comment: "Our wedding in Banaras was beautifully complemented by the Ganga aarti." },
+      { user: "Devotee", rating: 4.6, comment: "It felt so special to have our wedding aarti in Hazaribagh, surrounded by loved ones." },
+      { user: "Devotee", rating: 4.8, comment: "A magnificent start to our journey as a couple in Koderma." }
     ]
   },
   {
     event: "Durga Puja Ganga Aarti",
     feedback: [
-      { user: "User7", rating: 4.9, comment: "A mesmerizing experience, the aarti during Durga Puja was full of energy and devotion." },
-      { user: "User8", rating: 5, comment: "The spiritual vibes during the aarti were unmatched, a divine celebration of Durga Puja." }
+      { user: "Devotee", rating: 4.9, comment: "A mesmerizing experience during Durga Puja in Bihar, the aarti was full of energy and devotion." },
+      { user: "Devotee", rating: 5, comment: "The spiritual vibes during the aarti in Ranchi were unmatched, a divine celebration of Durga Puja." },
+      { user: "Devotee", rating: 4.8, comment: "Attending the Durga Puja aarti in Dhanbad was an unforgettable experience." },
+      { user: "Devotee", rating: 4.6, comment: "The energy at the aarti in Hazaribagh was electric, truly a memorable occasion." },
+      { user: "Devotee", rating: 5, comment: "Participating in the Ganga aarti during Durga Puja in Chatra filled my heart with joy." }
     ]
   },
   {
     event: "Other Special Aarti",
     feedback: [
-      { user: "User9", rating: 4.6, comment: "Attended a special aarti on the full moon, truly magical experience." },
-      { user: "User10", rating: 5, comment: "The aarti was very well conducted, felt a deep spiritual connection." }
+      { user: "Devotee", rating: 4.6, comment: "Attended a special aarti on the full moon in Koderma, truly magical experience." },
+      { user: "Devotee", rating: 5, comment: "The aarti in Chatra was very well conducted, felt a deep spiritual connection." },
+      { user: "Devotee", rating: 4.7, comment: "A beautiful full moon aarti in Banaras, it was an enchanting evening." },
+      { user: "Devotee", rating: 4.5, comment: "The special aarti in Dhanbad was unforgettable, filled with peace and joy." },
+      { user: "Devotee", rating: 5, comment: "Experiencing the aarti on a special occasion in Hazaribagh was heartwarming." }
     ]
   }
 ];

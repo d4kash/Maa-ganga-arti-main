@@ -31,13 +31,15 @@ const ZoomCardMedia = styled(CardMedia)(({ theme }) => ({
 const services = [
   {
     id: 0,
-    image: "assets/jhar_arti.png",
+    image:
+      "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/wedding_service2.png",
     title: "services.marriageGangaAarti.title",
     description: "services.marriageGangaAarti.description",
   },
   {
     id: 1,
-    image: "assets/jhar_arti.png",
+    image:
+      "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/wedding_3.jpeg",
     title: "services.engagementGangaAarti.title",
     description: "services.engagementGangaAarti.description",
   },
@@ -49,13 +51,14 @@ const services = [
   },
   {
     id: 3,
-    image: "assets/jhar_arti.png",
+    image:
+      "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/spritual_ganga_arti.png",
     title: "services.spiritualCeremonyGangaAarti.title",
     description: "services.spiritualCeremonyGangaAarti.description",
   },
   {
     id: 4,
-    image: "assets/naag_arti.png",
+    image: "assets/jhar_arti.png",
     title: "services.namkaranGangaAarti.title",
     description: "services.namkaranGangaAarti.description",
   },

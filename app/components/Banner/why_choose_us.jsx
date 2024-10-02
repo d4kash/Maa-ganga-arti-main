@@ -110,6 +110,20 @@ const WhyChooseUs = () => {
           Ganga Aarti ceremony into your events while experiencing the rich
           traditions and spirituality of India.
         </motion.p>
+        <br />
+        <motion.div
+          className="bg-white shadow-md rounded-lg p-6 mb-10"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2 className="text-2xl font-semibold mb-4 text-black">Pricing</h2>
+          <p className="text-lg text-black">
+            Experience the enchanting Ganga Aarti, a spiritual journey like no
+            other, starting from just <span className="font-bold">₹15,000</span>
+            .
+          </p>
+        </motion.div>
       </div>
     </motion.section>
   );

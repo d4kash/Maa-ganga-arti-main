@@ -187,6 +187,7 @@ const PincodeSearch = ({ serviceIdProp }) => {
       </motion.div>
 
       {/* Search Form */}
+      <form id="booking-form">
       <motion.div
         className="flex flex-col sm:flex-row gap-4 p-4 sm:p-6 bg-white rounded-3xl shadow-lg"
         initial={{ opacity: 0 }}
@@ -264,6 +265,7 @@ const PincodeSearch = ({ serviceIdProp }) => {
         <div className="flex flex-col w-full">
   <label className="mb-1 text-gray-700 invisible">Button</label>
   <motion.button
+  id="search-button"
     onClick={showTable ? handleReset : handleSearch}
     className={`w-full p-3 rounded-lg transition-colors focus:outline-none focus:ring-2 ${
       showTable
@@ -281,7 +283,7 @@ const PincodeSearch = ({ serviceIdProp }) => {
 </div>
 
       </motion.div>
-
+      </form>
       {/* Error Message */}
       {error && <p className="text-red-600 mt-4">{error}</p>}
 
