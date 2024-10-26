@@ -85,6 +85,36 @@ const Gallery = () => {
     }
   };
 
+  // utils/getThumbnailUrl.js
+  const getThumbnailUrl = (videoUrl) => {
+    // Check if the input is a valid URL
+    if (typeof videoUrl !== "string") {
+      return "Invalid URL";
+    }
+
+    // Split the video URL to get the base name and extension
+    const baseName = videoUrl.split(".");
+    if (baseName.length < 2) {
+      return "Invalid URL format";
+    }
+    const fileName = baseName.slice(0, -1).join(".").replace(/ /g, "+"); // Replace spaces with '+'
+
+    // Create the thumbnail URL
+    const thumbnailUrl = `${fileName}_thumbnail.png`;
+    console.log("thumbnail url: ", thumbnailUrl);
+
+    // const thumbnailUrl = `${baseName.slice(0, -1).join('.')}_thumbnail.${baseName[baseName.length - 1]}`;
+
+    // Return the modified thumbnail URL
+    return thumbnailUrl;
+  };
+
+  const handleThumbnailError = (event) => {
+    // Set a fallback image URL
+    event.target.src =
+      "https://ganga-arti.s3.ap-south-1.amazonaws.com/Video/wedding_service2.png";
+  };
+
   const handleTabChange = (event, newValue) => {
     setIsLoading(true);
     // Update the selected tab
@@ -277,8 +307,10 @@ const Gallery = () => {
                             ? `https://img.youtube.com/vi/${extractYouTubeID(
                                 item.videoUrl
                               )}/hqdefault.jpg`
-                            : "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/wedding_service2.png"
+                            : getThumbnailUrl(item.videoUrl)
+                          // : "https://ganga-arti.s3.ap-south-1.amazonaws.com/Video/wedding_service2.png"
                         }
+                        // onError={handleThumbnailError}
                         alt="Gallery Video Thumbnail"
                       />
                     ) : (

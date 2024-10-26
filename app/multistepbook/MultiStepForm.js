@@ -80,7 +80,8 @@ const MultiStepForm = () => {
         console.error("Invalid date format");
       }
     }
-
+    
+    console.log("service index: ", typeof serviceParam)
     // Handle service parameter
     if (serviceParam) {
       const serviceIndex = parseInt(serviceParam, 10);
@@ -105,11 +106,52 @@ const MultiStepForm = () => {
     }
   }, [setValue]);
 
+  const services = [
+    {
+      id: 0,
+      image: "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/wedding_service2.png",
+      title: "services.marriageGangaAarti.title",
+      description: "services.marriageGangaAarti.description",
+      englishTitle: "Marriage Ganga Aarti", // Add this field
+    },
+    {
+      id: 1,
+      image: "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/wedding_3.jpeg",
+      title: "services.engagementGangaAarti.title",
+      description: "services.engagementGangaAarti.description",
+      englishTitle: "Engagement Ganga Aarti", // Add this field
+    },
+    {
+      id: 2,
+      image: "assets/naag_arti.png",
+      title: "services.anniversaryGangaAarti.title",
+      description: "services.anniversaryGangaAarti.description",
+      englishTitle: "Anniversary Ganga Aarti", // Add this field
+    },
+    {
+      id: 3,
+      image: "https://ganga-arti.s3.ap-south-1.amazonaws.com/event/spritual_ganga_arti.png",
+      title: "services.spiritualCeremonyGangaAarti.title",
+      description: "services.spiritualCeremonyGangaAarti.description",
+      englishTitle: "Spiritual Ceremony Ganga Aarti", // Add this field
+    },
+    {
+      id: 4,
+      image: "assets/jhar_arti.png",
+      title: "services.namkaranGangaAarti.title",
+      description: "services.namkaranGangaAarti.description",
+      englishTitle: "Namkaran Ganga Aarti", // Add this field
+    },
+  ];
+
   const onSubmit = async (data) => {
     const payload = {
-      event_name: "विवाह गंगा आरती",
-      service: "wedding",
-      "full_payment":false,
+      // event_name: serviceParamt(serviceTitle).toString() || "Marriage ganga aarti",
+      service: data.eventType.toLowerCase() || "wedding",
+      event_name: serviceParam ? services[parseInt(serviceParam, 10)].englishTitle : serviceTitle,
+      // event_name: "विवाह गंगा आरती",
+      // service: "wedding",
+      "full_payment": false,
       name: data.name,
       phone_number: data.phone,
       alter_number: data.alterPhone || "",
@@ -132,11 +174,13 @@ const MultiStepForm = () => {
 
       // console.log("Form submitted successfully:", response.data);
 try{
-      if (response.data && response.data["body-json"].order_id) {
+      if (response.data && response.data["body-json"]['statusCode'] ===200 && response.data["body-json"].order_id) {
         setOrderDetails(response.data["body-json"].order_id);
         setPaymentSummary(response.data["body-json"]["body"].Order_Summary);
         setUserData(data);
         setStep(2); // Move to step 2 (payment)
+      }else{
+        alert(response.data["body-json"]['body']);
       }
     } catch (error) {
       console.error("Error:", error);
@@ -184,6 +228,12 @@ try{
   };
 
 
+  const handleServiceChange = (e) => {
+    const selectedService = e.target.value;
+    setServiceTitle(selectedService);
+    // setServiceDesc(services[e.target.id].description);
+  };
+
   return (
 <div className="min-h-screen flex flex-col bg-gray-50 w-full">
     {/* Progress Bar at the Top */}
@@ -200,19 +250,19 @@ try{
     </div>
 
     {/* Service Details */}
-    <details className="bg-white border rounded-lg shadow p-4 mb-6 max-w-3xl mx-auto w-full">
+    {serviceDesc ? <details className="bg-white border rounded-lg shadow p-4 mb-6 max-w-3xl mx-auto w-full">
       <summary className="text-lg font-semibold text-indigo-600">More about this service</summary>
       <div className="mt-2 text-gray-600">
         <p>{t(serviceDesc)}</p>
       </div>
-    </details>
+    </details> : <></>}
 
     <div className="flex-1 grid grid-cols-1 lg:grid-cols-5 gap-6 px-4 sm:px-6 max-w-7xl mx-auto w-full">
       {/* Discount Banner on the Left */}
       <div className="lg:col-span-1 bg-yellow-100 p-6 rounded-lg w-full">
         <h2 className="text-lg font-semibold text-gray-800 mb-4">Special Offer!</h2>
         <p className="text-gray-600">
-          Book now and get 10% off on Ganga Aarti Services. During <strong>Durga Puja, Chath Puja and more</strong>
+          Book now and get 10% off on Ganga Aarti Services. During <strong>Durga Puja, Chath Puja, Deewali and more</strong>
         </p>
       </div>
     <div className="lg:col-span-3 bg-white shadow-xl rounded-lg p-4 sm:p-6 w-full">
@@ -228,10 +278,89 @@ try{
           Event Date: {formattedDate}
         </div>
 
+        {serviceTitle ? (
         <div className="text-lg font-semibold text-gray-700">
           Service: {t(serviceTitle) || "N/A"}
         </div>
+      ) : (
+        <div className="bg-white shadow-xl p-6 rounded-lg relative">
+  <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2 flex items-center">
+    Select Service
+    <span className="ml-2 text-gray-500 cursor-pointer relative group">
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM9 7a1 1 0 112 0 1 1 0 01-2 0zm.25 2.75a.75.75 0 011.5 0V12a.75.75 0 01-1.5 0v-2.25zm1 4.25a1 1 0 100-2h-1a1 1 0 000 2h1z" clipRule="evenodd" />
+      </svg>
+      <div className="absolute -top-8 left-0 bg-gray-700 text-white text-xs rounded-md p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      Select the service like anniversary or engagement etc. for which you&apos;re booking our service.
+      </div>
+    </span>
+  </label>
+  <select
+    id="service"
+    name="service"
+    required
+    className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 bg-gray-50 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-lg shadow-lg"
+    onChange={handleServiceChange}
+    // onChange={(e) => setServiceTitle(e.target.value)}
+  >
+    <option value="" disabled selected>
+      Choose a service
+    </option>
+    {services.map((service) => (
+      <option key={service.id} value={service.title}>
+        {t(service.title)}
+      </option>
+    ))}
+  </select>
+  {errors.service && <p className="text-red-500 text-sm mt-1">{errors.service.message}</p>}
+</div>
 
+      )}
+       <fieldset className="mb-4">
+       <legend className="flex items-center text-sm font-medium text-gray-700 mb-2">
+  Select the event type
+  <span className="ml-2 text-gray-500 cursor-pointer relative group">
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM9 7a1 1 0 112 0 1 1 0 01-2 0zm.25 2.75a.75.75 0 011.5 0V12a.75.75 0 01-1.5 0v-2.25zm1 4.25a1 1 0 100-2h-1a1 1 0 000 2h1z" clipRule="evenodd" />
+    </svg>
+    <div className="absolute -top-8 left-0 bg-gray-700 text-white text-xs rounded-md p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+     Let us know for which ocassion(wedding or puja) you&apos;re booking our service.
+    </div>
+  </span>
+</legend>
+
+        <div className="flex flex-col sm:flex-row sm:space-x-4">
+          <div className="flex items-center mb-2 sm:mb-0">
+            <input
+              id="wedding"
+              type="radio"
+              value="Wedding"
+              {...register("eventType", { required: "Please select an event type" })}
+              className="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500"
+            />
+            <label htmlFor="wedding" className="ml-2 text-sm font-medium text-gray-700">
+              Wedding Event
+            </label>
+          </div>
+
+          <div className="flex items-center mb-2 sm:mb-0">
+            <input
+              id="puja"
+              type="radio"
+              value="Puja"
+              {...register("eventType", { required: "Please select an event type" })}
+              className="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500"
+            />
+            <label htmlFor="puja" className="ml-2 text-sm font-medium text-gray-700">
+              Puja Event
+            </label>
+          </div>
+        </div>
+
+        {errors.eventType && (
+          <p className="text-red-500 text-sm mt-1">{errors.eventType.message}</p>
+        )}
+      </fieldset>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <input
@@ -257,6 +386,13 @@ try{
                   message: "Phone number must be 10 digits.",
                 },
               })}
+              onInput={(e) => {
+                const value = e.target.value.replace(/\D/g, ""); // Replace any non-numeric characters
+                if (value.length <= 10) {
+                  e.target.value = value; // Allow only 10 digits
+                }
+              }}
+              maxLength={10}
               className={`border p-3 w-full rounded-md ${
                 errors.phone ? "border-red-500" : "border-gray-300"
               }`}
@@ -276,6 +412,13 @@ try{
                   message: "Alternate phone number must be 10 digits.",
                 },
               })}
+              onInput={(e) => {
+                const value = e.target.value.replace(/\D/g, ""); // Replace any non-numeric characters
+                if (value.length <= 10) {
+                  e.target.value = value; // Allow only 10 digits
+                }
+              }}
+              maxLength={10}
               className="border p-3 w-full rounded-md border-gray-300"
               placeholder="Enter alternate phone number (optional)"
             />
@@ -287,7 +430,8 @@ try{
               {...register("email", {
                 required: "Email is required.",
                 pattern: {
-                  value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  // value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
                   message: "Invalid email address.",
                 },
               })}
@@ -311,6 +455,10 @@ try{
                   message: "Address must be at least 10 characters.",
                 },
               })}
+              onInput={(e) => {
+                const value = e.target.value.replace(/[^A-Za-z0-9\s]/g, ""); // Remove non-alphabet characters
+                e.target.value = value;
+              }}
               className={`border p-3 w-full rounded-md ${
                 errors.address ? "border-red-500" : "border-gray-300"
               }`}
@@ -354,10 +502,20 @@ try{
           <div>
             <input
               type="text"
-              {...register("state", { required: "State is required." })}
+              {...register("state", { required: "State is required.",
+                pattern: {
+                  value: /^[A-Za-z\s]+$/, // Allow only letters and spaces
+                  message: "State can only contain letters.",
+                },
+              })}
+              onInput={(e) => {
+                const value = e.target.value.replace(/[^A-Za-z\s]/g, ""); // Remove non-alphabet characters
+                e.target.value = value;
+              }}
               className={`border p-3 w-full rounded-md ${
                 errors.state ? "border-red-500" : "border-gray-300"
               }`}
+              placeholder="Enter state"
               />
             {errors.state && (
               <span className="text-red-500 text-sm">{errors.state.message}</span>
@@ -367,7 +525,15 @@ try{
           <div>
             <input
               type="text"
-              {...register("district", { required: "District is required." })}
+              {...register("district", { required: "District is required.",pattern: {
+                value: /^[A-Za-z\s]+$/, // Allow only letters and spaces
+                message: "State can only contain letters.",
+              },
+            })}
+            onInput={(e) => {
+              const value = e.target.value.replace(/[^A-Za-z\s]/g, ""); // Remove non-alphabet characters
+              e.target.value = value;
+            }}
               className={`border p-3 w-full rounded-md ${
                 errors.district ? "border-red-500" : "border-gray-300"
               }`}

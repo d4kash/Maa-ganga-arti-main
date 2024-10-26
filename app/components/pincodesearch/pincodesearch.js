@@ -17,7 +17,7 @@ const PincodeSearch = ({ serviceIdProp }) => {
   const [panditData, setPanditData] = useState([]);
   const [error, setError] = useState(null);
   const [serviceId, setServiceId] = useState(serviceIdProp || "");
-
+console.log("serviceIdProp:",serviceIdProp);
   // States for form validation
   const [formErrors, setFormErrors] = useState({});
 
@@ -200,10 +200,17 @@ const PincodeSearch = ({ serviceIdProp }) => {
           <div className="flex items-center space-x-2">
             <FaMapMarkerAlt className="w-6 h-6 text-blue-500" />
             <input
-              type="text"
+              type="tel"
               placeholder="Enter Pincode"
               value={pincode}
-              onChange={(e) => setPincode(e.target.value)}
+              //onChange={(e) => setPincode(e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value;
+                // Allow only numbers by using a regular expression
+                if (/^\d*$/.test(value) && value.length <= 6) {
+                  setPincode(value);
+                }
+              }}
               className={`w-full p-3 text-gray-700 border ${
                 formErrors.pincode ? "border-red-500" : "border-gray-300"
               } rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`}
