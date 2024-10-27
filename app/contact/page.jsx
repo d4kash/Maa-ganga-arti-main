@@ -85,6 +85,13 @@ const ContactForm = () => {
                         required
                         autoComplete="name"
                         helperText="Please enter your full name"
+                        onInput={(e) => {
+                          const value = e.target.value.replace(
+                            /[^A-Za-z\s]/g,
+                            ""
+                          ); // Remove non-alphabet characters
+                          e.target.value = value;
+                        }}
                         sx={{
                           "& .MuiOutlinedInput-root": {
                             "& fieldset": {
@@ -139,6 +146,13 @@ const ContactForm = () => {
                           pattern: "[6-9]{1}[0-9]{9}",
                           title:
                             "Phone number should start with 6, 7, 8, or 9 and be exactly 10 digits long",
+                          maxLength: 10,
+                        }}
+                        onInput={(e) => {
+                          const value = e.target.value.replace(/\D/g, ""); // Replace any non-numeric characters
+                          if (value.length <= 10) {
+                            e.target.value = value; // Allow only 10 digits
+                          }
                         }}
                         sx={{
                           "& .MuiOutlinedInput-root": {
@@ -164,6 +178,13 @@ const ContactForm = () => {
                         required
                         autoComplete="street-address"
                         helperText="Enter your current address"
+                        onInput={(e) => {
+                          const value = e.target.value.replace(
+                            /[^A-Za-z0-9\s]/g,
+                            ""
+                          ); // Remove non-alphabet characters
+                          e.target.value = value;
+                        }}
                         sx={{
                           "& .MuiOutlinedInput-root": {
                             "& fieldset": {
@@ -190,6 +211,13 @@ const ContactForm = () => {
                         required
                         autoComplete="off"
                         helperText="Provide details of your inquiry"
+                        onInput={(e) => {
+                          const value = e.target.value.replace(
+                            /[^A-Za-z0-9\s]/g,
+                            ""
+                          ); // Remove non-alphabet characters
+                          e.target.value = value;
+                        }}
                         sx={{
                           "& .MuiOutlinedInput-root": {
                             "& fieldset": {

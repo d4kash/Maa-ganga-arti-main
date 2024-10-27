@@ -101,7 +101,7 @@ const Gallery = () => {
 
     // Create the thumbnail URL
     const thumbnailUrl = `${fileName}_thumbnail.png`;
-    console.log("thumbnail url: ", thumbnailUrl);
+    // console.log("thumbnail url: ", thumbnailUrl);
 
     // const thumbnailUrl = `${baseName.slice(0, -1).join('.')}_thumbnail.${baseName[baseName.length - 1]}`;
 

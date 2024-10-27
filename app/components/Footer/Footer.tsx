@@ -49,7 +49,7 @@ const products: ProductType[] = [
     id: 2,
     section: "Contact",
     link: ["Help/FAQ", "Contact Us"],
-    navigationLink: ["/", "/contact"],
+    navigationLink: ["/faqs", "/contact"],
   },
   {
     id: 3,

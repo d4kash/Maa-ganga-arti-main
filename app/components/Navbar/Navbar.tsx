@@ -19,6 +19,7 @@ const navigation: NavigationItem[] = [
   { name: "Gallery", href: "/gallery" },
   { name: "Services", href: "/service" },
   { name: "Book Now", href: "/#book-section" }, // Updated href to include the hash for the section
+  { name: "Faqs", href: "/faqs" },
   { name: "Contact us", href: "/contact" },
 ];
 
