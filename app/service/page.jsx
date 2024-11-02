@@ -1,5 +1,5 @@
 "use client";
-
+import Head from "next/head";
 import React, { useState } from "react";
 import {
   Box,
@@ -88,66 +88,67 @@ const ServiceCard = ({ service }) => {
   };
 
   return (
-    <Card
-      sx={{
-        boxShadow: 3,
-        transition: "transform 0.3s, box-shadow 0.3s",
-        "&:hover": { transform: "scale(1.05)", boxShadow: 6 },
-      }}
-    >
-      <ZoomCardMedia
-        component="img"
-        image={service.image}
-        alt={t(service.title)}
-        sx={{ height: 200 }}
-      />
-      <CardContent>
-        <Typography variant="h6" component="div" gutterBottom>
-          {t(service.title)}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {expanded
-            ? t(service.description)
-            : `${t(service.description).substring(0, 200)}...`}
-          {!expanded && (
-            <Button
-              onClick={handleExpandClick}
-              endIcon={<ExpandMoreIcon />}
-              sx={{ textTransform: "none", mt: 1 }}
-            >
-              {t("readMore")}
-            </Button>
-          )}
-        </Typography>
-        <Collapse in={expanded}>
-          <Box sx={{ mt: 2 }}>
-            <Typography variant="body2" color="text.secondary">
-              {t(service.description).substring(200)}
+        <Card
+          sx={{
+            boxShadow: 3,
+            transition: "transform 0.3s, box-shadow 0.3s",
+            "&:hover": { transform: "scale(1.05)", boxShadow: 6 },
+          }}
+        >
+          <ZoomCardMedia
+            component="img"
+            image={service.image}
+            alt={t(service.title)}
+            sx={{ height: 200 }}
+          />
+          <CardContent>
+            <Typography variant="h6" component="div" gutterBottom>
+              {t(service.title)}
             </Typography>
-            <Button
-              onClick={handleExpandClick}
-              sx={{ textTransform: "none", mt: 1 }}
-            >
-              {t("showLess")}
-            </Button>
-          </Box>
-        </Collapse>
-        <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-          <Button
-            variant="contained"
-            onClick={() => handleBookNow(service)}
-            sx={{
-              backgroundColor: "green !important",
-              "&:hover": {
-                backgroundColor: "darkgreen !important",
-              },
-            }}
-          >
-            {t("bookNow")}
-          </Button>
-        </Box>
-      </CardContent>
-    </Card>
+            <Typography variant="body2" color="text.secondary">
+              {expanded
+                ? t(service.description)
+                : `${t(service.description).substring(0, 200)}...`}
+              {!expanded && (
+                <Button
+                  onClick={handleExpandClick}
+                  endIcon={<ExpandMoreIcon />}
+                  sx={{ textTransform: "none", mt: 1 }}
+                >
+                  {t("readMore")}
+                </Button>
+              )}
+            </Typography>
+            <Collapse in={expanded}>
+              <Box sx={{ mt: 2 }}>
+                <Typography variant="body2" color="text.secondary">
+                  {t(service.description).substring(200)}
+                </Typography>
+                <Button
+                  onClick={handleExpandClick}
+                  sx={{ textTransform: "none", mt: 1 }}
+                >
+                  {t("showLess")}
+                </Button>
+              </Box>
+            </Collapse>
+            <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
+              <Button
+                variant="contained"
+                onClick={() => handleBookNow(service)}
+                sx={{
+                  backgroundColor: "green !important",
+                  "&:hover": {
+                    backgroundColor: "darkgreen !important",
+                  },
+                }}
+              >
+                {t("bookNow")}
+              </Button>
+            </Box>
+          </CardContent>
+        </Card>
+      
   );
 };
 
@@ -179,6 +180,9 @@ const ServiceCards = () => {
           </Typography>
         </Box>
         <FormControl sx={{ minWidth: 120 }}>
+          <div>
+            <em>Select Language</em>
+          </div>
           <Select
             value={language}
             onChange={handleChangeLanguage}
