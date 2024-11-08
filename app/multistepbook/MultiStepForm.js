@@ -2,11 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
 import { services } from "../../utils/constants";
 import { useTranslation } from "react-i18next";
 import {formatAmount, formatDiscountPercent} from "../../utils/constants";
+import { useRouter } from "next/navigation"
 // date=Wed%20Sep%2018%202024&service=0&pin=825301&nop=4
 const formVariants = {
   initial: { opacity: 0, y: 50 },
@@ -36,7 +37,9 @@ const MultiStepForm = () => {
   const [orderDetails, setOrderDetails] = useState(null); // Store the order details
   const [paymentSummary, setPaymentSummary] = useState(null); // Store the order details
   const [userData, setUserData] = useState(null); // Store the order details
+  const [serviceParamForSubmit, setServiceParam] = useState(null); // Store the order details
   const { t } = useTranslation();
+  const router = useRouter();
 
   const calculateProgress = () => {
     return (step / 2) * 100;
@@ -45,6 +48,8 @@ const MultiStepForm = () => {
   const {
     register,
     handleSubmit,
+    control,
+    watch,
     formState: { errors },
     setValue, // Function to prefill form values
   } = useForm();
@@ -58,12 +63,16 @@ const MultiStepForm = () => {
     return () => {
       document.body.removeChild(script);
     };
-  }, []);  
+  }, []);
+  
+  const paymentOption = watch("paymentOption");
+
 
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
     const dateParam = queryParams.get("date");
     const serviceParam = queryParams.get("service");
+    setServiceParam(queryParams.get("service"));
     const pincodeParam = queryParams.get("pin");
     const nopParam = queryParams.get("nop");
 
@@ -145,13 +154,16 @@ const MultiStepForm = () => {
   ];
 
   const onSubmit = async (data) => {
+    console.log("serviceParam: ",serviceTitle.englishTitle);
     const payload = {
       // event_name: serviceParamt(serviceTitle).toString() || "Marriage ganga aarti",
       service: data.eventType.toLowerCase() || "wedding",
-      event_name: serviceParam ? services[parseInt(serviceParam, 10)].englishTitle : serviceTitle,
+      event_name: serviceParamForSubmit != "" ? services[parseInt(serviceParamForSubmit, 10)].englishTitle : serviceTitle,
       // event_name: "विवाह गंगा आरती",
       // service: "wedding",
       "full_payment": false,
+      "half_payment": data.paymentOption === "custom" ? false : true,
+      "amount": data.amount,
       name: data.name,
       phone_number: data.phone,
       alter_number: data.alterPhone || "",
@@ -174,7 +186,7 @@ const MultiStepForm = () => {
 
       // console.log("Form submitted successfully:", response.data);
 try{
-      if (response.data && response.data["body-json"]['statusCode'] ===200 && response.data["body-json"].order_id) {
+      if (response.data && response.data["body-json"]['statusCode'] === 200 && response.data["body-json"].order_id) {
         setOrderDetails(response.data["body-json"].order_id);
         setPaymentSummary(response.data["body-json"]["body"].Order_Summary);
         setUserData(data);
@@ -210,7 +222,8 @@ try{
       description: "Event Booking",
       order_id: orderDetails.id, // Razorpay Order ID from server response
       handler: function (response) {
-        alert(`Payment successful: ${response.razorpay_payment_id}`);
+        // alert(`Payment successful: ${response.razorpay_payment_id}`);
+        router.push(`sucesspage?payment_id=${response.razorpay_payment_id}`)
         // Handle post-payment success actions here
       },
       prefill: {
@@ -307,7 +320,7 @@ try{
       Choose a service
     </option>
     {services.map((service) => (
-      <option key={service.id} value={service.title}>
+      <option key={service.id} value={service.englishTitle}>
         {t(service.title)}
       </option>
     ))}
@@ -581,6 +594,59 @@ try{
   )}
 </div>
 
+{/* Radio Buttons */}
+ {/* Responsive Container for Radio Buttons */}
+ <div className={`grid gap-4 mb-4 ${paymentOption === "custom" ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"}`}>
+        {/* Pay 40% as Advance Radio Button */}
+        <label className="flex items-center gap-2 p-2 border border-gray-300 rounded-md">
+          <input
+            type="radio"
+            value="advance"
+            {...register("paymentOption")}
+            className="text-blue-600 focus:ring-blue-500"
+          />
+          <span>Pay 40% as advance</span>
+        </label>
+
+        {/* Select and Pay as per Choice Radio Button */}
+        <label className="flex items-center gap-2 p-2 border border-gray-300 rounded-md">
+          <input
+            type="radio"
+            value="custom"
+            {...register("paymentOption")}
+            className="text-blue-600 focus:ring-blue-500"
+          />
+          <span>Select and pay as per choice</span>
+        </label>
+      </div>
+
+      {/* Conditional Dropdown for Custom Payment Option */}
+      {paymentOption === "custom" && (
+        <Controller
+          name="amount"
+          control={control}
+          render={({ field }) => (
+            <div className="mb-4">
+              <label htmlFor="amount" className="block text-sm font-medium text-gray-700 mb-2">
+                Select Amount:
+              </label>
+              <select
+                {...field}
+                id="amount"
+                className="w-full p-2 border border-gray-300 rounded-md text-gray-900"
+              >
+                <option value={3500}>3500</option>
+                <option value={4500}>4500</option>
+                <option value={5000}>5000</option>
+                <option value={6000}>6000</option>
+                <option value={8000}>8000</option>
+                <option value={10000}>10000</option>
+              </select>
+            </div>
+          )}
+        />
+      )}
+
         </div>
 
         <div className="flex justify-end mt-6">
@@ -681,6 +747,66 @@ try{
     </div>
   );
 };
+
+const styles = {
+  // form: {
+  //   maxWidth: "400px",
+  //   margin: "auto",
+  //   padding: "20px",
+  //   backgroundColor: "#f9f9f9",
+  //   borderRadius: "8px",
+  //   boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+  //   textAlign: "center",
+  // },
+  radioGroup: {
+    display: "flex",
+    justifyContent: "space-around",
+    marginBottom: "15px",
+  },
+  radioGroupMobile: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "10px",
+    marginBottom: "15px",
+  },
+  radioLabel: {
+    fontSize: "1rem",
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
+  },
+  radioInput: {
+    accentColor: "#2196f3",
+  },
+  dropdownContainer: {
+    margin: "15px 0",
+    textAlign: "left",
+  },
+  dropdownLabel: {
+    display: "block",
+    fontSize: "0.9rem",
+    marginBottom: "5px",
+  },
+  dropdown: {
+    width: "100%",
+    padding: "8px",
+    fontSize: "1rem",
+    borderRadius: "4px",
+    border: "1px solid #ccc",
+  },
+  submitButton: {
+    width: "100%",
+    padding: "10px",
+    fontSize: "1rem",
+    backgroundColor: "#4caf50",
+    color: "#fff",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+  },
+};
+
 
 export default MultiStepForm;
 
