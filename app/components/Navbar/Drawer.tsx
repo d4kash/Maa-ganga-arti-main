@@ -38,7 +38,7 @@ const Drawer = ({ children, isOpen, setIsOpen }: DrawerProps) => {
                   width={30}
                   height={30}
                 />
-                <span className="ml-2">Shree Narayan Ganga Arti</span>
+                <span className="ml-2">Shree Narayan Ganga Arti event</span>
               </Link>
             </div>
 

@@ -299,19 +299,26 @@ const Gallery = () => {
                     }}
                   >
                     {item.videoUrl ? (
+                      // <CardMedia
+                      //   component="video"
+                      //   height="200"
+                      //   image={
+                      //     item.videoUrl.includes("youtu.be" || "youtube")
+                      //       ? `https://img.youtube.com/vi/${extractYouTubeID(
+                      //           item.videoUrl
+                      //         )}/hqdefault.jpg`
+                      //       : getThumbnailUrl(item.videoUrl)
+                      //     // : "https://ganga-arti.s3.ap-south-1.amazonaws.com/Video/wedding_service2.png"
+                      //   }
+                      //   // onError={handleThumbnailError}
+                      //   alt="Gallery Video Thumbnail"
+                      // />
                       <CardMedia
-                        component="img"
+                        component="video"
                         height="200"
-                        image={
-                          item.videoUrl.includes("youtu.be" || "youtube")
-                            ? `https://img.youtube.com/vi/${extractYouTubeID(
-                                item.videoUrl
-                              )}/hqdefault.jpg`
-                            : getThumbnailUrl(item.videoUrl)
-                          // : "https://ganga-arti.s3.ap-south-1.amazonaws.com/Video/wedding_service2.png"
-                        }
-                        // onError={handleThumbnailError}
-                        alt="Gallery Video Thumbnail"
+                        controls
+                        src={item.videoUrl}
+                        alt="Gallery Video"
                       />
                     ) : (
                       <CardMedia

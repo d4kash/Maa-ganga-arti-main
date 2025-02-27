@@ -26,7 +26,7 @@ const AboutUs = () => {
             mt: { xs: 6, md: 10 },
           }}
         >
-          About Shree Narayan Ganga Arti
+          About Shree Narayan Ganga Arti event
         </Typography>
 
         <Grid container spacing={4} alignItems="stretch">
@@ -58,7 +58,7 @@ const AboutUs = () => {
                   <Grid item xs={12} md={12}>
                     <img
                       src="/assets/durga_puja.webp"
-                      alt="Shree narayan ganga arti"
+                      alt="Shree narayan Ganga Arti event event"
                       style={{
                         width: "100%",
                         height: "auto",
@@ -76,7 +76,7 @@ const AboutUs = () => {
                   >
                     <img
                       src="/assets/jayamala_with_aarti.webp"
-                      alt="engagement shree narayan Ganga Arti"
+                      alt="engagement shree narayan Ganga Arti event"
                       style={{
                         width: "100%",
                         height: "auto",
@@ -191,9 +191,9 @@ const AboutUs = () => {
                     ceremony without the need to travel.
                     <br />
                     <br />
-                    Ganga Arti is a centuries-old Hindu ritual dedicated to
-                    Goddess Ganga, the deity symbolizing the river Ganges. Each
-                    evening, as dusk descends, priests clad in traditional
+                    Ganga Arti event is a centuries-old Hindu ritual dedicated
+                    to Goddess Ganga, the deity symbolizing the river Ganges.
+                    Each evening, as dusk descends, priests clad in traditional
                     attire gather on the riverbanks. With oil lamps, flowers,
                     incense, and sacred chants, they perform a mesmerizing
                     ceremony that invokes blessings, purifies the atmosphere,

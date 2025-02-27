@@ -101,24 +101,12 @@ export const ceremonySteps = [
    },
    {
      number: 12,
-     title: "Morpankh Aarti",
-     description: "The offering of peacock feathers (Morpankh) is part of the Aarti.",
-     purpose: "Peacock feathers are believed to carry divine grace and blessings.",
-   },
-   {
-     number: 13,
-     title: "Chamar Aarti",
-     description: "Chamar Aarti involves the use of a ceremonial fan made from yak or horsehair to gently fan the deity.",
-     purpose: "This act is a gesture of respect and devotion, symbolizing the offering of service.",
-   },
-   {
-     number: 14,
      title: "Final Sankh Vadan and Mangal Ashirwad Mantra",
      description: "The Aarti concludes with a final blowing of the conch shell and the recitation of Mangal Ashirwad Mantras.",
      purpose: "This final ritual seeks divine blessings for the couple’s prosperous and harmonious future together.",
    },
    {
-     number: 15,
+     number: 13,
      title: "End Aarti",
      description: "The ceremony ends with a concluding Aarti, bringing the entire ritual to a serene and sacred close.",
      purpose: "The final Aarti is a mark of the completion of the ritual, sealing the divine blessings and ensuring a spiritually fulfilling end.",

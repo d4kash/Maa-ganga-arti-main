@@ -61,8 +61,8 @@ const BookingForm = () => {
         variant="body1"
         sx={{ textAlign: "center", mb: 3, color: "green", fontSize: "18px" }}
       >
-        Experience the divine Ganga Arti with our exclusive booking. Enjoy a
-        serene and spiritual evening by the Ganges with your loved ones.
+        Experience the divine Ganga Arti event with our exclusive booking. Enjoy
+        a serene and spiritual evening by the Ganges with your loved ones.
       </Typography>
 
       <Grid container spacing={4} justifyContent="center" sx={{ p: 3 }}>

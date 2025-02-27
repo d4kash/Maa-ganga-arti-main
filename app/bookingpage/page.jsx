@@ -82,8 +82,8 @@ const BookingForm = () => {
           mb: 6,
         }}
       >
-        Experience the divine Ganga Arti with our exclusive booking. A serene
-        and spiritual evening awaits you.
+        Experience the divine Ganga Arti event with our exclusive booking. A
+        serene and spiritual evening awaits you.
       </Typography>
 
       <Grid container spacing={4}>

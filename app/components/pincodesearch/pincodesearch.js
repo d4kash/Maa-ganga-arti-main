@@ -233,6 +233,7 @@ console.log("serviceIdProp:",serviceIdProp);
               className={`w-full p-3 text-gray-700 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500`}
               // Uncomment if date is required
               // minDate={new Date()}
+              minDate={new Date()}
             />
           </div>
           {formErrors.checkInDate && (

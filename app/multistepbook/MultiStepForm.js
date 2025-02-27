@@ -213,16 +213,17 @@ try{
     }
   };
 
-  const handlePayment = () => {
+  const handlePayment = async () => {
     const options = {
       key: "rzp_live_9Lu8TsqBpSuohl", // Replace with your Razorpay key
       amount: orderDetails.amount, // Amount in paisa (e.g., 900000 for ₹9000)
       currency: orderDetails.currency,
-      name: "Shree narayan Ganga Arti",
+      name: "Shree narayan Ganga Arti event",
       description: "Event Booking",
       order_id: orderDetails.id, // Razorpay Order ID from server response
-      handler: function (response) {
+      handler: async function (response) {
         // alert(`Payment successful: ${response.razorpay_payment_id}`);
+        await verifyPayment(response);
         router.push(`sucesspage?payment_id=${response.razorpay_payment_id}`)
         // Handle post-payment success actions here
       },
@@ -238,6 +239,25 @@ try{
 
     const rzp = new window.Razorpay(options);
     rzp.open();
+  };
+
+  const verifyPayment = async (data) => {
+    const url = 'https://mmngrm2h3i.execute-api.ap-south-1.amazonaws.com/gangaArti/payment_verification';
+  
+    try {
+      const response = await axios.put(url, {
+        booking_id: data.booking_id,
+        razorpay_order_id: data.razorpay_order_id,
+        razorpay_payment_id: data.razorpay_payment_id,
+        razorpay_signature: data.razorpay_signature,
+      });
+  
+      console.log('Response:', response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error:', error.response ? error.response.data : error.message);
+      throw error;
+    }
   };
 
 

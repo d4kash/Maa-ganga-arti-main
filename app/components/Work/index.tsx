@@ -14,15 +14,15 @@ import {
 const images = [
   {
     src: "/assets/jayamala_with_aarti.webp",
-    alt: "Engagement shreenarayan ganga aarti",
+    alt: "Engagement shreenarayan ganga aarti event",
   },
   {
     src: "/assets/durga_puja.webp",
-    alt: "durga puja shree narayan ganga aarti",
+    alt: "durga puja shree narayan ganga aarti event",
   },
   {
     src: "/assets/wedding_ai2.webp",
-    alt: "wedding shreenarayan ganga aarti",
+    alt: "wedding shreenarayan ganga aarti event",
   },
   // Add more images as needed
 ];
@@ -44,7 +44,7 @@ const AboutUs = () => {
       <Container>
         <div className="text-center">
           <h1 className="text-pink text-2xl md:text-4xl font-normal mb-3 tracking-widest uppercase">
-            About shree narayan Ganga Arti
+            About shree narayan Ganga Arti event
           </h1>
         </div>
 
@@ -81,28 +81,28 @@ const AboutUs = () => {
             >
               <CardContent>
                 <Typography variant="h5" sx={{ fontWeight: "bold", mb: 2 }}>
-                  Experience the Spiritual Essence of wedding Ganga Arti
+                  Experience the Spiritual Essence of wedding Ganga Arti event
                 </Typography>
                 <Typography
                   variant="body1"
                   sx={{ lineHeight: 1.8, color: "#555" }}
                 >
                   Experience the spiritual essence of shree narayan ganga aarti
-                  for your sacred ceremonies. Book Ganga Aarti online for
+                  event for your sacred ceremonies. Book Ganga Aarti online for
                   weddings, anniversaries, and more, bringing the divine rituals
                   right to your doorstep. Perform traditional Ganga Aarti at
                   home to invoke prosperity and well-being. From Namkaran Ganga
-                  Aarti for new beginnings to Engagement Ganga Aarti for
-                  auspicious starts, and Anniversary Ganga Aarti for eternal
-                  blessings, our services offer you the chance to participate in
-                  these timeless traditions with ease. Ensure that your special
-                  occasions are blessed with the purity and grace of Ganga
-                  Pooja.
+                  Aarti event for new beginnings to Engagement Ganga Aarti event
+                  for auspicious starts, and Anniversary Ganga Aarti event for
+                  eternal blessings, our services offer you the chance to
+                  participate in these timeless traditions with ease. Ensure
+                  that your special occasions are blessed with the purity and
+                  grace of Ganga Pooja.
                   <br />
-                  At shree narayan ganga arti Booking, we bring the spiritual
-                  essence of this ancient ritual to your doorstep, offering a
-                  unique opportunity to witness and participate in a cherished
-                  tradition without traveling afar.
+                  At shree narayan Ganga Arti event event Booking, we bring the
+                  spiritual essence of this ancient ritual to your doorstep,
+                  offering a unique opportunity to witness and participate in a
+                  cherished tradition without traveling afar.
                 </Typography>
               </CardContent>
             </Card>
