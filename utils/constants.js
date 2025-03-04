@@ -148,14 +148,14 @@ export const faqs = [
     "keywords": ["Ganga Aarti significance", "holy river ritual", "spiritual ceremony", "Hindu rituals"]
   },
   {
-    "question": "How can I book a Ganga Aarti event with Shree Narayan Ganga Aarti?",
-    "answer": "To book a Ganga Aarti event, visit our booking page, select your preferred event type and date, fill in the required details, and complete the online payment through our secure gateway.",
-    "keywords": ["Ganga Aarti booking", "book Ganga Aarti", "Ganga Aarti event reservation"]
+    "question": "How can I book a Ganga Aarti theme with Shree Narayan Ganga Aarti?",
+    "answer": "To book a Ganga Aarti theme, visit our booking page, select your preferred event type and date, fill in the required details, and complete the online payment through our secure gateway.",
+    "keywords": ["Ganga Aarti booking", "book Ganga Aarti", "Ganga Aarti theme reservation"]
   },
   {
     "question": "What types of events can be organized during Ganga Aarti?",
     "answer": "Events like Namkaran, Engagement, Wedding, Durga Puja, and other personal or religious ceremonies can be organized during Ganga Aarti by Shree Narayan Ganga Aarti.",
-    "keywords": ["Ganga Aarti event types", "Namkaran Ganga Aarti", "wedding Ganga Aarti", "Durga Puja Ganga Aarti"]
+    "keywords": ["Ganga Aarti theme types", "Namkaran Ganga Aarti", "wedding Ganga Aarti", "Durga Puja Ganga Aarti"]
   },
   {
     "question": "How early should I book my event with Shree Narayan Ganga Aarti?",
@@ -185,7 +185,7 @@ export const faqs = [
   {
     "question": "Can I reschedule my event after booking?",
     "answer": "Yes, events can be rescheduled up to 3 days before the event date, depending on availability. Additional charges may apply based on the changes.",
-    "keywords": ["reschedule Ganga Aarti", "change booking Ganga Aarti", "modify Ganga Aarti event"]
+    "keywords": ["reschedule Ganga Aarti", "change booking Ganga Aarti", "modify Ganga Aarti theme"]
   },
   {
     "question": "Are photography and videography services available?",
@@ -210,7 +210,7 @@ export const faqs = [
   {
     "question": "Do you offer special packages for multiple events or large gatherings?",
     "answer": "Yes, Shree Narayan Ganga Aarti offers tailored packages for multiple events, large groups, or multi-day ceremonies. Please contact our team for more details and pricing.",
-    "keywords": ["Ganga Aarti event packages", "large group Ganga Aarti", "multi-day event booking Ganga Aarti"]
+    "keywords": ["Ganga Aarti theme packages", "large group Ganga Aarti", "multi-day event booking Ganga Aarti"]
   },
   {
     "question": "Can we combine Ganga Aarti with other religious rituals?",
@@ -225,7 +225,7 @@ export const faqs = [
   {
     "question": "How many pandits can be booked for my event?",
     "answer": "You can book between 1 to 5 pandits for your event, depending on the size and type of ceremony. This can be customized during the booking process to meet your specific needs.",
-    "keywords": ["book pandits Ganga Aarti", "pandits for Ganga Aarti event", "customized pandit booking"]
+    "keywords": ["book pandits Ganga Aarti", "pandits for Ganga Aarti theme", "customized pandit booking"]
   },
   {
     "question": "How many slots are available for Ganga Aarti ceremonies each day?",

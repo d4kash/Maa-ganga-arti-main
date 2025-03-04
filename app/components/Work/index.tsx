@@ -14,15 +14,15 @@ import {
 const images = [
   {
     src: "/assets/jayamala_with_aarti.webp",
-    alt: "Engagement shreenarayan ganga aarti event",
+    alt: "Engagement shreenarayan ganga aarti theme",
   },
   {
     src: "/assets/durga_puja.webp",
-    alt: "durga puja shree narayan ganga aarti event",
+    alt: "durga puja shree narayan ganga aarti theme",
   },
   {
     src: "/assets/wedding_ai2.webp",
-    alt: "wedding shreenarayan ganga aarti event",
+    alt: "wedding shreenarayan ganga aarti theme",
   },
   // Add more images as needed
 ];
@@ -92,8 +92,8 @@ const AboutUs = () => {
                   weddings, anniversaries, and more, bringing the divine rituals
                   right to your doorstep. Perform traditional Ganga Aarti at
                   home to invoke prosperity and well-being. From Namkaran Ganga
-                  Aarti event for new beginnings to Engagement Ganga Aarti event
-                  for auspicious starts, and Anniversary Ganga Aarti event for
+                  Aarti theme for new beginnings to Engagement Ganga Aarti theme
+                  for auspicious starts, and Anniversary Ganga Aarti theme for
                   eternal blessings, our services offer you the chance to
                   participate in these timeless traditions with ease. Ensure
                   that your special occasions are blessed with the purity and

@@ -306,11 +306,11 @@ const Service = () => {
             {/* FAQ 2 */}
             <div className="faq-item bg-white p-6 rounded-lg shadow-md mb-4">
               <h3 className="text-xl font-bold mb-4">
-                How can I book a Ganga Aarti event with Shree Narayan Ganga
+                How can I book a Ganga Aarti theme with Shree Narayan Ganga
                 Aarti?
               </h3>
               <p>
-                To book a Ganga Aarti event, visit our booking page, select your
+                To book a Ganga Aarti theme, visit our booking page, select your
                 preferred event type and date, fill in the required details, and
                 complete the online payment through our secure gateway.
               </p>
@@ -331,7 +331,7 @@ const Service = () => {
                 Aarti by Shree Narayan Ganga Aarti.
               </p>
               <span className="text-gray-600 mt-4 block">
-                Keywords: Ganga Aarti event types, Namkaran Ganga Aarti, wedding
+                Keywords: Ganga Aarti theme types, Namkaran Ganga Aarti, wedding
                 Ganga Aarti, Durga Puja Ganga Aarti
               </span>
             </div>
@@ -430,7 +430,7 @@ const Service = () => {
               </p>
               <span className="text-gray-600 mt-4 block">
                 Keywords: reschedule Ganga Aarti, change booking Ganga Aarti,
-                modify Ganga Aarti event
+                modify Ganga Aarti theme
               </span>
             </div>
 

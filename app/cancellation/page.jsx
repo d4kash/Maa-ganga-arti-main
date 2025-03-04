@@ -17,7 +17,7 @@ const CancellationRefundPolicy = () => {
       <ul>
         <li>
           Customers can cancel their booking up to 24 hours before the scheduled
-          time of the Ganga Aarti event for a full refund.
+          time of the Ganga Aarti theme for a full refund.
         </li>
         <li>
           Cancellations made less than 24 hours before the scheduled event will

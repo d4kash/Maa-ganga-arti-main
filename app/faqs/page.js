@@ -29,16 +29,16 @@ const FaqPage = () => {
     
             {/* FAQ 2 */}
             <div className="faq-item bg-white p-6 rounded-lg shadow-md mb-4">
-              <h3 className="text-xl font-bold mb-4">How can I book a Ganga Aarti event with Shree Narayan Ganga Aarti?</h3>
-              <p>To book a Ganga Aarti event, visit our booking page, select your preferred event type and date, fill in the required details, and complete the online payment through our secure gateway.</p>
-              <span className="text-gray-600 mt-4 block">Keywords: Ganga Aarti booking, book Ganga Aarti, Ganga Aarti event reservation</span>
+              <h3 className="text-xl font-bold mb-4">How can I book a Ganga Aarti theme with Shree Narayan Ganga Aarti?</h3>
+              <p>To book a Ganga Aarti theme, visit our booking page, select your preferred event type and date, fill in the required details, and complete the online payment through our secure gateway.</p>
+              <span className="text-gray-600 mt-4 block">Keywords: Ganga Aarti booking, book Ganga Aarti, Ganga Aarti theme reservation</span>
             </div>
     
             {/* FAQ 3 */}
             <div className="faq-item bg-white p-6 rounded-lg shadow-md mb-4">
               <h3 className="text-xl font-bold mb-4">What types of events can be organized during Ganga Aarti?</h3>
               <p>Events like Namkaran, Engagement, Wedding, Durga Puja, and other personal or religious ceremonies can be organized during Ganga Aarti by Shree Narayan Ganga Aarti.</p>
-              <span className="text-gray-600 mt-4 block">Keywords: Ganga Aarti event types, Namkaran Ganga Aarti, wedding Ganga Aarti, Durga Puja Ganga Aarti</span>
+              <span className="text-gray-600 mt-4 block">Keywords: Ganga Aarti theme types, Namkaran Ganga Aarti, wedding Ganga Aarti, Durga Puja Ganga Aarti</span>
             </div>
     
             {/* FAQ 4 */}
@@ -80,7 +80,7 @@ const FaqPage = () => {
 <div className="faq-item bg-white p-6 rounded-lg shadow-md mb-4">
   <h3 className="text-xl font-bold mb-4">Can I reschedule my event after booking?</h3>
   <p>Yes, events can be rescheduled up to 3 days before the event date, depending on availability. Additional charges may apply based on the changes.</p>
-  <span className="text-gray-600 mt-4 block">Keywords: reschedule Ganga Aarti, change booking Ganga Aarti, modify Ganga Aarti event</span>
+  <span className="text-gray-600 mt-4 block">Keywords: reschedule Ganga Aarti, change booking Ganga Aarti, modify Ganga Aarti theme</span>
 </div>
 
 {/* FAQ 10 */}
@@ -115,7 +115,7 @@ const FaqPage = () => {
 <div className="faq-item bg-white p-6 rounded-lg shadow-md mb-4">
   <h3 className="text-xl font-bold mb-4">Do you offer special packages for multiple events or large gatherings?</h3>
   <p>Yes, Shree Narayan Ganga Aarti offers tailored packages for multiple events, large groups, or multi-day ceremonies. Please contact our team for more details and pricing.</p>
-  <span className="text-gray-600 mt-4 block">Keywords: Ganga Aarti event packages, large group Ganga Aarti, multi-day event booking Ganga Aarti</span>
+  <span className="text-gray-600 mt-4 block">Keywords: Ganga Aarti theme packages, large group Ganga Aarti, multi-day event booking Ganga Aarti</span>
 </div>
 
 {/* FAQ 15 */}
@@ -136,7 +136,7 @@ const FaqPage = () => {
 <div className="faq-item bg-white p-6 rounded-lg shadow-md mb-4">
   <h3 className="text-xl font-bold mb-4">How many pandits can be booked for my event?</h3>
   <p>You can book between 1 to 5 pandits for your event, depending on the size and type of ceremony. This can be customized during the booking process to meet your specific needs.</p>
-  <span className="text-gray-600 mt-4 block">Keywords: book pandits Ganga Aarti, pandits for Ganga Aarti event, customized pandit booking</span>
+  <span className="text-gray-600 mt-4 block">Keywords: book pandits Ganga Aarti, pandits for Ganga Aarti theme, customized pandit booking</span>
 </div>
 
 {/* FAQ 18 */}

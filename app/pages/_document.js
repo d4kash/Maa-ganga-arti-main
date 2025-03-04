@@ -3,7 +3,7 @@ import { Html, Head, Main, NextScript } from 'next/document';
 
 export default function Document() {
   return (
-    <Html>
+    <Html lang="en">
       <Head>
       <link
           rel="stylesheet"
@@ -53,7 +53,73 @@ export default function Document() {
           name="twitter:image"
           content="https://ganga-arti.s3.ap-south-1.amazonaws.com/wedding/arti7.png"
         />
-
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "How can I book Ganga Aarti?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "You can book Ganga Aarti by entering your pincode in our search field."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What events can Ganga Aarti be booked for?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Ganga Aarti can be booked for weddings, pujas, anniversaries, and spiritual ceremonies."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Is online booking available for Ganga Aarti?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, you can book Ganga Aarti online through our website by selecting your preferred date and location."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Can I choose a specific time for the Ganga Aarti?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, during the booking process, you can select your preferred time slot for the Ganga Aarti."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Are there any cancellation policies for Ganga Aarti bookings?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, cancellations are allowed up to 24 hours before the scheduled time. Please refer to our cancellation policy for details."
+                  }
+                }
+              ]
+            })
+          }}
+        />
+ <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "Ganga Aarti Theme Booking at Your Weddings",
+              "url": "https://bookgangaarti.com/",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://bookgangaarti.com/search?pincode={search_term}",
+                "query-input": "required name=search_term"
+              }
+            })
+          }}
+        />
       </Head>
       <body>
         <Main />
